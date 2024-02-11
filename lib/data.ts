@@ -71,6 +71,8 @@ export const projectsData = [
       "A blog app where users can create, read, update and delete blog posts. It has features like authentication, authorization, and image upload.",
     tags: ["React", "MongoDB", "Tailwind", "Express", "Node.js", "Rest API"],
     imageUrl: riteblogImg,
+    url: "https://riteblog.devshadow.live/",
+    repo: "https://github.com/im-shadowpool/riteblogapp-project",
   },
   {
     title: "DealsTracker",
@@ -78,12 +80,16 @@ export const projectsData = [
       "A web app to track deals and offers from amazon and flipkart. It has features like price tracking, price drop alerts, and price history. With Implementation of Web Scraping and Cron Jobs.",
     tags: ["React", "TypeScript", "Next.js", "Tailwind", "Web Scraping", "Cron Jobs", "MongoDB"],
     imageUrl: dealsTrackerImg,
+    url: "http://dealstracker.devshadow.live/",
+    repo: "https://github.com/im-shadowpool/dealstracker",
   },
   {
     title: "Memory Game",
     description: 'A Memory Game built with React. It has features like timer, score, and switching themes.',
     tags: ["React"],
     imageUrl: memorygameImg,
+    url: "https://memory-game.devshadow.live/",
+    repo: "https://github.com/im-shadowpool/memory-game",
   },
 ] as const;
 
