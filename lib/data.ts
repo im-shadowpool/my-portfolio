@@ -108,6 +108,7 @@ export const skillsData = [
   "TypeScript",
   "Express",
   "Python",
+  "MySQL",
   "SEO",
   "Wordpress",
   "C/C++",

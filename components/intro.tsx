@@ -70,7 +70,7 @@ export default function Intro() {
         <span className="font-bold">Welcome!, I'm Saipavan Veeravalli.</span> a recent{" "}
         <span className="font-bold">Computer Science graduate</span> with a passion for{" "}
         <span className="font-bold">SEO</span> and  <span className="font-bold">full-stack development</span>. My focus is{" "}
-        <span className="underline">Next.js & Data Structues</span>. I'm currently learning <span className="italic">Java Backend</span>.
+        <span className="underline">Next.js & Data Structures</span>. I'm currently learning <span className="italic">Java Backend</span>.
       </motion.h1>
 
       <motion.div

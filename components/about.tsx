@@ -30,25 +30,27 @@ export default function About() {
         <span className="">failure</span>. The reason is multitasking. With my
         learnings, I have{" "}
         <span className="font-medium">mastered on-page SEO</span> and did my
-        <span className="font-medium">first internship at a startup</span> with
+        <span className="font-medium"> first internship at a startup</span> with
         my expertise in{" "}
-        <span className="underline">SEO and digital marketing skills</span>. Along
-        with this, I have started learning web development and started my first
-        project with the <span className="italic">MERN stack</span>. After my
-        graduation, I started preparing for the gate exam for Masters in India,
-        and I qualified for the exam. In contrast, I started my development
-        journey back,and learning in-depth of the backend with Java. and am{" "}
-        <span className="font-medium text-green-600">open to work.</span>
+        <span className="underline">SEO and digital marketing skills</span>.
+        Along with this, I have started learning web development and started my
+        first project with the <span className="italic">MERN stack</span>. After
+        my graduation, I started preparing for the gate exam for Masters in
+        India, and I qualified for the exam. In contrast, I started my
+        development journey back,and learning in-depth of the backend with Java.
+        and am <span className="font-medium text-green-600">open to work.</span>
       </p>
-
 
       <p>
         <span className="italic">When I'm not working</span>, I enjoy playing
         chess, watching movies. I also enjoy{" "}
         <span className="font-medium">reading books</span>. I am currently
         reading about{" "}
-        <span className="font-medium">The Compound Effect by </span><span className="italic">Darren Hardy</span> and favourite book is <span className="font-medium">Eat that frog by brian tracy</span></p>
-
+        <span className="font-medium">The Compound Effect by </span>
+        <span className="italic">Darren Hardy</span> and my favourite book is{" "}
+        <span className="font-medium">Eat that frog by</span>
+        <span className="italic"> brian tracy.</span>
+      </p>
     </motion.section>
   );
 }

@@ -15,6 +15,5 @@ html.dark {
 }
 
 .vertical-timeline-element-icon  { 
-  -webkit-box-shadow: 0 0 0 4px #fff, inset 0 2px 0 rgba(0, 0, 0, .08), 0 3px 0 4px rgba(0, 0, 0, .05);
-  box-shadow: 0 0 0 4px #5a5a62, inset 0 2px 0 rgba(0, 0, 0, .08), 0 3px 0 4px rgba(0, 0, 0, .05);
+  box-shadow: 0 0 0 4px #1f425b3c, inset 0 2px 0 rgba(63, 67, 69, 0.08), 0 3px 0 4px rgba(0, 0, 0, .05) !important;
 }
