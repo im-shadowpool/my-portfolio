@@ -78,7 +78,7 @@ export const projectsData = [
     title: "DealsTracker",
     description:
       "A web app to track deals and offers from amazon and flipkart. It has features like price tracking, price drop alerts, and price history. With Implementation of Web Scraping and Cron Jobs.",
-    tags: ["React", "TypeScript", "Next.js", "Tailwind", "Web Scraping", "Cron Jobs", "MongoDB"],
+    tags: ["Next.js", "TypeScript", "Tailwind", "Web Scraping", "Cron Jobs", "MongoDB"],
     imageUrl: dealsTrackerImg,
     url: "http://dealstracker.devshadow.live/",
     repo: "https://github.com/im-shadowpool/dealstracker",
