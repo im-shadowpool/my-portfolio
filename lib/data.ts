@@ -47,7 +47,7 @@ export const experiencesData = [
     date: "2021 - present",
   },
   {
-    title: "Digital Marketing & Web development Intern",
+    title: "Web development Intern",
     location: "Hyderabad",
     description:
     "Assisted organisations and clients in achieving first in Google rankings by applying SEO, Learned Various Cache Techniques and Back end Optimization to decrease website load time from 6.5 seconds to 0.98 seconds.",
