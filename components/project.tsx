@@ -46,7 +46,7 @@ export default function Project({
             href={url}
             target="_blank"
             className="px-5 py-1.5 bg-slate-300 text-gray-700 rounded-s-full hover:text-gray-950 hover:bg-slate-300/90 hover:px-9 font-medium outline-none transition-all dark:bg-slate-800 dark:text-white/70 dark:hover:bg-slate-800/60">
-            <TbLivePhoto className="inline-block mb-1 mr-1 text-slate-600 text-sm dark:text-white/70"  />Live</a>
+            <TbLivePhoto className="inline-block mr-3 mb-0.5 items-center  animate-pulse  text-slate-600 text-sm dark:text-white/70"  />Live</a>
             <a 
             href={repo}
             target="_blank"

@@ -39,12 +39,21 @@ export const links = [
 
 export const experiencesData = [
   {
+    title: "Node.js Developer Intern",
+    location: "Hyderabad",
+    description:
+      "Developed a RESTful API using Node.js and Express. Implemented features like authentication, authorization, and image upload. Learned about RESTful APIs, authentication, and authorization.",
+    icon: React.createElement(CgWorkAlt),
+    date: "March 2024 - Present",
+    },
+
+  {
     title: "Blogging",
     location: "Planspedia.com",
     description:
       "I write articles in my free time. I write about technology, programming. I also write about my experiences and the things I learn. I have written over 30 articles. I have a passion for writing and sharing my knowledge with others. I have a blog called planspedia.com.",
     icon: React.createElement(RiQuillPenFill),
-    date: "2021 - present",
+    date: "November 2021 - January 2024",
   },
   {
     title: "Web development Intern",
@@ -52,7 +61,7 @@ export const experiencesData = [
     description:
     "Assisted organisations and clients in achieving first in Google rankings by applying SEO, Learned Various Cache Techniques and Back end Optimization to decrease website load time from 6.5 seconds to 0.98 seconds.",
     icon: React.createElement(CgWorkAlt),
-    date: "2022 March - 2022 June",
+    date: "March 2022 - May 2022",
   },
   {
     title: "B Tech in Computer Science Engineering",
@@ -60,7 +69,7 @@ export const experiencesData = [
     description:
       "I graduated from the Avanthi Institute of Engineering and Technology with a degree in computer science engineering. In my technical courses, I learned discrete mathematics, operating systems, database management systems, computer networks, and the analysis and design of algorithms.",
     icon: React.createElement(LuGraduationCap),
-    date: "2019 - 2023",
+    date: "Augest 2019 - September 2023",
   },
 ] as const;
 
