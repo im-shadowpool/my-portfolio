@@ -95,7 +95,7 @@ export default function Intro() {
 
         <a
           className="group bg-white px-7 py-3 flex items-center gap-2 rounded-full outline-none  hover:scale-105 active:scale-90 transition cursor-pointer borderBlack dark:bg-white/10"
-          href="https://drive.google.com/file/d/1F4STTtnifB6l7jhrYJAYLqSCGyaaENhl/view?usp=drive_link"
+          href="https://drive.google.com/file/d/1mZBxe2dvRV9xtsa8Cr9x3R1clNXWCp5Z/view?usp=sharing"
           target="_blank"
         >
           View Resume{" "}
