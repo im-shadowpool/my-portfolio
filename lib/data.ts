@@ -1,14 +1,11 @@
 import React from "react";
 import { CgWorkAlt } from "react-icons/cg";
 import { LuGraduationCap } from "react-icons/lu";
-import corpcommentImg from "@/public/corpcomment.png";
-import rmtdevImg from "@/public/rmtdev.png";
-import wordanalyticsImg from "@/public/wordanalytics.png";
 import memorygameImg from "@/public/memorygame-project-snap.png";
 import riteblogImg from "@/public/riteblog-project-snap.png";
 import dealsTrackerImg from "@/public/dealstracker-project-snap.png";
+import admindashboardImg from "@/public/admindashboard-project.png";
 import { RiQuillPenFill } from "react-icons/ri";
-
 
 export const links = [
   {
@@ -45,7 +42,7 @@ export const experiencesData = [
       "Developed a RESTful API using Node.js and Express. Implemented features like authentication, authorization, and image upload. Learned about RESTful APIs, authentication, and authorization.",
     icon: React.createElement(CgWorkAlt),
     date: "March 2024 - Present",
-    },
+  },
 
   {
     title: "Blogging",
@@ -59,7 +56,7 @@ export const experiencesData = [
     title: "Web development Intern",
     location: "Hyderabad",
     description:
-    "Assisted organisations and clients in achieving first in Google rankings by applying SEO, Learned Various Cache Techniques and Back end Optimization to decrease website load time from 6.5 seconds to 0.98 seconds.",
+      "Assisted organisations and clients in achieving first in Google rankings by applying SEO, Learned Various Cache Techniques and Back end Optimization to decrease website load time from 6.5 seconds to 0.98 seconds.",
     icon: React.createElement(CgWorkAlt),
     date: "March 2022 - May 2022",
   },
@@ -75,6 +72,15 @@ export const experiencesData = [
 
 export const projectsData = [
   {
+    title: "Admin Dashboard",
+    description:
+      "Developed a full-stack admin dashboard to manage any e-commerce analytics and stats, including user data, product stats, transactions data, geographical data and real-time revenue tracking",
+    tags: ["React", "MaterialUI", "MongoDB", "Node.js", "Express.js"],
+    imageUrl: admindashboardImg,
+    url: "https://admindashboard.devshadow.live/",
+    repo: "https://github.com/im-shadowpool/admin-dashboard",
+  },
+  {
     title: "RiteBlog app",
     description:
       "A blog app where users can create, read, update and delete blog posts. It has features like authentication, authorization, and image upload.",
@@ -87,14 +93,22 @@ export const projectsData = [
     title: "DealsTracker",
     description:
       "A web app to track deals and offers from amazon and flipkart. It has features like price tracking, price drop alerts, and price history. With Implementation of Web Scraping and Cron Jobs.",
-    tags: ["Next.js", "TypeScript", "Tailwind", "Web Scraping", "Cron Jobs", "MongoDB"],
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind",
+      "Web Scraping",
+      "Cron Jobs",
+      "MongoDB",
+    ],
     imageUrl: dealsTrackerImg,
     url: "http://dealstracker.devshadow.live/",
     repo: "https://github.com/im-shadowpool/dealstracker",
   },
   {
     title: "Memory Game",
-    description: 'A Memory Game built with React. It has features like timer, score, and switching themes.',
+    description:
+      "A Memory Game built with React. It has features like timer, score, and switching themes.",
     tags: ["React"],
     imageUrl: memorygameImg,
     url: "https://memory-game.devshadow.live/",
@@ -103,9 +117,8 @@ export const projectsData = [
 ] as const;
 
 export const skillsData = [
-
-  'HTML',
-  'CSS',
+  "HTML",
+  "CSS",
   "JavaScript",
   "React",
   "Next.js",
@@ -122,5 +135,26 @@ export const skillsData = [
   "Wordpress",
   "C/C++",
   "Data Structures",
-
 ] as const;
+
+/** 
+ * 
+ * Developed a full-stack admin dashboard to manage any e-commerce analytics and stats, including user data, product stats, transactions data, geographical data and real-time revenue tracking.
+ * 
+ * Created a dynamic admin dashboard utilizing React.js and MaterialUI, with Node.js, Express.js, and MongoDB in the backend.
+ * 
+ * Developed a full-stack admin dashboard using React.js and MaterialUI on the frontend, with Node.js, Express.js, and MongoDB on the backend.
+ * 
+ * Implemented API integration to fetch real-time data from the backend, featuring neatly arranged tables, backend sorting, and a comprehensive database model linking affiliates, products, and transactions.
+ * database model that links affiliates, products, and transactions for efficient data processing and analysis.
+ * 
+Implemented API integration to fetch and display data from the backend, with neat table arrangements and backend sorting.
+Utilized MongoDB aggregations to efficiently process and analyze data on the backend.
+
+The dashboard provides comprehensive information on transactions, products, users, and statistical data.
+
+Utilized MongoDB aggregations to efficiently process and analyze data on the backend, Incorporated a feature to download all or analysed reports in CSV format.
+
+Utilized MongoDB aggregations to efficiently process and analyze data on the backend, Incorporated a feature enabling users to download reports, or analyzed data in CSV format.
+
+ */
