@@ -4,13 +4,15 @@ import { LuGraduationCap } from "react-icons/lu";
 import memorygameImg from "@/public/memorygame-project-snap.png";
 import riteblogImg from "@/public/riteblog-project-snap.png";
 import dealsTrackerImg from "@/public/dealstracker-project-snap.png";
-import admindashboardImg from "@/public/admindashboard-project.png"
+import admindashboardImg from "@/public/admindashboard-project.png";
+import stickydocsImg from "@/public/stickydocs-project.png";
 import { RiQuillPenFill } from "react-icons/ri";
 
 export const socialLinks = {
   linkedinUrl: "https://www.linkedin.com/in/saipavan-veeravalli/",
   githubUrl: "https://github.com/im-shadowpool",
-  resumeUrl: "https://drive.google.com/file/d/1I6zIOykcdSCRP9zz2TpBFgrAdEUrEva4/view?usp=sharing",
+  resumeUrl:
+    "https://drive.google.com/file/d/1I6zIOykcdSCRP9zz2TpBFgrAdEUrEva4/view?usp=sharing",
 } as const;
 
 export const links = [
@@ -87,6 +89,15 @@ export const projectsData = [
     repo: "https://github.com/im-shadowpool/admin-dashboard",
   },
   {
+    title: "Sticky Docs",
+    description:
+      "A react app to create, read, update, delete and save notes in local storage. It has features like dragging, color categorization, and theme customization. Soon implementing its backend.",
+    tags: ["React", "Tailwind", "Framer Motion"],
+    imageUrl: stickydocsImg,
+    url: "https://docs.devshadow.live/",
+    repo: "https://github.com/im-shadowpool/react-docs",
+  },
+  {
     title: "RiteBlog app",
     description:
       "A blog app where users can create, read, update and delete blog posts. It has features like authentication, authorization, and image upload.",
@@ -142,9 +153,6 @@ export const skillsData = [
   "C/C++",
   "Data Structures",
 ] as const;
-
-
-
 
 /** 
  * 
