@@ -8,9 +8,9 @@ import { BsArrowRight } from "react-icons/bs";
 import { FiExternalLink } from "react-icons/fi";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FiGithub } from "react-icons/fi";
-
 import { useSectionInView } from "@/lib/hooks";
 import { useActiveSectionContext } from "@/context/active-section-context";
+import { socialLinks } from "@/lib/data";
 
 export default function Intro() {
   const { ref } = useSectionInView("Home", 0.5);
@@ -44,7 +44,7 @@ export default function Intro() {
           </motion.div>
 
           <motion.span
-            className="absolute bottom-0 right-0 text-4xl"
+            className="absolute bottom-0 right-0 text-3xl"
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{
@@ -64,9 +64,6 @@ export default function Intro() {
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
       >
-
-{/* Welcome! I'm Saipavan, a recent graduate with a passion for SEO and full-stack development */}
-
         <span className="font-bold">Welcome!, I'm Saipavan Veeravalli.</span> a recent{" "}
         <span className="font-bold">Computer Science graduate</span> with a passion for{" "}
         <span className="font-bold">SEO</span> and  <span className="font-bold">full-stack development</span>. My focus is{" "}
@@ -95,7 +92,7 @@ export default function Intro() {
 
         <a
           className="group bg-white px-7 py-3 flex items-center gap-2 rounded-full outline-none  hover:scale-105 active:scale-90 transition cursor-pointer borderBlack dark:bg-white/10"
-          href="https://drive.google.com/file/d/1mZBxe2dvRV9xtsa8Cr9x3R1clNXWCp5Z/view?usp=sharing"
+          href={socialLinks.resumeUrl}
           target="_blank"
         >
           View Resume{" "}
@@ -104,7 +101,7 @@ export default function Intro() {
 
         <a
           className="bg-white p-4 text-gray-700 hover:text-gray-950 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:scale-[1.15] active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
-          href="https://www.linkedin.com/in/saipavan-veeravalli/"
+          href={socialLinks.linkedinUrl}
           target="_blank"
         >
           <FaLinkedinIn />
@@ -112,7 +109,7 @@ export default function Intro() {
 
         <a
           className="bg-white p-4 text-gray-700 flex items-center gap-2 text-[1.35rem] rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
-          href="https://github.com/im-shadowpool"
+          href={socialLinks.githubUrl}
           target="_blank"
         >
           <FiGithub />

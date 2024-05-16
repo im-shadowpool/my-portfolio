@@ -4,8 +4,14 @@ import { LuGraduationCap } from "react-icons/lu";
 import memorygameImg from "@/public/memorygame-project-snap.png";
 import riteblogImg from "@/public/riteblog-project-snap.png";
 import dealsTrackerImg from "@/public/dealstracker-project-snap.png";
-import admindashboardImg from "@/public/admindashboard-project.png";
+import admindashboardImg from "@/public/admindashboard-project.png"
 import { RiQuillPenFill } from "react-icons/ri";
+
+export const socialLinks = {
+  linkedinUrl: "https://www.linkedin.com/in/saipavan-veeravalli/",
+  githubUrl: "https://github.com/im-shadowpool",
+  resumeUrl: "https://drive.google.com/file/d/1I6zIOykcdSCRP9zz2TpBFgrAdEUrEva4/view?usp=sharing",
+} as const;
 
 export const links = [
   {
@@ -74,7 +80,7 @@ export const projectsData = [
   {
     title: "Admin Dashboard",
     description:
-      "Developed a full-stack admin dashboard to manage any e-commerce analytics and stats, including user data, product stats, transactions data, geographical data and real-time revenue tracking",
+      "Developed a full-stack admin dashboard to manage any e-commerce analytics and stats, including user, product, transactions, geographical stats & data and real-time revenue tracking",
     tags: ["React", "MaterialUI", "MongoDB", "Node.js", "Express.js"],
     imageUrl: admindashboardImg,
     url: "https://admindashboard.devshadow.live/",
@@ -136,6 +142,9 @@ export const skillsData = [
   "C/C++",
   "Data Structures",
 ] as const;
+
+
+
 
 /** 
  * 
