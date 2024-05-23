@@ -17,3 +17,26 @@ html.dark {
 .vertical-timeline-element-icon  { 
   box-shadow: 0 0 0 4px #1f425b3c, inset 0 2px 0 rgba(63, 67, 69, 0.08), 0 3px 0 4px rgba(0, 0, 0, .05) !important;
 }
+ 
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+
+::-webkit-scrollbar-thumb {
+  background-color: #53617b5c;
+  border-radius: 10px;
+  
+}
+
+/* 
+  ::-webkit-scrollbar-track {
+    background: #333; 
+  } */
+ 
+ 
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #53617b76; 
+  }
+
