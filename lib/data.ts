@@ -92,10 +92,17 @@ export const projectsData = [
     title: "Sticky Docs",
     description:
       "A react app to create, read, update, delete and save notes in database. It has features like dragging, color categorization, and theme customization.",
-    tags: [ "MongoDB", "Node.js", "Rest API", "React", "Tailwind", "Framer Motion"],
+    tags: [
+      "MongoDB",
+      "Node.js",
+      "Rest API",
+      "React",
+      "Tailwind",
+      "Framer Motion",
+    ],
     imageUrl: stickydocsImg,
     url: "https://docs.devshadow.live/",
-    repo: "https://github.com/im-shadowpool/react-docs",
+    repo: "https://github.com/im-shadowpool/Sticky-Docs",
   },
   {
     title: "RiteBlog app",
