@@ -82,7 +82,7 @@ export const projectsData = [
   {
     title: "Admin Dashboard",
     description:
-      "Developed a full-stack admin dashboard to manage any e-commerce analytics and stats, including user, product, transactions, geographical stats & data and real-time revenue tracking",
+      "Developed a full-stack admin dashboard to manage any e-commerce analytics and stats, including user, product, transactions, geographical stats & data and real-time revenue tracking.",
     tags: ["React", "MaterialUI", "MongoDB", "Node.js", "Express.js"],
     imageUrl: admindashboardImg,
     url: "https://admindashboard.devshadow.live/",
@@ -91,8 +91,8 @@ export const projectsData = [
   {
     title: "Sticky Docs",
     description:
-      "A react app to create, read, update, delete and save notes in local storage. It has features like dragging, color categorization, and theme customization. Soon implementing its backend.",
-    tags: ["React", "Tailwind", "Framer Motion"],
+      "A react app to create, read, update, delete and save notes in database. It has features like dragging, color categorization, and theme customization.",
+    tags: [ "MongoDB", "Node.js", "Rest API", "React", "Tailwind", "Framer Motion"],
     imageUrl: stickydocsImg,
     url: "https://docs.devshadow.live/",
     repo: "https://github.com/im-shadowpool/react-docs",
