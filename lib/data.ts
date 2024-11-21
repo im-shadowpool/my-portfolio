@@ -44,27 +44,34 @@ export const links = [
 
 export const experiencesData = [
   {
+    title: "Lead Web Developer",
+    location: "Juzgrow.com",
+    description: "My experience at Juzgrow involved creating custom websites that addressed the diverse needs of GCC businesses. I utilized CMS platforms to deliver user-friendly solutions. By incorporating webhook integrations, I optimized workflows and connected various tools seamlessly.",
+    icon: React.createElement(CgWorkAlt),
+    date: "June 2024 - Present"
+  },
+  {
     title: "Node.js Developer Intern",
-    location: "Hyderabad",
+    location: "Mindwave Solutions",
     description:
       "Developed a RESTful API using Node.js and Express. Implemented features like authentication, authorization, and image upload. Learned about RESTful APIs, authentication, and authorization.",
     icon: React.createElement(CgWorkAlt),
-    date: "March 2024 - Present",
+    date: "March 2024 - May 2024",
   },
 
   {
     title: "Blogging",
     location: "Planspedia.com",
     description:
-      "I write articles in my free time. I write about technology, programming. I also write about my experiences and the things I learn. I have written over 30 articles. I have a passion for writing and sharing my knowledge with others. I have a blog called planspedia.com.",
+      "I write articles in my free time. I write about technology, programming. I also write about my experiences and the things I learn. I have written over 30 articles. I have a passion for writing and sharing my knowledge with others.",
     icon: React.createElement(RiQuillPenFill),
     date: "November 2021 - January 2024",
   },
   {
-    title: "Web development Intern",
-    location: "Hyderabad",
+    title: "WordPress Developer Intern",
+    location: "TechVint Pvt. Ltd.",
     description:
-      "Assisted organisations and clients in achieving first in Google rankings by applying SEO, Learned Various Cache Techniques and Back end Optimization to decrease website load time from 6.5 seconds to 0.98 seconds.",
+      "Assisted organisations and clients in achieving first in Google rankings by applying SEO, Learned Various Cache Techniques and Back-end Optimization to decrease website load time from 6.5 seconds to 0.98 seconds.",
     icon: React.createElement(CgWorkAlt),
     date: "March 2022 - May 2022",
   },
@@ -74,7 +81,7 @@ export const experiencesData = [
     description:
       "I graduated from the Avanthi Institute of Engineering and Technology with a degree in computer science engineering. In my technical courses, I learned discrete mathematics, operating systems, database management systems, computer networks, and the analysis and design of algorithms.",
     icon: React.createElement(LuGraduationCap),
-    date: "Augest 2019 - September 2023",
+    date: "2019 - September 2023",
   },
 ] as const;
 
@@ -160,25 +167,3 @@ export const skillsData = [
   "C/C++",
   "Data Structures",
 ] as const;
-
-/** 
- * 
- * Developed a full-stack admin dashboard to manage any e-commerce analytics and stats, including user data, product stats, transactions data, geographical data and real-time revenue tracking.
- * 
- * Created a dynamic admin dashboard utilizing React.js and MaterialUI, with Node.js, Express.js, and MongoDB in the backend.
- * 
- * Developed a full-stack admin dashboard using React.js and MaterialUI on the frontend, with Node.js, Express.js, and MongoDB on the backend.
- * 
- * Implemented API integration to fetch real-time data from the backend, featuring neatly arranged tables, backend sorting, and a comprehensive database model linking affiliates, products, and transactions.
- * database model that links affiliates, products, and transactions for efficient data processing and analysis.
- * 
-Implemented API integration to fetch and display data from the backend, with neat table arrangements and backend sorting.
-Utilized MongoDB aggregations to efficiently process and analyze data on the backend.
-
-The dashboard provides comprehensive information on transactions, products, users, and statistical data.
-
-Utilized MongoDB aggregations to efficiently process and analyze data on the backend, Incorporated a feature to download all or analysed reports in CSV format.
-
-Utilized MongoDB aggregations to efficiently process and analyze data on the backend, Incorporated a feature enabling users to download reports, or analyzed data in CSV format.
-
- */

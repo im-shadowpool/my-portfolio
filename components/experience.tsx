@@ -30,7 +30,7 @@ const fadeInAnimationVariants = {
 
 
 export default function Experience() {
-  const { ref } = useSectionInView("Experience");
+  const { ref } = useSectionInView("Experience", .45);
   const { theme } = useTheme();
   
 
@@ -84,7 +84,7 @@ export default function Experience() {
                             viewport={{
                               once: true,
                             }}
-                            custom={index} className="font-normal !mt-0">{item.location}</motion.p>
+                            custom={index} className="!font-medium !text-[15px] font !mt-0">{item.location}</motion.p>
               <motion.p  variants={fadeInAnimationVariants}
                             initial="initial"
                             whileInView="animate"
