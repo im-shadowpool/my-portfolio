@@ -12,7 +12,7 @@ export const socialLinks = {
   linkedinUrl: "https://www.linkedin.com/in/saipavan-veeravalli/",
   githubUrl: "https://github.com/im-shadowpool",
   resumeUrl:
-    "https://drive.google.com/file/d/1I6zIOykcdSCRP9zz2TpBFgrAdEUrEva4/view?usp=sharing",
+    "https://drive.google.com/file/d/1mZBxe2dvRV9xtsa8Cr9x3R1clNXWCp5Z/view",
 } as const;
 
 export const links = [
