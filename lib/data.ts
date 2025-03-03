@@ -12,7 +12,7 @@ export const socialLinks = {
   linkedinUrl: "https://www.linkedin.com/in/saipavan-veeravalli/",
   githubUrl: "https://github.com/im-shadowpool",
   resumeUrl:
-    "https://drive.google.com/file/d/1mZBxe2dvRV9xtsa8Cr9x3R1clNXWCp5Z/view",
+    "https://drive.google.com/file/d/1k9cVS_yPeIUWUiyWF527qna7Uv6IuWfC/view",
 } as const;
 
 export const links = [
@@ -92,7 +92,7 @@ export const projectsData = [
       "Developed a full-stack admin dashboard to manage any e-commerce analytics and stats, including user, product, transactions, geographical stats & data and real-time revenue tracking.",
     tags: ["React", "MaterialUI", "MongoDB", "Node.js", "Express.js"],
     imageUrl: admindashboardImg,
-    url: "https://admindashboard.devshadow.live/",
+    url: "https://admin-dashboard-ten-nu-63.vercel.app/dashboard",
     repo: "https://github.com/im-shadowpool/admin-dashboard",
   },
   {
@@ -108,7 +108,7 @@ export const projectsData = [
       "Framer Motion",
     ],
     imageUrl: stickydocsImg,
-    url: "https://docs.devshadow.live/",
+    url: "https://sticky-docs.vercel.app/",
     repo: "https://github.com/im-shadowpool/Sticky-Docs",
   },
   {
@@ -117,7 +117,7 @@ export const projectsData = [
       "A blog app where users can create, read, update and delete blog posts. It has features like authentication, authorization, and image upload.",
     tags: ["React", "MongoDB", "Tailwind", "Express", "Node.js", "Rest API"],
     imageUrl: riteblogImg,
-    url: "https://riteblog.devshadow.live/",
+    url: "https://riteblogapp-project-vmy7.vercel.app/",
     repo: "https://github.com/im-shadowpool/riteblogapp-project",
   },
   {
@@ -133,7 +133,7 @@ export const projectsData = [
       "MongoDB",
     ],
     imageUrl: dealsTrackerImg,
-    url: "http://dealstracker.devshadow.live/",
+    url: "https://dealstracker.vercel.app/",
     repo: "https://github.com/im-shadowpool/dealstracker",
   },
   {
@@ -142,7 +142,7 @@ export const projectsData = [
       "A Memory Game built with React. It has features like timer, score, and switching themes.",
     tags: ["React"],
     imageUrl: memorygameImg,
-    url: "https://memory-game.devshadow.live/",
+    url: "https://memory-game-nine-delta.vercel.app/",
     repo: "https://github.com/im-shadowpool/memory-game",
   },
 ] as const;
