@@ -1,0 +1,57 @@
+"use client";
+
+import React from "react";
+import SectionHeading from "@/components/ui/section-heading";
+import { useSectionInView } from "@/lib/hooks";
+import { motion } from "framer-motion";
+
+const fadeInAnimationVariants = {
+  initial: {
+    opacity: 0,
+    y: 20,
+  },
+  animate: (index: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring" as const,
+      stiffness: 100,
+      damping: 15,
+      delay: 0.05 * index,
+    },
+  }),
+};
+
+export default function Skills({ skills }: { skills: string[] | readonly string[] }) {
+  const { ref } = useSectionInView("Skills", 0.4);
+
+  return (
+    <section
+      id="skills"
+      ref={ref}
+      className="mb-28 max-w-[53rem] scroll-mt-28 text-center sm:mb-40 relative"
+    >
+      <SectionHeading>My skills</SectionHeading>
+
+      <div className="bg-[#edfff3] absolute top-[1rem] -z-10 right-[1rem] h-[31.25rem] w-[31.25rem] rounded-full blur-[10rem] sm:w-[68.75rem] dark:bg-[#314b6092]"></div>
+
+      <ul className="flex flex-wrap justify-center gap-2 text-lg text-gray-800">
+        {skills.map((skill, index) => (
+          <motion.li
+            className="bg-white borderBlack rounded-xl px-5 py-3 dark:bg-white/10 dark:text-white/80"
+            key={index}
+            variants={fadeInAnimationVariants}
+            initial="initial"
+            whileInView="animate"
+            viewport={{
+              once: true,
+            }}
+            custom={index}
+          >
+            {skill}
+          </motion.li>
+        ))}
+      </ul>
+    </section>
+  );
+}
