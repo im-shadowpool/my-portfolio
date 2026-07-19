@@ -2,10 +2,12 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { links } from "@/lib/data";
+import portfolioData from "@/content/portfolio.json";
+const links = portfolioData.links;
 import Link from "next/link";
 import clsx from "clsx";
 import { useActiveSectionContext } from "@/context/active-section-context";
+import type { SectionName } from "@/lib/types";
 
 export default function Header() {
   const { activeSection, setActiveSection, setTimeOfLastClick } =
@@ -33,18 +35,18 @@ export default function Header() {
                   "flex w-full items-center justify-center px-3 py-3 hover:text-gray-950 transition dark:text-gray-500 dark:hover:text-gray-300",
                   {
                     "text-gray-950 dark:text-gray-200":
-                      activeSection === link.name,
+                      activeSection === (link.name as SectionName),
                   }
                 )}
                 href={link.hash}
                 onClick={() => {
-                  setActiveSection(link.name);
+                  setActiveSection(link.name as SectionName);
                   setTimeOfLastClick(Date.now());
                 }}
               >
                 {link.name}
 
-                {link.name === activeSection && (
+                {(link.name as SectionName) === activeSection && (
                   <motion.span
                     className="bg-gray-100 rounded-full absolute inset-0 -z-10 dark:bg-gray-800"
                     layoutId="activeSection"

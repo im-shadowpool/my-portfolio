@@ -1,21 +1,31 @@
-import About from "@/components/about";
-import Contact from "@/components/contact";
-import Experience from "@/components/experience";
-import Intro from "@/components/intro";
-import Projects from "@/components/projects";
-import SectionDivider from "@/components/section-divider";
-import Skills from "@/components/skills";
+import { client } from "@/tina/__generated__/client";
+import PortfolioPreview from "@/components/sections/portfolio-preview";
+import portfolioStaticData from "@/content/portfolio.json";
 
-export default function Home() {
+export default async function Home() {
+  let result;
+  try {
+
+
+
+
+    result = await client.queries.portfolio({ relativePath: "portfolio.json" });
+  } catch (error) {
+    console.warn("TinaCMS query failed, falling back to static JSON data.", error);
+    result = {
+      data: {
+        portfolio: portfolioStaticData as any,
+      },
+      query: "",
+      variables: {},
+    };
+  }
+
   return (
-    <main className="flex flex-col items-center px-4">
-      <Intro />
-      <SectionDivider />
-      <About />
-      <Projects />
-      <Skills />
-      <Experience />
-      <Contact />
-    </main>
+    <PortfolioPreview
+      data={result.data}
+      query={result.query}
+      variables={result.variables}
+    />
   );
 }

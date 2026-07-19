@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import SectionHeading from "./section-heading";
+import SectionHeading from "@/components/ui/section-heading";
 import { motion } from "framer-motion";
 import { useSectionInView } from "@/lib/hooks";
 
@@ -12,9 +12,9 @@ export default function About() {
     <motion.section
       ref={ref}
       className="mb-28 max-w-[45rem] text-center leading-8 sm:mb-40 scroll-mt-28"
-      initial={{ opacity: 0, y: 100 }}
+      initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.175 }}
+      transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.175 }}
       id="about"
     >
       <SectionHeading>About me</SectionHeading>
@@ -37,7 +37,7 @@ export default function About() {
         first project with the <span className="italic">MERN stack</span>. After
         my graduation, I started preparing for the gate exam for Masters in
         India, and I qualified for the exam. In contrast, I started my
-        development journey back,and learning in-depth of the backend with Java.
+        development journey back, and am learning backend development in-depth with Java,
         and am <span className="font-medium text-green-600">open to work.</span>
       </p>
 
