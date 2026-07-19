@@ -2,7 +2,7 @@
   "contactEmail": "v.saipavan2001@gmail.com",
   "socialLinks": {
     "linkedinUrl": "https://www.linkedin.com/in/saipavan-veeravalli/",
-    "githubUrl": "https://github.com/im-shadowpool",
+    "githubUrl": "https://github.com/im-shadowpool1",
     "resumeUrl": "https://drive.google.com/file/d/1k9cVS_yPeIUWUiyWF527qna7Uv6IuWfC/view"
   },
   "links": [
@@ -116,7 +116,14 @@
     {
       "title": "RiteBlog app",
       "description": "A blog app where users can create, read, update and delete blog posts. It has features like authentication, authorization, and image upload.",
-      "tags": ["React", "MongoDB", "Tailwind", "Express", "Node.js", "REST API"],
+      "tags": [
+        "React",
+        "MongoDB",
+        "Tailwind",
+        "Express",
+        "Node.js",
+        "REST API"
+      ],
       "imageUrl": "/riteblog-project-snap.png",
       "imageAlt": "RiteBlog blog application with post listing, authentication, and CRUD functionality",
       "url": "https://riteblogapp-project-vmy7.vercel.app/",
