@@ -22,9 +22,9 @@ export default defineConfig({
   // Uncomment to allow cross-origin requests from non-localhost origins
   // during local development (e.g. GitHub Codespaces, Gitpod, Docker).
   // Use 'private' to allow all private-network IPs (WSL2, Docker, etc.)
-  // server: {
-  //   allowedOrigins: ['https://your-codespace.github.dev'],
-  // },
+  server: {
+    allowedOrigins: ['https://devshadow.vercel.app/'],
+  },
   media: {
     tina: {
       mediaRoot: "",
