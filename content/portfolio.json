@@ -2,7 +2,7 @@
   "contactEmail": "v.saipavan2001@gmail.com",
   "socialLinks": {
     "linkedinUrl": "https://www.linkedin.com/in/saipavan-veeravalli/",
-    "githubUrl": "https://github.com/im-shadowpool",
+    "githubUrl": "https://github.com/im-shadowpool1",
     "resumeUrl": "https://drive.google.com/file/d/1k9cVS_yPeIUWUiyWF527qna7Uv6IuWfC/view"
   },
   "links": [
@@ -72,7 +72,13 @@
     {
       "title": "Admin Dashboard",
       "description": "Developed a full-stack admin dashboard to manage any e-commerce analytics and stats, including user, product, transactions, geographical stats & data and real-time revenue tracking.",
-      "tags": ["React", "MaterialUI", "MongoDB", "Node.js", "Express.js"],
+      "tags": [
+        "React",
+        "MaterialUI",
+        "MongoDB",
+        "Node.js",
+        "Express.js"
+      ],
       "imageUrl": "/admindashboard-project.png",
       "url": "https://admin-dashboard-ten-nu-63.vercel.app/dashboard",
       "repo": "https://github.com/im-shadowpool/admin-dashboard",
@@ -97,7 +103,14 @@
     {
       "title": "RiteBlog app",
       "description": "A blog app where users can create, read, update and delete blog posts. It has features like authentication, authorization, and image upload.",
-      "tags": ["React", "MongoDB", "Tailwind", "Express", "Node.js", "Rest API"],
+      "tags": [
+        "React",
+        "MongoDB",
+        "Tailwind",
+        "Express",
+        "Node.js",
+        "Rest API"
+      ],
       "imageUrl": "/riteblog-project-snap.png",
       "url": "https://riteblogapp-project-vmy7.vercel.app/",
       "repo": "https://github.com/im-shadowpool/riteblogapp-project",
@@ -122,7 +135,9 @@
     {
       "title": "Memory Game",
       "description": "A Memory Game built with React. It has features like timer, score, and switching themes.",
-      "tags": ["React"],
+      "tags": [
+        "React"
+      ],
       "imageUrl": "/memorygame-project-snap.png",
       "url": "https://memory-game-nine-delta.vercel.app/",
       "repo": "https://github.com/im-shadowpool/memory-game",
