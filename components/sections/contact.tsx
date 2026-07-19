@@ -40,7 +40,7 @@ export default function Contact({ contactEmail }: { contactEmail: string }) {
       </p>
 
       <form
-        className="mt-10 flex flex-col dark:text-black"
+        className="mt-10 flex flex-col"
         action={async (formData) => {
           const { data, error } = await sendEmail(formData);
 
@@ -52,20 +52,38 @@ export default function Contact({ contactEmail }: { contactEmail: string }) {
           toast.success("Email sent successfully!");
         }}
       >
+        <div className="sr-only" aria-hidden="true">
+          <label htmlFor="website">Website</label>
+          <input
+            id="website"
+            name="website"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+          />
+        </div>
+        <label htmlFor="senderEmail" className="sr-only">
+          Your email
+        </label>
         <input
           className="h-14 px-4 rounded-lg borderBlack dark:bg-white/10 dark:text-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none"
+          id="senderEmail"
           name="senderEmail"
           type="email"
           required
           maxLength={500}
           placeholder="Your email"
+          autoComplete="email"
         />
+        <label htmlFor="message" className="sr-only">
+          Your message
+        </label>
         <textarea
           className="h-52 my-3 rounded-lg resize-none borderBlack p-4 dark:bg-white/10 dark:text-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none"
+          id="message"
           name="message"
           placeholder="Your message"
           rows={8}
-          cols={50}
           required
           maxLength={5000}
         />

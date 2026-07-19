@@ -20,7 +20,7 @@ export default function About() {
       <SectionHeading>About me</SectionHeading>
 
       <p className="mb-3">
-        If you are reading this, I must value your time. In short, I have
+        If you are reading this, you must value your time. In short, I have
         started developing{" "}
         <span className="font-medium">websites through WordPress</span>, and
         when I was taught about blogging, I started my{" "}
@@ -35,21 +35,21 @@ export default function About() {
         <span className="underline">SEO and digital marketing skills</span>.
         Along with this, I have started learning web development and started my
         first project with the <span className="italic">MERN stack</span>. After
-        my graduation, I started preparing for the gate exam for Masters in
-        India, and I qualified for the exam. In contrast, I started my
+        my graduation, I started preparing for the GATE exam for Masters in
+        India, and I qualified for the exam. Meanwhile, I started my
         development journey back, and am learning backend development in-depth with Java,
-        and am <span className="font-medium text-green-600">open to work.</span>
+        and am <span className="font-medium text-green-700 dark:text-green-500">open to work.</span>
       </p>
 
       <p>
         <span className="italic">When I'm not working</span>, I enjoy playing
-        chess, watching movies. I also enjoy{" "}
+        chess, and watching movies. I also enjoy{" "}
         <span className="font-medium">reading books</span>. I am currently
-        reading about{" "}
+        reading{" "}
         <span className="font-medium">The Compound Effect by </span>
         <span className="italic">Darren Hardy</span> and my favourite book is{" "}
-        <span className="font-medium">Eat that frog by</span>
-        <span className="italic"> brian tracy.</span>
+        <span className="font-medium">Eat That Frog by</span>
+        <span className="italic"> Brian Tracy.</span>
       </p>
     </motion.section>
   );

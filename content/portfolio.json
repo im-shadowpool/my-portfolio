@@ -47,13 +47,6 @@
       "date": "March 2024 - May 2024"
     },
     {
-      "title": "Blogging",
-      "location": "Planspedia.com",
-      "description": "I write articles in my free time. I write about technology, programming. I also write about my experiences and the things I learn. I have written over 30 articles. I have a passion for writing and sharing my knowledge with others.",
-      "icon": "blog",
-      "date": "November 2021 - January 2024"
-    },
-    {
       "title": "WordPress Developer Intern",
       "location": "TechVint Pvt. Ltd.",
       "description": "Assisted organisations and clients in achieving first in Google rankings by applying SEO, Learned Various Cache Techniques and Back-end Optimization to decrease website load time from 6.5 seconds to 0.98 seconds.",
@@ -61,11 +54,18 @@
       "date": "March 2022 - May 2022"
     },
     {
-      "title": "B Tech in Computer Science Engineering",
+      "title": "Blogging",
+      "location": "Planspedia.com",
+      "description": "I write articles in my free time. I write about technology, programming. I also write about my experiences and the things I learn. I have written over 30 articles. I have a passion for writing and sharing my knowledge with others.",
+      "icon": "blog",
+      "date": "November 2021 - January 2024"
+    },
+    {
+      "title": "B.Tech in Computer Science Engineering",
       "location": "Hyderabad",
       "description": "I graduated from the Avanthi Institute of Engineering and Technology with a degree in computer science engineering. In my technical courses, I learned discrete mathematics, operating systems, database management systems, computer networks, and the analysis and design of algorithms.",
       "icon": "education",
-      "date": "September 2023"
+      "date": "2019 - 2023"
     }
   ],
   "projects": [
@@ -74,6 +74,7 @@
       "description": "Developed a full-stack admin dashboard to manage any e-commerce analytics and stats, including user, product, transactions, geographical stats & data and real-time revenue tracking.",
       "tags": ["React", "MaterialUI", "MongoDB", "Node.js", "Express.js"],
       "imageUrl": "/admindashboard-project.png",
+      "imageAlt": "Admin dashboard showing e-commerce analytics with charts, user statistics, and revenue tracking",
       "url": "https://admin-dashboard-ten-nu-63.vercel.app/dashboard",
       "repo": "https://github.com/im-shadowpool/admin-dashboard",
       "year": "2024"
@@ -84,24 +85,16 @@
       "tags": [
         "MongoDB",
         "Node.js",
-        "Rest API",
+        "REST API",
         "React",
         "Tailwind",
         "Framer Motion"
       ],
       "imageUrl": "/stickydocs-project.png",
+      "imageAlt": "Sticky Docs note-taking app with draggable cards, color categories, and dark theme",
       "url": "https://sticky-docs.vercel.app/",
       "repo": "https://github.com/im-shadowpool/Sticky-Docs",
       "year": "2024"
-    },
-    {
-      "title": "RiteBlog app",
-      "description": "A blog app where users can create, read, update and delete blog posts. It has features like authentication, authorization, and image upload.",
-      "tags": ["React", "MongoDB", "Tailwind", "Express", "Node.js", "Rest API"],
-      "imageUrl": "/riteblog-project-snap.png",
-      "url": "https://riteblogapp-project-vmy7.vercel.app/",
-      "repo": "https://github.com/im-shadowpool/riteblogapp-project",
-      "year": "2023"
     },
     {
       "title": "DealsTracker",
@@ -115,15 +108,27 @@
         "MongoDB"
       ],
       "imageUrl": "/dealstracker-project-snap.png",
+      "imageAlt": "DealsTracker app showing product price tracking, deal listings, and price history charts",
       "url": "https://dealstracker.vercel.app/",
       "repo": "https://github.com/im-shadowpool/dealstracker",
       "year": "2024"
+    },
+    {
+      "title": "RiteBlog app",
+      "description": "A blog app where users can create, read, update and delete blog posts. It has features like authentication, authorization, and image upload.",
+      "tags": ["React", "MongoDB", "Tailwind", "Express", "Node.js", "REST API"],
+      "imageUrl": "/riteblog-project-snap.png",
+      "imageAlt": "RiteBlog blog application with post listing, authentication, and CRUD functionality",
+      "url": "https://riteblogapp-project-vmy7.vercel.app/",
+      "repo": "https://github.com/im-shadowpool/riteblogapp-project",
+      "year": "2023"
     },
     {
       "title": "Memory Game",
       "description": "A Memory Game built with React. It has features like timer, score, and switching themes.",
       "tags": ["React"],
       "imageUrl": "/memorygame-project-snap.png",
+      "imageAlt": "Memory card matching game with timer, score display, and theme options",
       "url": "https://memory-game-nine-delta.vercel.app/",
       "repo": "https://github.com/im-shadowpool/memory-game",
       "year": "2023"
@@ -133,20 +138,20 @@
     "HTML",
     "CSS",
     "JavaScript",
+    "TypeScript",
     "React",
     "Next.js",
-    "Node.js",
-    "Git",
-    "Tailwind",
-    "MongoDB",
     "Redux",
-    "TypeScript",
+    "Tailwind",
+    "Node.js",
     "Express",
-    "Python",
+    "MongoDB",
     "MySQL",
-    "SEO",
-    "Wordpress",
+    "Python",
     "C/C++",
+    "Git",
+    "SEO",
+    "WordPress",
     "Data Structures"
   ]
 }

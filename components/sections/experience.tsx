@@ -106,7 +106,7 @@ export default function Experience({ experiences }: { experiences: ExperienceIte
                   once: true,
                 }}
                 custom={index}
-                className="!font-medium !text-[15px] font !mt-0"
+                className="!font-medium !text-[15px] !mt-0"
               >
                 {item.location}
               </motion.p>

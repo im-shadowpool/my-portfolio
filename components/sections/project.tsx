@@ -10,6 +10,7 @@ export interface ProjectProps {
   description: string;
   tags: string[] | readonly string[];
   imageUrl: string;
+  imageAlt?: string;
   url: string;
   repo: string;
   year: string;
@@ -20,6 +21,7 @@ export default function Project({
   description,
   tags,
   imageUrl,
+  imageAlt,
   url,
   repo,
   year,
@@ -53,17 +55,21 @@ export default function Project({
             {description}
           </p>
           <div className="flex gap-5 my-4 text-[0.85rem]">
-            <a 
+            <a
               href={url}
               target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Live demo of ${title}`}
               className="text-gray-700 hover:text-gray-950 dark:text-white/70 dark:hover:text-white flex items-center gap-1 transition-all outline-none border-b border-transparent hover:border-gray-950 dark:hover:border-white font-medium"
             >
               <span>Live Demo</span>
               <FiExternalLink className="text-[0.75rem]" />
             </a>
-            <a 
+            <a
               href={repo}
               target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Source code for ${title}`}
               className="text-gray-700 hover:text-gray-950 dark:text-white/70 dark:hover:text-white flex items-center gap-1 transition-all outline-none border-b border-transparent hover:border-gray-950 dark:hover:border-white font-medium"
             >
               <span>GitHub</span>
@@ -86,9 +92,10 @@ export default function Project({
 
         <Image
           src={imageUrl}
-          alt="Project I worked on"
+          alt={imageAlt || `${title} project screenshot`}
           width={560}
           height={350}
+          sizes="(max-width: 768px) 0px, 28.25rem"
           className="absolute hidden sm:block top-8 -right-40 w-[28.25rem] rounded-t-lg shadow-2xl
         transition transform duration-300 ease-in-out
         group-hover:scale-[1.04]

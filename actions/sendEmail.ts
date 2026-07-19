@@ -10,6 +10,11 @@ const contactEmail = portfolioData.contactEmail;
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const sendEmail = async (formData: FormData) => {
+  const honeypot = formData.get("website");
+  if (honeypot) {
+    return { data: {} };
+  }
+
   const senderEmail = formData.get("senderEmail");
   const message = formData.get("message");
 

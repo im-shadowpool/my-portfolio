@@ -113,6 +113,7 @@ export default defineConfig({
               { type: "string", name: "description", label: "Description", ui: { component: "textarea" } },
               { type: "string", name: "tags", label: "Tags", list: true },
               { type: "image", name: "imageUrl", label: "Project Screenshot Image" },
+              { type: "string", name: "imageAlt", label: "Image Alt Text (for accessibility)" },
               { type: "string", name: "url", label: "Live Demo URL" },
               { type: "string", name: "repo", label: "Repository URL" },
               { type: "string", name: "year", label: "Year Completed" },
