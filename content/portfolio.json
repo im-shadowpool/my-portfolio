@@ -2,7 +2,7 @@
   "contactEmail": "v.saipavan2001@gmail.com",
   "socialLinks": {
     "linkedinUrl": "https://www.linkedin.com/in/saipavan-veeravalli/",
-    "githubUrl": "https://github.com/im-shadowpool1",
+    "githubUrl": "https://github.com/im-shadowpool",
     "resumeUrl": "https://drive.google.com/file/d/1k9cVS_yPeIUWUiyWF527qna7Uv6IuWfC/view"
   },
   "links": [
@@ -72,7 +72,13 @@
     {
       "title": "Admin Dashboard",
       "description": "Developed a full-stack admin dashboard to manage any e-commerce analytics and stats, including user, product, transactions, geographical stats & data and real-time revenue tracking.",
-      "tags": ["React", "MaterialUI", "MongoDB", "Node.js", "Express.js"],
+      "tags": [
+        "React",
+        "MaterialUI",
+        "MongoDB",
+        "Node.js",
+        "Express.js"
+      ],
       "imageUrl": "/admindashboard-project.png",
       "imageAlt": "Admin dashboard showing e-commerce analytics with charts, user statistics, and revenue tracking",
       "url": "https://admin-dashboard-ten-nu-63.vercel.app/dashboard",
@@ -133,7 +139,9 @@
     {
       "title": "Memory Game",
       "description": "A Memory Game built with React. It has features like timer, score, and switching themes.",
-      "tags": ["React"],
+      "tags": [
+        "React"
+      ],
       "imageUrl": "/memorygame-project-snap.png",
       "imageAlt": "Memory card matching game with timer, score display, and theme options",
       "url": "https://memory-game-nine-delta.vercel.app/",
