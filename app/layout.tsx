@@ -1,6 +1,7 @@
 import Header from "@/components/layout/header";
 import "./globals.css";
 import { Inter } from "next/font/google";
+import type { Metadata, Viewport } from "next";
 import ActiveSectionContextProvider from "@/context/active-section-context";
 import Footer from "@/components/layout/footer";
 import ThemeSwitch from "@/components/ui/theme-switch";
@@ -10,18 +11,30 @@ import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
-const siteUrl = "https://devshadow.vercel.app";
+const siteUrl = "https://devshadow.space";
 
-export const metadata = {
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fbe2e3" },
+    { media: "(prefers-color-scheme: dark)", color: "#0f172a" },
+  ],
+  width: "device-width",
+  initialScale: 1,
+};
+
+export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default: "Saipavan Veeravalli | Full-Stack Developer & SEO Specialist",
     template: "%s | Saipavan Veeravalli",
   },
   description:
-    "Portfolio of Saipavan Veeravalli — a full-stack developer specializing in Next.js, React, and Node.js with expertise in SEO and digital marketing.",
+    "Portfolio of Saipavan Veeravalli — a full-stack developer specializing in Next.js, React, and Node.js with expertise in SEO, web performance, and modern cloud architecture.",
+  applicationName: "Saipavan Veeravalli Portfolio",
   keywords: [
     "Saipavan Veeravalli",
+    "devshadow",
+    "devshadow.space",
     "full-stack developer",
     "Next.js developer",
     "React developer",
@@ -30,9 +43,16 @@ export const metadata = {
     "web developer portfolio",
     "JavaScript developer",
     "TypeScript developer",
+    "software engineer",
+    "frontend developer",
+    "backend developer",
   ],
   authors: [{ name: "Saipavan Veeravalli", url: siteUrl }],
   creator: "Saipavan Veeravalli",
+  publisher: "Saipavan Veeravalli",
+  alternates: {
+    canonical: siteUrl,
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -40,13 +60,13 @@ export const metadata = {
     siteName: "Saipavan Veeravalli Portfolio",
     title: "Saipavan Veeravalli | Full-Stack Developer & SEO Specialist",
     description:
-      "Portfolio of Saipavan Veeravalli — a full-stack developer specializing in Next.js, React, and Node.js with expertise in SEO and digital marketing.",
+      "Portfolio of Saipavan Veeravalli — full-stack developer specializing in Next.js, React, and Node.js with expertise in SEO and modern web technologies.",
     images: [
       {
-        url: "/saipavan_veeravalli.png",
-        width: 192,
-        height: 192,
-        alt: "Saipavan Veeravalli - Full-Stack Developer",
+        url: `${siteUrl}/saipavan_veeravalli.png`,
+        width: 800,
+        height: 800,
+        alt: "Saipavan Veeravalli - Full-Stack Developer & SEO Specialist",
       },
     ],
   },
@@ -54,8 +74,9 @@ export const metadata = {
     card: "summary_large_image",
     title: "Saipavan Veeravalli | Full-Stack Developer & SEO Specialist",
     description:
-      "Portfolio of Saipavan Veeravalli — a full-stack developer specializing in Next.js, React, and Node.js.",
-    images: ["/saipavan_veeravalli.png"],
+      "Portfolio of Saipavan Veeravalli — full-stack developer specializing in Next.js, React, and Node.js.",
+    images: [`${siteUrl}/saipavan_veeravalli.png`],
+    creator: "@im-shadowpool",
   },
   robots: {
     index: true,
@@ -68,9 +89,72 @@ export const metadata = {
       "max-snippet": -1,
     },
   },
-  alternates: {
-    canonical: siteUrl,
-  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: "Saipavan Veeravalli Portfolio",
+      description:
+        "Full-stack developer portfolio specializing in Next.js, React, and Node.js with SEO expertise.",
+      publisher: {
+        "@id": `${siteUrl}/#person`,
+      },
+      inLanguage: "en-US",
+    },
+    {
+      "@type": "Person",
+      "@id": `${siteUrl}/#person`,
+      name: "Saipavan Veeravalli",
+      url: siteUrl,
+      image: `${siteUrl}/saipavan_veeravalli.png`,
+      jobTitle: "Full-Stack Developer & SEO Specialist",
+      description:
+        "Full-Stack Developer specializing in Next.js, React, Node.js, and technical SEO.",
+      email: "mailto:v.saipavan2001@gmail.com",
+      sameAs: [
+        "https://www.linkedin.com/in/saipavan-veeravalli/",
+        "https://github.com/im-shadowpool1",
+        "https://github.com/im-shadowpool",
+      ],
+      alumniOf: {
+        "@type": "EducationalOrganization",
+        name: "Avanthi Institute of Engineering and Technology",
+      },
+      knowsAbout: [
+        "Next.js",
+        "React",
+        "Node.js",
+        "TypeScript",
+        "JavaScript",
+        "SEO",
+        "Search Engine Optimization",
+        "Tailwind CSS",
+        "MongoDB",
+        "REST APIs",
+        "Data Structures & Algorithms",
+      ],
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": `${siteUrl}/#webpage`,
+      url: siteUrl,
+      name: "Saipavan Veeravalli | Full-Stack Developer & SEO Specialist",
+      isPartOf: {
+        "@id": `${siteUrl}/#website`,
+      },
+      about: {
+        "@id": `${siteUrl}/#person`,
+      },
+      mainEntity: {
+        "@id": `${siteUrl}/#person`,
+      },
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -81,30 +165,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="!scroll-smooth" suppressHydrationWarning>
       <head>
+        <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs.txt" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              name: "Saipavan Veeravalli",
-              url: siteUrl,
-              image: `${siteUrl}/saipavan_veeravalli.png`,
-              jobTitle: "Full-Stack Developer",
-              sameAs: [
-                "https://www.linkedin.com/in/saipavan-veeravalli/",
-                "https://github.com/im-shadowpool",
-              ],
-              knowsAbout: [
-                "Next.js",
-                "React",
-                "Node.js",
-                "TypeScript",
-                "SEO",
-                "JavaScript",
-                "MongoDB",
-              ],
-            }),
+            __html: JSON.stringify(jsonLd),
           }}
         />
         <script

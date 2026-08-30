@@ -4,14 +4,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
   return (
     <footer className="mb-10 px-4 text-center text-gray-500">
-      <small className="mb-2 block text-xs">&copy; 2024 - {currentYear} devshadow.vercel.app.</small>
-      <p className="text-xs mb-1">
-        Design inspired by{" "}
-        <a className="italic" href="https://bytegrad.com/">
-          Wesley
-        </a>
-        .
-      </p>
+      <small className="mb-2 block text-xs">&copy; 2023 - {currentYear} devshadow.space. All rights reserved.</small>
       <p className="text-xs">
         <span className="font-semibold">Built with </span>
         React & Next.js (App Router & Server Actions), TypeScript, Tailwind CSS,

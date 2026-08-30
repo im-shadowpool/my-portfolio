@@ -1,0 +1,67 @@
+# Saipavan Veeravalli
+
+> Full-Stack Developer & SEO Specialist specializing in Next.js, React, Node.js, TypeScript, and modern cloud architecture.
+
+## Overview
+- **Name:** Saipavan Veeravalli
+- **Portfolio:** [https://devshadow.space](https://devshadow.space)
+- **Email:** v.saipavan2001@gmail.com
+- **GitHub:** [https://github.com/im-shadowpool1](https://github.com/im-shadowpool1)
+- **LinkedIn:** [https://www.linkedin.com/in/saipavan-veeravalli/](https://www.linkedin.com/in/saipavan-veeravalli/)
+- **Resume:** [Google Drive](https://drive.google.com/file/d/1k9cVS_yPeIUWUiyWF527qna7Uv6IuWfC/view)
+
+## Summary & Expertise
+Saipavan Veeravalli is a Computer Science graduate and full-stack developer with professional experience across frontend, backend, database design, and on-page technical SEO. Experienced in building responsive, accessible, high-performance web applications with Next.js, React, Node.js, Express, MongoDB, and Tailwind CSS. Currently expanding into enterprise Java backend development and distributed systems.
+
+## Technical Skills
+- **Frontend:** React, Next.js (App Router, Server Actions, SSR/SSG), TypeScript, JavaScript (ES6+), HTML5, CSS3, Tailwind CSS, Framer Motion, Material UI, Redux.
+- **Backend & APIs:** Node.js, Express.js, RESTful API Design, Authentication & Authorization, Web Scraping, Cron Jobs, Java Backend.
+- **Databases:** MongoDB, MySQL.
+- **Tools & Platforms:** Git, GitHub, Vercel, Resend, WordPress, Postman.
+- **SEO & Performance:** Technical SEO, On-Page Optimization, Structured Data (JSON-LD), Core Web Vitals, Caching Strategies.
+
+## Featured Projects
+
+- **Admin Dashboard**
+  - Description: Full-stack admin dashboard for e-commerce analytics, real-time revenue tracking, product and user management, transactions, and geographic data visualization.
+  - Tech Stack: React, Material UI, Node.js, Express.js, MongoDB.
+  - Demo: [https://admin-dashboard-ten-nu-63.vercel.app/dashboard](https://admin-dashboard-ten-nu-63.vercel.app/dashboard)
+  - Repository: [https://github.com/im-shadowpool/admin-dashboard](https://github.com/im-shadowpool/admin-dashboard)
+
+- **Sticky Docs**
+  - Description: Interactive note-taking and document management web application featuring draggable cards, color categorization, customizable themes, and full CRUD database persistence.
+  - Tech Stack: React, Node.js, Express, MongoDB, Tailwind CSS, Framer Motion, REST API.
+  - Demo: [https://sticky-docs.vercel.app/](https://sticky-docs.vercel.app/)
+  - Repository: [https://github.com/im-shadowpool/Sticky-Docs](https://github.com/im-shadowpool/Sticky-Docs)
+
+- **DealsTracker**
+  - Description: E-commerce price tracking and deals discovery platform aggregating real-time prices from Amazon and Flipkart with price drop alerts, historical trend charts, automated web scraping, and cron jobs.
+  - Tech Stack: Next.js, TypeScript, Tailwind CSS, MongoDB, Web Scraping, Cron Jobs.
+  - Demo: [https://dealstracker.vercel.app/](https://dealstracker.vercel.app/)
+  - Repository: [https://github.com/im-shadowpool/dealstracker](https://github.com/im-shadowpool/dealstracker)
+
+- **RiteBlog App**
+  - Description: Full-featured blogging platform with user authentication, role-based authorization, image uploads, dynamic article creation, and rich text editing.
+  - Tech Stack: React, Node.js, Express.js, MongoDB, Tailwind CSS, REST API.
+  - Demo: [https://riteblogapp-project-vmy7.vercel.app/](https://riteblogapp-project-vmy7.vercel.app/)
+  - Repository: [https://github.com/im-shadowpool/riteblogapp-project](https://github.com/im-shadowpool/riteblogapp-project)
+
+- **Memory Game**
+  - Description: Interactive memory matching game featuring multiple difficulty levels, live timers, score tracking, and custom theme switches.
+  - Tech Stack: React, CSS3, JavaScript.
+  - Demo: [https://memory-game-nine-delta.vercel.app/](https://memory-game-nine-delta.vercel.app/)
+  - Repository: [https://github.com/im-shadowpool/memory-game](https://github.com/im-shadowpool/memory-game)
+
+## Experience & Education
+
+- **Lead Web Developer** | Juzgrow.com (June 2024 - Present)
+  - Developed custom web solutions for GCC businesses.
+  - Implemented workflow automations, webhook integrations, and CMS optimizations.
+- **Node.js Developer Intern** | Mindwave Solutions (March 2024 - May 2024)
+  - Engineered RESTful APIs in Node.js & Express with token authentication, user roles, and media processing.
+- **WordPress Developer Intern** | TechVint Pvt. Ltd. (March 2022 - May 2022)
+  - Optimized website load times from 6.5s to 0.98s using cache optimization and backend asset tuning; implemented on-page SEO best practices.
+- **Tech Blogger** | Planspedia.com (November 2021 - January 2024)
+  - Authored 30+ technical articles on web development, programming paradigms, and software tools.
+- **B.Tech in Computer Science & Engineering** | Avanthi Institute of Engineering and Technology (2019 - 2023)
+  - Coursework: Data Structures, Algorithms, DBMS, Operating Systems, Computer Networks, Discrete Mathematics.

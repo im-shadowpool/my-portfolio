@@ -1,50 +1,101 @@
 "use client";
 
 import { useTheme } from "@/context/theme-context";
-import React from "react";
+import React, { useRef } from "react";
 import { BsMoon, BsSun } from "react-icons/bs";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
+
+type ViewTransition = {
+  finished: Promise<void>;
+};
+
+type ViewTransitionDocument = Document & {
+  startViewTransition?: (update: () => void) => ViewTransition;
+};
 
 export default function ThemeSwitch() {
   const { theme, toggleTheme } = useTheme();
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const isTransitioning = useRef(false);
 
   const handleThemeToggle = () => {
-    const hasViewTransition =
-      typeof document !== "undefined" && "startViewTransition" in document;
+    const transitionDocument = document as ViewTransitionDocument;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
 
     if (
-      !hasViewTransition ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      !transitionDocument.startViewTransition ||
+      prefersReducedMotion ||
+      !buttonRef.current
     ) {
       toggleTheme();
       return;
     }
 
-    (document as any).startViewTransition(() => {
+    if (isTransitioning.current) return;
+
+    const buttonBounds = buttonRef.current.getBoundingClientRect();
+    const x = buttonBounds.left + buttonBounds.width / 2;
+    const y = buttonBounds.top + buttonBounds.height / 2;
+    const radius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y),
+    );
+    const snapshotScale = window.devicePixelRatio || 1;
+
+    const rootStyle = document.documentElement.style;
+    rootStyle.setProperty("--theme-transition-x", `${x * snapshotScale}px`);
+    rootStyle.setProperty("--theme-transition-y", `${y * snapshotScale}px`);
+    rootStyle.setProperty(
+      "--theme-transition-radius",
+      `${radius * snapshotScale}px`,
+    );
+
+    isTransitioning.current = true;
+    const transition = transitionDocument.startViewTransition(() => {
       toggleTheme();
+    });
+
+    transition.finished.finally(() => {
+      isTransitioning.current = false;
     });
   };
 
   return (
     <button
-      className="fixed bottom-5 right-5 bg-white w-[3rem] h-[3rem] bg-opacity-80 backdrop-blur-[0.5rem] border border-white border-opacity-40 shadow-2xl rounded-full flex items-center justify-center hover:scale-[1.15] active:scale-105 transition-all dark:bg-gray-950 z-[9999] overflow-hidden"
+      ref={buttonRef}
+      type="button"
+      aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+      className="theme-toggle fixed bottom-5 right-5 z-[9999] flex h-[3rem] w-[3rem] items-center justify-center overflow-hidden rounded-full bg-gray-900 text-white shadow-lg shadow-black/10 transition-transform hover:scale-105 active:scale-95"
       onClick={handleThemeToggle}
     >
-      <AnimatePresence mode="wait" initial={false}>
-        <motion.div
-          key={theme}
-          initial={{ rotate: -180, scale: 0, opacity: 0 }}
-          animate={{ rotate: 0, scale: 1, opacity: 1 }}
-          exit={{ rotate: 180, scale: 0, opacity: 0 }}
-          transition={{ duration: 0.25, ease: "easeInOut" }}
+      <span className="relative block h-5 w-5" aria-hidden="true">
+        <motion.span
+          className="absolute inset-0 flex items-center justify-center"
+          initial={false}
+          animate={
+            theme === "light"
+              ? { opacity: 1, rotate: 0, scale: 1 }
+              : { opacity: 0, rotate: 90, scale: 0.65 }
+          }
+          transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
         >
-          {theme === "light" ? (
-            <BsSun className="text-[1.2rem]" />
-          ) : (
-            <BsMoon className="text-[1.1rem]" />
-          )}
-        </motion.div>
-      </AnimatePresence>
+          <BsSun className="text-[1.2rem]" />
+        </motion.span>
+        <motion.span
+          className="absolute inset-0 flex items-center justify-center"
+          initial={false}
+          animate={
+            theme === "dark"
+              ? { opacity: 1, rotate: 0, scale: 1 }
+              : { opacity: 0, rotate: -90, scale: 0.65 }
+          }
+          transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <BsMoon className="text-[1.1rem]" />
+        </motion.span>
+      </span>
     </button>
   );
 }
