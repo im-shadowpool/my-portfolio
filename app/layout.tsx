@@ -53,6 +53,18 @@ export const metadata: Metadata = {
   alternates: {
     canonical: siteUrl,
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon-192.png", type: "image/png", sizes: "192x192" },
+      { url: "/icon-512.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+  },
+  manifest: "/manifest.webmanifest",
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -63,9 +75,9 @@ export const metadata: Metadata = {
       "Portfolio of Saipavan Veeravalli — full-stack developer specializing in Next.js, React, and Node.js with expertise in SEO and modern web technologies.",
     images: [
       {
-        url: `${siteUrl}/saipavan_veeravalli.png`,
-        width: 800,
-        height: 800,
+        url: `${siteUrl}/og-image.png`,
+        width: 1200,
+        height: 630,
         alt: "Saipavan Veeravalli - Full-Stack Developer & SEO Specialist",
       },
     ],
@@ -74,8 +86,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Saipavan Veeravalli | Full-Stack Developer & SEO Specialist",
     description:
-      "Portfolio of Saipavan Veeravalli — full-stack developer specializing in Next.js, React, and Node.js.",
-    images: [`${siteUrl}/saipavan_veeravalli.png`],
+      "Portfolio of Saipavan Veeravalli — full-stack developer specializing in Next.js, React, and Node.js with expertise in SEO and web performance.",
+    images: [`${siteUrl}/og-image.png`],
     creator: "@im-shadowpool",
   },
   robots: {
@@ -140,6 +152,83 @@ const jsonLd = {
       ],
     },
     {
+      "@type": "ItemList",
+      "@id": `${siteUrl}/#projects`,
+      name: "Featured Projects by Saipavan Veeravalli",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          item: {
+            "@type": "WebApplication",
+            name: "Admin Dashboard",
+            description:
+              "Full-stack admin dashboard to manage e-commerce analytics, real-time revenue tracking, and data visualization.",
+            url: "https://admin-dashboard-ten-nu-63.vercel.app/dashboard",
+            applicationCategory: "BusinessApplication",
+            operatingSystem: "All",
+            author: { "@id": `${siteUrl}/#person` },
+          },
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          item: {
+            "@type": "WebApplication",
+            name: "Sticky Docs",
+            description:
+              "Interactive note-taking application featuring draggable cards, color categorization, and database persistence.",
+            url: "https://sticky-docs.vercel.app/",
+            applicationCategory: "ProductivityApplication",
+            operatingSystem: "All",
+            author: { "@id": `${siteUrl}/#person` },
+          },
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          item: {
+            "@type": "WebApplication",
+            name: "DealsTracker",
+            description:
+              "E-commerce price tracking platform with price drop alerts, historical trend charts, and automated web scraping.",
+            url: "https://dealstracker.vercel.app/",
+            applicationCategory: "ShoppingApplication",
+            operatingSystem: "All",
+            author: { "@id": `${siteUrl}/#person` },
+          },
+        },
+        {
+          "@type": "ListItem",
+          position: 4,
+          item: {
+            "@type": "WebApplication",
+            name: "RiteBlog App",
+            description:
+              "Full-featured blogging platform with user authentication, role-based authorization, and rich text editing.",
+            url: "https://riteblogapp-project-vmy7.vercel.app/",
+            applicationCategory: "PublishingApplication",
+            operatingSystem: "All",
+            author: { "@id": `${siteUrl}/#person` },
+          },
+        },
+        {
+          "@type": "ListItem",
+          position: 5,
+          item: {
+            "@type": "WebApplication",
+            name: "Memory Game",
+            description:
+              "Interactive memory card matching game featuring multiple difficulty levels and score tracking.",
+            url: "https://memory-game-nine-delta.vercel.app/",
+            applicationCategory: "GameApplication",
+            operatingSystem: "All",
+            author: { "@id": `${siteUrl}/#person` },
+          },
+        },
+      ],
+    },
+    {
       "@type": "ProfilePage",
       "@id": `${siteUrl}/#webpage`,
       url: siteUrl,
@@ -153,6 +242,11 @@ const jsonLd = {
       mainEntity: {
         "@id": `${siteUrl}/#person`,
       },
+      hasPart: [
+        {
+          "@id": `${siteUrl}/#projects`,
+        },
+      ],
     },
   ],
 };
@@ -165,6 +259,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="!scroll-smooth" suppressHydrationWarning>
       <head>
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs.txt" />
         <script
           type="application/ld+json"
