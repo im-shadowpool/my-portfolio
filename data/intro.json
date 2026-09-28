@@ -1,9 +1,18 @@
 {
   "name": "Saipavan Veeravalli",
-  "avatar": "/saipavan_veeravalli.png",
+  "avatar": "/saipavan-veeravalli.png",
+  "avatarTwin": "/saipavan-pixeled.png",
+  "tagline": "I build fast, search-friendly web products and sweat the small details.",
+  "roles": ["Full-Stack Developer", "Lead Web Developer", "SEO Specialist"],
+  "location": "Hyderabad, India",
+  "website": "devshadow.space",
+  "githubUsername": "im-shadowpool",
   "socialLinks": {
     "linkedinUrl": "https://www.linkedin.com/in/saipavan-veeravalli/",
-    "githubUrl": "https://github.com/im-shadowpool1",
+    "githubUrl": "https://github.com/im-shadowpool",
+    "codepenUrl": "https://codepen.io/shadowpool",
+    "xUrl": "https://x.com/im_shadowpool",
+    "instagramUrl": "https://www.instagram.com/im_shadowpool/",
     "resumeUrl": "https://drive.google.com/file/d/1k9cVS_yPeIUWUiyWF527qna7Uv6IuWfC/view"
   }
 }

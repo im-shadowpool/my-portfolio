@@ -6,26 +6,39 @@ export type SectionName =
   | "Experience"
   | "Contact";
 
-export interface NavLink {
-  name: string;
-  hash: string;
-}
 
 export interface SocialLinks {
   linkedinUrl: string;
   githubUrl: string;
+  codepenUrl: string;
+  /** "#" until the profile exists. */
+  xUrl: string;
+  instagramUrl: string;
   resumeUrl: string;
 }
 
 export interface IntroData {
   name: string;
   avatar: string;
+  /** Illustrated version the portrait switches to on click. */
+  avatarTwin: string;
+  tagline: string;
+  roles: string[];
+  location: string;
+  website: string;
+  githubUsername: string;
   socialLinks: SocialLinks;
 }
 
 export interface AboutData {
   title: string;
+  headline: string;
   paragraphs: string[];
+  location: string;
+  currently: { role: string; company: string; since: string };
+  stat: { from: number; to: number; unit: string; label: string };
+  learning: string[];
+  offscreen: { hobbies: string[]; reading: string; favourite: string };
 }
 
 export interface ProjectItem {
@@ -39,6 +52,13 @@ export interface ProjectItem {
   year: string;
 }
 
+export interface SkillGroup {
+  group: string;
+  kanji: string;
+  note: string;
+  items: string[];
+}
+
 export interface ExperienceItem {
   title: string;
   location: string;
@@ -49,4 +69,10 @@ export interface ExperienceItem {
 
 export interface ContactData {
   contactEmail: string;
+}
+
+export interface NowData {
+  /** ISO date the page was last brought up to date. */
+  updated: string;
+  items: { label: string; kanji: string; text: string }[];
 }

@@ -1,20 +1,26 @@
 [
-  "HTML",
-  "CSS",
-  "JavaScript",
-  "TypeScript",
-  "React",
-  "Next.js",
-  "Redux",
-  "Tailwind",
-  "Node.js",
-  "Express",
-  "MongoDB",
-  "MySQL",
-  "Python",
-  "C/C++",
-  "Git",
-  "SEO",
-  "WordPress",
-  "Data Structures"
+  {
+    "group": "Frontend",
+    "kanji": "表",
+    "note": "Interfaces that feel fast and considered.",
+    "items": ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Next.js", "Redux", "Tailwind"]
+  },
+  {
+    "group": "Backend",
+    "kanji": "裏",
+    "note": "APIs, auth and the quiet plumbing underneath.",
+    "items": ["Node.js", "Express", "Python", "C/C++"]
+  },
+  {
+    "group": "Data",
+    "kanji": "数",
+    "note": "Storing it well, reasoning about it clearly.",
+    "items": ["MongoDB", "MySQL", "Data Structures"]
+  },
+  {
+    "group": "Craft",
+    "kanji": "技",
+    "note": "Shipping, ranking and keeping things tidy.",
+    "items": ["Git", "SEO", "WordPress"]
+  }
 ]

@@ -1,22 +1,31 @@
 import Header from "@/components/layout/header";
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Caveat, Geist, Geist_Mono, Shippori_Mincho } from "next/font/google";
 import type { Metadata, Viewport } from "next";
 import ActiveSectionContextProvider from "@/context/active-section-context";
 import Footer from "@/components/layout/footer";
-import ThemeSwitch from "@/components/ui/theme-switch";
-import BackToTop from "@/components/ui/back-to-top";
 import ThemeContextProvider from "@/context/theme-context";
-import { Toaster } from "react-hot-toast";
+import SeasonProvider from "@/components/providers/season";
+import ShojiTransition from "@/components/ui/shoji-transition";
+import Shortcuts from "@/components/ui/shortcuts";
 
-const inter = Inter({ subsets: ["latin"] });
+const display = Shippori_Mincho({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-display",
+  display: "swap",
+});
+const sans = Geist({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
+const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap" });
+// Handwriting for the margin doodles
+const hand = Caveat({ subsets: ["latin"], weight: ["500"], variable: "--font-hand", display: "swap" });
 
 const siteUrl = "https://devshadow.space";
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fbe2e3" },
-    { media: "(prefers-color-scheme: dark)", color: "#0f172a" },
+    { media: "(prefers-color-scheme: light)", color: "#f7f5f0" },
+    { media: "(prefers-color-scheme: dark)", color: "#0c0c0b" },
   ],
   width: "device-width",
   initialScale: 1,
@@ -88,7 +97,7 @@ export const metadata: Metadata = {
     description:
       "Portfolio of Saipavan Veeravalli — full-stack developer specializing in Next.js, React, and Node.js with expertise in SEO and web performance.",
     images: [`${siteUrl}/og-image.png`],
-    creator: "@im-shadowpool",
+    creator: "@im_shadowpool",
   },
   robots: {
     index: true,
@@ -123,15 +132,17 @@ const jsonLd = {
       "@id": `${siteUrl}/#person`,
       name: "Saipavan Veeravalli",
       url: siteUrl,
-      image: `${siteUrl}/saipavan_veeravalli.png`,
+      image: `${siteUrl}/saipavan-veeravalli.png`,
       jobTitle: "Full-Stack Developer & SEO Specialist",
       description:
         "Full-Stack Developer specializing in Next.js, React, Node.js, and technical SEO.",
       email: "mailto:v.saipavan2001@gmail.com",
       sameAs: [
         "https://www.linkedin.com/in/saipavan-veeravalli/",
-        "https://github.com/im-shadowpool1",
         "https://github.com/im-shadowpool",
+        "https://x.com/im_shadowpool",
+        "https://www.instagram.com/im_shadowpool/",
+        "https://codepen.io/shadowpool",
       ],
       alumniOf: {
         "@type": "EducationalOrganization",
@@ -257,7 +268,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="!scroll-smooth" suppressHydrationWarning>
+    <html lang="en" className="scroll-smooth" data-scroll-behavior="smooth" suppressHydrationWarning>
       <head>
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs.txt" />
@@ -272,13 +283,10 @@ export default function RootLayout({
             __html: `
               (function() {
                 try {
-                  var theme = localStorage.getItem('theme');
-                  var supportDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                  if (theme === 'dark' || (!theme && supportDark)) {
-                    document.documentElement.classList.add('dark');
-                  } else {
-                    document.documentElement.classList.remove('dark');
-                  }
+                  var stored = localStorage.getItem('theme');
+                  var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  document.documentElement.classList.toggle('dark', dark);
+                  document.documentElement.style.colorScheme = dark ? 'dark' : 'light';
                 } catch (e) {}
               })();
             `,
@@ -286,27 +294,24 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.className} bg-bodyBg text-main relative pt-28 sm:pt-36`}
+        className={`${display.variable} ${sans.variable} ${mono.variable} ${hand.variable} overflow-x-clip font-sans`}
       >
         <a
-          href="#home"
-          className="fixed top-0 left-0 z-[10000] bg-gray-900 text-white px-4 py-3 -translate-y-full focus:translate-y-0 transition-transform font-medium"
+          href="#main"
+          className="fixed left-4 top-4 z-[100] -translate-y-24 rounded-full bg-ink px-5 py-3 text-sm font-medium text-paper transition-transform focus:translate-y-0"
         >
           Skip to main content
         </a>
 
-        <div className="bg-[#e2fbea] absolute top-[-6rem] -z-10 right-[11rem] h-[31.25rem] w-[31.25rem] rounded-full blur-[10rem] sm:w-[68.75rem] dark:bg-[#628c94]" aria-hidden="true"></div>
-        <div className="bg-[#d7ecfb] absolute top-[-1rem] -z-10 left-[-35rem] h-[31.25rem] w-[50rem] rounded-full blur-[10rem] sm:w-[68.75rem] md:left-[-33rem] lg:left-[-28rem] xl:left-[-15rem] 2xl:left-[-5rem] dark:bg-[#676394]" aria-hidden="true"></div>
-
         <ThemeContextProvider>
           <ActiveSectionContextProvider>
-            <Header />
-            {children}
-            <Footer />
-
-            <Toaster position="top-right" />
-            <ThemeSwitch />
-            <BackToTop />
+            <SeasonProvider>
+              <Header />
+              {children}
+              <Footer />
+              <ShojiTransition />
+              <Shortcuts />
+            </SeasonProvider>
           </ActiveSectionContextProvider>
         </ThemeContextProvider>
       </body>

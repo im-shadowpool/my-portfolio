@@ -2,154 +2,161 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+  Design tokens. Colours are RGB channels so Tailwind opacity modifiers work
+  (e.g. border-line/10). Day = warm washi paper, night = sumi ink.
+*/
 @layer base {
-  html {
-    --line-color: #e5e7eb;
-    --timeline-ring-color: #1f425b3c;
-
-    /* Global Design Tokens */
-    --font-sans: 'Inter', sans-serif;
-    --color-text-main: #1f2937;     /* gray-800 */
-    --color-text-muted: #4b5563;    /* gray-600 */
-    --color-bg-body: #f8fafc;       /* slate-50 */
+  :root {
+    --paper: 251 249 244;
+    --card: 244 241 233;
+    --ink: 24 23 21;
+    --ink-soft: 87 83 77;
+    --ink-faint: 140 135 127;
+    --line: 24 23 21;
+    --shu: 196 62 38;
+    --matcha: 64 140 96;
+    --water: 232 238 231;
+    color-scheme: light;
   }
 
   html.dark {
-    --line-color: rgba(255, 255, 255, 0.2);
-    --timeline-ring-color: rgba(255, 255, 255, 0.15);
+    --paper: 19 19 17;
+    --card: 27 27 24;
+    --ink: 237 234 227;
+    --ink-soft: 170 166 158;
+    --ink-faint: 112 108 102;
+    --line: 237 234 227;
+    --shu: 234 102 74;
+    --matcha: 110 196 142;
+    --water: 17 29 27;
+    color-scheme: dark;
+  }
 
-    --color-text-main: rgba(255, 255, 255, 0.9);
-    --color-text-muted: rgba(255, 255, 255, 0.7);
-    --color-bg-body: #0f172a;       /* slate-900 / gray-900 */
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    color: var(--color-text-main);
-    background-color: var(--color-bg-body);
+    background-color: rgb(var(--paper));
+    color: rgb(var(--ink));
   }
 
-  p {
-    color: var(--color-text-muted);
+  ::selection {
+    background: rgb(var(--shu) / 0.85);
+    color: rgb(var(--paper));
   }
 
   :focus-visible {
-    outline: 2px solid #3b82f6;
+    outline: 2px solid rgb(var(--shu));
     outline-offset: 2px;
     border-radius: 4px;
   }
 
   @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto !important;
+    }
     *,
     *::before,
     *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
     }
   }
 }
 
-.borderBlack {
-  @apply border border-black/10;
-}
-
-.vertical-timeline::before {
-  background: var(--line-color) !important;
-}
-
-.vertical-timeline-element-icon { 
-  box-shadow: 0 0 0 4px var(--timeline-ring-color), inset 0 2px 0 rgba(63, 67, 69, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05) !important;
-}
-
-.vertical-timeline-element-content {
-  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease, border-color 0.3s ease !important;
-}
-
-.vertical-timeline-element-content:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.04) !important;
-  border-color: rgba(0, 0, 0, 0.12) !important;
-}
-
-html.dark .vertical-timeline-element-content:hover {
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25) !important;
-  border-color: rgba(255, 255, 255, 0.15) !important;
-}
- 
-::-webkit-scrollbar {
-  width: 7px;
-}
-
-
-::-webkit-scrollbar-thumb {
-  background-color: #53617b5c;
-  border-radius: 10px;
-  
-}
-
-/* 
-  ::-webkit-scrollbar-track {
-    background: #333; 
-  } */
- 
- 
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: #53617b76; 
+@layer components {
+  .label {
+    @apply font-mono text-[0.7rem] uppercase tracking-[0.14em] text-ink-faint;
   }
 
-/* The new theme expands from the toggle until it covers the viewport. */
-.theme-toggle {
-  view-transition-name: theme-toggle;
+  /* Underline that draws in from the left on hover. */
+  .link-line {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .link-line:hover,
+  .group:hover .link-line {
+    background-size: 100% 1px;
+  }
+
+  /* Dotted rule, like the faint ruling on washi writing paper. */
+  .dots-b {
+    border-bottom: 1px dotted rgb(var(--line) / 0.28);
+  }
+  .dots-t {
+    border-top: 1px dotted rgb(var(--line) / 0.28);
+  }
+
+  .tategaki {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
 }
 
-::view-transition-group(theme-toggle) {
-  z-index: 3;
-  animation: none;
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgb(var(--paper));
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgb(var(--ink) / 0.15);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--ink) / 0.3);
 }
 
-::view-transition-old(theme-toggle),
-::view-transition-new(theme-toggle) {
-  mix-blend-mode: normal;
-}
-
+/*
+  Theme switch: the whole page crossfades from one theme to the other.
+  Browsers with view transitions blend a snapshot of each; the rest fade
+  colours via .theme-fade, which is only on <html> for the moment of the switch.
+*/
 ::view-transition-old(root),
 ::view-transition-new(root) {
-  animation: none;
-  mix-blend-mode: normal;
+  animation-duration: 450ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-::view-transition-old(root) {
-  z-index: 1;
-}
-
-::view-transition-new(root) {
-  z-index: 2;
-  animation: theme-expand 1100ms cubic-bezier(0.65, 0, 0.35, 1) both;
-}
-
-@keyframes theme-expand {
-  from {
-    clip-path: circle(
-      0px at
-      var(--theme-transition-x)
-      var(--theme-transition-y)
-    );
-  }
-  to {
-    clip-path: circle(
-      var(--theme-transition-radius) at
-      var(--theme-transition-x)
-      var(--theme-transition-y)
-    );
-  }
+html.theme-fade,
+html.theme-fade *,
+html.theme-fade *::before,
+html.theme-fade *::after {
+  transition:
+    background-color 400ms ease,
+    border-color 400ms ease,
+    color 400ms ease,
+    fill 400ms ease,
+    stroke 400ms ease !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-old(root),
   ::view-transition-new(root) {
-    animation-duration: 0.01ms;
+    animation: none;
+  }
+}
+
+/* The branch over the pond stirs in a slow breeze. */
+@keyframes branch-sway {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(0.9deg); }
+}
+.branch-sway {
+  transform-origin: 0 0;
+  animation: branch-sway 7s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .branch-sway {
+    animation: none;
   }
 }
 

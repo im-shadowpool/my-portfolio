@@ -1,56 +1,55 @@
 "use client";
 
-import React from "react";
-import SectionHeading from "@/components/ui/section-heading";
 import { motion } from "framer-motion";
 import { useSectionInView } from "@/lib/hooks";
+import type { AboutData } from "@/lib/types";
+import Panel, { panelItem } from "@/components/ui/panel";
 
-export default function About() {
-  const { ref } = useSectionInView("About");
+export default function About({ about }: { about: AboutData }) {
+  const { ref } = useSectionInView("About", 0.5);
 
   return (
-    <motion.section
-      ref={ref}
-      className="mb-28 max-w-[45rem] text-center leading-8 sm:mb-40 scroll-mt-28"
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.175 }}
-      id="about"
-    >
-      <SectionHeading>About me</SectionHeading>
+    <Panel id="about" title="About" kanji="私" sectionRef={ref}>
+      <motion.p variants={panelItem} className="mb-4 font-display text-[1.2rem] leading-snug text-ink">
+        {about.headline}
+      </motion.p>
 
-      <p className="mb-3">
-        If you are reading this, you must value your time. In short, I have
-        started developing{" "}
-        <span className="font-medium">websites through WordPress</span>, and
-        when I was taught about blogging, I started my{" "}
-        <span className="font-medium">blogging journey</span>. I used to run
-        more than <span className="italic">five websites</span> and write
-        content every day, but in the end, it was a{" "}
-        <span className="">failure</span>. The reason is multitasking. With my
-        learnings, I have{" "}
-        <span className="font-medium">mastered on-page SEO</span> and did my
-        <span className="font-medium"> first internship at a startup</span> with
-        my expertise in{" "}
-        <span className="underline">SEO and digital marketing skills</span>.
-        Along with this, I have started learning web development and started my
-        first project with the <span className="italic">MERN stack</span>. After
-        my graduation, I started preparing for the GATE exam for Masters in
-        India, and I qualified for the exam. Meanwhile, I started my
-        development journey back, and am learning backend development in-depth with Java,
-        and am <span className="font-medium text-green-700 dark:text-green-500">open to work.</span>
-      </p>
+      <ul className="space-y-3 text-[0.93rem] leading-relaxed text-ink-soft">
+        {about.paragraphs.map((paragraph, i) => (
+          <motion.li key={i} variants={panelItem} className="relative pl-5">
+            <span className="absolute left-0 top-[0.7em] h-px w-2.5 bg-ink-faint" aria-hidden="true" />
+            {paragraph}
+          </motion.li>
+        ))}
+        <motion.li variants={panelItem} className="relative pl-5">
+          <span className="absolute left-0 top-[0.7em] h-px w-2.5 bg-ink-faint" aria-hidden="true" />
+          Proudest fix so far: taking a client site&apos;s load time from{" "}
+          <span className="font-mono text-[0.85rem] text-ink line-through decoration-shu/60">
+            {about.stat.from}
+            {about.stat.unit}
+          </span>{" "}
+          to{" "}
+          <span className="font-mono text-[0.85rem] text-ink">
+            {about.stat.to}
+            {about.stat.unit}
+          </span>{" "}
+          with caching and backend tuning.
+        </motion.li>
+      </ul>
 
-      <p>
-        <span className="italic">When I'm not working</span>, I enjoy playing
-        chess, and watching movies. I also enjoy{" "}
-        <span className="font-medium">reading books</span>. I am currently
-        reading{" "}
-        <span className="font-medium">The Compound Effect by </span>
-        <span className="italic">Darren Hardy</span> and my favourite book is{" "}
-        <span className="font-medium">Eat That Frog by</span>
-        <span className="italic"> Brian Tracy.</span>
-      </p>
-    </motion.section>
+      <motion.dl variants={panelItem} className="mt-5 grid gap-px overflow-hidden rounded-lg border border-line/10 bg-line/10 text-[0.85rem] sm:grid-cols-2">
+        <div className="bg-paper px-3.5 py-3">
+          <dt className="label mb-1">Reading</dt>
+          <dd className="text-ink">
+            {about.offscreen.reading}
+            <span className="text-ink-faint"> · fav: {about.offscreen.favourite}</span>
+          </dd>
+        </div>
+        <div className="bg-paper px-3.5 py-3">
+          <dt className="label mb-1">Off-screen</dt>
+          <dd className="text-ink">{about.offscreen.hobbies.join(" · ")}</dd>
+        </div>
+      </motion.dl>
+    </Panel>
   );
 }

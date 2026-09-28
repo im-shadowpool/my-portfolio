@@ -1,131 +1,78 @@
 "use client";
 
-import React from "react";
 import { motion } from "framer-motion";
-import SectionHeading from "@/components/ui/section-heading";
-import {
-  VerticalTimeline,
-  VerticalTimelineElement,
-} from "react-vertical-timeline-component";
-import "react-vertical-timeline-component/style.min.css";
+import { useState } from "react";
 import { useSectionInView } from "@/lib/hooks";
-import { useTheme } from "@/context/theme-context";
-import { CgWorkAlt } from "react-icons/cg";
-import { RiQuillPenFill } from "react-icons/ri";
-import { LuGraduationCap } from "react-icons/lu";
+import type { ExperienceItem } from "@/lib/types";
+import Panel, { panelItem } from "@/components/ui/panel";
+import Collapsible from "@/components/ui/collapsible";
 
-const getIcon = (iconName: string) => {
-  switch (iconName) {
-    case "work":
-      return React.createElement(CgWorkAlt);
-    case "blog":
-      return React.createElement(RiQuillPenFill);
-    case "education":
-      return React.createElement(LuGraduationCap);
-    default:
-      return React.createElement(CgWorkAlt);
-  }
-};
-
-interface ExperienceItem {
-  title: string;
-  location: string;
-  description: string;
-  icon: string;
-  date: string;
-}
-
-const fadeInAnimationVariants = {
-  initial: {
-    opacity: 0,
-    y: 20,
-  },
-  animate: (index: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: "spring" as const,
-      stiffness: 100,
-      damping: 15,
-      delay: 0.05 * index,
-    },
-  }),
-};
-
-export default function Experience({ experiences }: { experiences: ExperienceItem[] }) {
-  const { ref } = useSectionInView("Experience", .45);
-  const { theme } = useTheme();
+function Timeline({ items, prefix }: { items: ExperienceItem[]; prefix: string }) {
+  const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section id="experience" ref={ref} className="scroll-mt-28 mb-28 sm:mb-40">
-      <SectionHeading>My experience</SectionHeading>
-      <VerticalTimeline lineColor={theme === "light" ? "#e5e7eb" : "rgba(255, 255, 255, 0.2)"} animate={true}>
-        {experiences.map((item, index) => (
-          <React.Fragment key={index}>
-            <VerticalTimelineElement
-              visible={true}
-              contentStyle={{
-                background:
-                  theme === "light" ? "#f3f4f6" : "rgba(255, 255, 255, 0.05)",
-                boxShadow: "none",
-                border: "1px solid rgba(0, 0, 0, 0.05)",
-                textAlign: "left",
-                padding: "1.3rem 2rem",
-              }}
-              contentArrowStyle={{
-                borderRight:
-                  theme === "light"
-                    ? "0.4rem solid #9ca3af"
-                    : "0.4rem solid rgba(255, 255, 255, 0.3)",
-              }}
-              date={item.date}
-              icon={getIcon(item.icon)}
-              iconStyle={{
-                background:
-                  theme === "light" ? "white" : "#343a47",
-                fontSize: "1.5rem",
-              }}
+    <ul className="dots-t divide-y divide-dotted divide-line/25">
+      {items.map((item, index) => {
+        const current = item.date.includes("Present");
+        return (
+          <motion.li key={`${item.title}-${item.date}`} variants={panelItem}>
+            <Collapsible
+              id={`${prefix}-${index}`}
+              open={open === index}
+              onToggle={() => setOpen(open === index ? null : index)}
+              header={
+                <div className="flex items-center gap-3">
+                  <span
+                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-line/10 bg-card font-display text-[0.95rem] text-ink transition-colors duration-300 group-hover/row:border-line/25"
+                    aria-hidden="true"
+                  >
+                    {item.location.charAt(0)}
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <p className="flex items-center gap-2 truncate text-[0.95rem] font-medium text-ink">
+                      {item.title}
+                      {current && (
+                        <span className="relative flex h-1.5 w-1.5 shrink-0" title="Current role">
+                          <span className="absolute inset-0 animate-ping rounded-full bg-matcha opacity-60" />
+                          <span className="relative h-1.5 w-1.5 rounded-full bg-matcha" />
+                        </span>
+                      )}
+                    </p>
+                    <p className="mt-0.5 flex flex-wrap gap-x-2 text-[0.8rem] text-ink-faint">
+                      <span className="text-ink-soft">{item.location}</span>
+                      <span aria-hidden="true">·</span>
+                      <span className="font-mono text-[0.74rem]">{item.date}</span>
+                    </p>
+                  </div>
+                </div>
+              }
             >
-              <motion.h3
-                className="font-semibold capitalize"
-                variants={fadeInAnimationVariants}
-                initial="initial"
-                whileInView="animate"
-                viewport={{
-                  once: true,
-                }}
-                custom={index}
-              >
-                {item.title}
-              </motion.h3>
-              <motion.p
-                variants={fadeInAnimationVariants}
-                initial="initial"
-                whileInView="animate"
-                viewport={{
-                  once: true,
-                }}
-                custom={index}
-                className="!font-medium !text-[15px] !mt-0"
-              >
-                {item.location}
-              </motion.p>
-              <motion.p
-                variants={fadeInAnimationVariants}
-                initial="initial"
-                whileInView="animate"
-                viewport={{
-                  once: true,
-                }}
-                custom={index}
-                className="!mt-1 !font-normal text-muted"
-              >
+              <p className="border-l border-line/15 pl-4 text-[0.9rem] leading-relaxed text-ink-soft sm:ml-[1.125rem] sm:pl-[1.9rem]">
                 {item.description}
-              </motion.p>
-            </VerticalTimelineElement>
-          </React.Fragment>
-        ))}
-      </VerticalTimeline>
-    </section>
+              </p>
+            </Collapsible>
+          </motion.li>
+        );
+      })}
+    </ul>
+  );
+}
+
+export default function Experience({ experiences }: { experiences: ExperienceItem[] }) {
+  const { ref } = useSectionInView("Experience", 0.4);
+  const work = experiences.filter((item) => item.icon !== "education");
+  const education = experiences.filter((item) => item.icon === "education");
+
+  return (
+    <>
+      <Panel id="experience" title="Experience" kanji="経歴" meta={`${work.length} roles`} sectionRef={ref} className="!px-0 !py-0">
+        <Timeline items={work} prefix="work" />
+      </Panel>
+      {education.length > 0 && (
+        <Panel id="education" title="Education" kanji="学歴" className="!px-0 !py-0">
+          <Timeline items={education} prefix="edu" />
+        </Panel>
+      )}
+    </>
   );
 }

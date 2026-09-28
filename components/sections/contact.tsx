@@ -1,94 +1,41 @@
 "use client";
 
-import React from "react";
-import SectionHeading from "@/components/ui/section-heading";
+import Link from "next/link";
 import { motion } from "framer-motion";
+import { FiArrowUpRight, FiFileText, FiMail } from "react-icons/fi";
 import { useSectionInView } from "@/lib/hooks";
-import { sendEmail } from "@/actions/sendEmail";
-import SubmitBtn from "@/components/ui/submit-btn";
-import toast from "react-hot-toast";
+import Panel, { panelItem } from "@/components/ui/panel";
+import CopyEmail from "@/components/ui/copy-email";
 
-export default function Contact({ contactEmail }: { contactEmail: string }) {
-  const { ref } = useSectionInView("Contact");
+export default function Contact({ email }: { email: string }) {
+  const { ref } = useSectionInView("Contact", 0.6);
 
   return (
-    <motion.section
-      id="contact"
-      ref={ref}
-      className="scroll-mt-28 mb-28 sm:mb-40 w-[min(100%,38rem)] text-center"
-      initial={{
-        opacity: 0,
-      }}
-      whileInView={{
-        opacity: 1,
-      }}
-      transition={{
-        duration: 1,
-      }}
-      viewport={{
-        once: true,
-      }}
-    >
-      <SectionHeading>Contact me</SectionHeading>
-
-      <p className="text-muted -mt-6">
-        Please contact me directly at{" "}
-        <a className="underline" href={`mailto:${contactEmail}`}>
-          {contactEmail}
-        </a>{" "}
-        or through this form.
-      </p>
-
-      <form
-        className="mt-10 flex flex-col"
-        action={async (formData) => {
-          const { data, error } = await sendEmail(formData);
-
-          if (error) {
-            toast.error(error);
-            return;
-          }
-
-          toast.success("Email sent successfully!");
-        }}
-      >
-        <div className="sr-only" aria-hidden="true">
-          <label htmlFor="website">Website</label>
-          <input
-            id="website"
-            name="website"
-            type="text"
-            tabIndex={-1}
-            autoComplete="off"
-          />
-        </div>
-        <label htmlFor="senderEmail" className="sr-only">
-          Your email
-        </label>
-        <input
-          className="h-14 px-4 rounded-lg borderBlack dark:bg-white/10 dark:text-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none"
-          id="senderEmail"
-          name="senderEmail"
-          type="email"
-          required
-          maxLength={500}
-          placeholder="Your email"
-          autoComplete="email"
-        />
-        <label htmlFor="message" className="sr-only">
-          Your message
-        </label>
-        <textarea
-          className="h-52 my-3 rounded-lg resize-none borderBlack p-4 dark:bg-white/10 dark:text-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none"
-          id="message"
-          name="message"
-          placeholder="Your message"
-          rows={8}
-          required
-          maxLength={5000}
-        />
-        <SubmitBtn />
-      </form>
-    </motion.section>
+    <Panel id="contact" title="Contact" kanji="便り" sectionRef={ref}>
+      <motion.p variants={panelItem} className="max-w-lg text-[0.93rem] leading-relaxed text-ink-soft">
+        Open to full-time roles and freelance builds. Email is the fastest way to reach me. I
+        usually reply within a day.
+      </motion.p>
+      <motion.div variants={panelItem} className="mt-5 flex flex-wrap items-center gap-2">
+        <a
+          href={`mailto:${email}`}
+          className="group inline-flex items-center gap-2 rounded-md bg-ink px-3.5 py-2 text-[0.85rem] font-medium text-paper transition-transform duration-200 active:scale-[0.97]"
+        >
+          <FiMail />
+          Say hello
+          <FiArrowUpRight className="transition-transform duration-300 ease-silk group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+        </a>
+        <Link
+          href="/resume"
+          className="group inline-flex items-center gap-2 rounded-md border border-line/15 bg-card px-3.5 py-2 text-[0.85rem] text-ink transition-colors hover:border-line/30 active:scale-[0.97]"
+        >
+          <FiFileText />
+          Résumé
+        </Link>
+        <span className="ml-1 font-mono text-[0.8rem] text-ink-soft">
+          or copy <CopyEmail email={email} />
+        </span>
+      </motion.div>
+    </Panel>
   );
 }

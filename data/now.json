@@ -1,0 +1,20 @@
+{
+  "updated": "2026-09-28",
+  "items": [
+    {
+      "label": "Building",
+      "kanji": "作",
+      "text": "Custom websites for GCC businesses as Lead Web Developer at Juzgrow — CMS builds wired together with webhooks."
+    },
+    {
+      "label": "Learning",
+      "kanji": "学",
+      "text": "Java backend engineering and system design, going deeper than the MERN stack I started with."
+    },
+    {
+      "label": "Reading",
+      "kanji": "読",
+      "text": "The Compound Effect by Darren Hardy."
+    }
+  ]
+}

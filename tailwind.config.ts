@@ -1,29 +1,44 @@
 import type { Config } from "tailwindcss";
 
+const token = (name: string) => `rgb(var(--${name}) / <alpha-value>)`;
+
 const config: Config = {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-      },
       colors: {
-        main: "var(--color-text-main)",
-        muted: "var(--color-text-muted)",
-        bodyBg: "var(--color-bg-body)",
+        paper: token("paper"),
+        card: token("card"),
+        ink: token("ink"),
+        "ink-soft": token("ink-soft"),
+        "ink-faint": token("ink-faint"),
+        line: token("line"),
+        shu: token("shu"),
+        matcha: token("matcha"),
+        water: token("water"),
       },
-    },  
-  },
-  variants: {
-    extend: {
-      display: ['group-hover']
-    }
+      maxWidth: {
+        column: "46rem",
+      },
+      fontFamily: {
+        display: [
+          "var(--font-display)",
+          "Hiragino Mincho ProN",
+          "Yu Mincho",
+          "Noto Serif JP",
+          "serif",
+        ],
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
+        hand: ["var(--font-hand)", "cursive"],
+      },
+      transitionTimingFunction: {
+        silk: "cubic-bezier(0.16, 1, 0.3, 1)",
+      },
+    },
   },
   plugins: [],
   darkMode: "class",
