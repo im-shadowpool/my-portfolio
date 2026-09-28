@@ -2,8 +2,8 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import clsx from "clsx";
-import { animate, motion } from "framer-motion";
-import type { ContributionDay, ContributionPeriod } from "@/lib/github";
+import { animate, m } from "framer-motion";
+import { unpackDays, type ContributionDay, type PackedPeriod } from "@/lib/github";
 
 const LEVEL_CLASS = [
   "bg-line/[0.07]",
@@ -82,12 +82,12 @@ export default function GithubGraph({
   periods,
   username,
 }: {
-  periods: ContributionPeriod[];
+  periods: PackedPeriod[];
   username: string;
 }) {
   const [activeKey, setActiveKey] = useState(periods[0]?.key);
   const active = periods.find((p) => p.key === activeKey) ?? periods[0];
-  const weeks = useMemo(() => toWeeks(active.data.days), [active]);
+  const weeks = useMemo(() => toWeeks(unpackDays(active)), [active]);
   const labels = useMemo(() => monthLabels(weeks), [weeks]);
   const [hovered, setHovered] = useState<ContributionDay | null>(null);
   const scrollerRef = useRef<HTMLDivElement>(null);
@@ -123,7 +123,7 @@ export default function GithubGraph({
                   )}
                 >
                   {selected && (
-                    <motion.span
+                    <m.span
                       layoutId="github-period"
                       className="absolute inset-0 rounded-md bg-ink"
                       transition={{ type: "spring", stiffness: 420, damping: 34 }}
@@ -152,17 +152,16 @@ export default function GithubGraph({
           <div
             className="flex gap-[3px]"
             role="img"
-            aria-label={`${active.data.total} GitHub contributions ${periodPhrase}`}
+            aria-label={`${active.total} GitHub contributions ${periodPhrase}`}
             onPointerLeave={() => setHovered(null)}
           >
             {weeks.map((week, i) => (
-              // Keyed by period, so switching re-inks the grid week by week, left to right.
-              <motion.div
+              // Keyed by period, so switching re-inks the grid week by week, left to right
+              // (a CSS animation: 53 columns is too many to hand to JavaScript).
+              <div
                 key={`${active.key}-${i}`}
-                className="flex flex-col gap-[3px]"
-                initial={{ opacity: 0, y: 3 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: i * 0.008 }}
+                className="ink-in flex flex-col gap-[3px]"
+                style={{ animationDelay: `${i * 8}ms` }}
               >
                 {week.map((day, j) =>
                   day ? (
@@ -178,7 +177,7 @@ export default function GithubGraph({
                     <span key={`pad-${j}`} className="h-[10px] w-[10px]" />
                   ),
                 )}
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -190,7 +189,7 @@ export default function GithubGraph({
             <span className="text-ink">{describe(hovered)}</span>
           ) : (
             <>
-              <RollingTotal value={active.data.total} /> contributions {periodPhrase} ·{" "}
+              <RollingTotal value={active.total} /> contributions {periodPhrase} ·{" "}
               <a
                 href={`https://github.com/${username}`}
                 target="_blank"

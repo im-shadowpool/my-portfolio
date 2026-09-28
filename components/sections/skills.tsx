@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import type { IconType } from "react-icons";
 import {
   SiCplusplus,
@@ -54,7 +54,7 @@ export default function Skills({ skills }: { skills: SkillGroup[] }) {
   return (
     <Panel id="skills" title="Stack" kanji="道具" sectionRef={ref} className="space-y-5">
       {skills.map((group) => (
-        <motion.div key={group.group} variants={panelItem} className="grid gap-2.5 sm:grid-cols-[6.5rem_1fr] sm:gap-4">
+        <m.div key={group.group} variants={panelItem} className="grid gap-2.5 sm:grid-cols-[6.5rem_1fr] sm:gap-4">
           <h3 className="label pt-2">{group.group}</h3>
           <ul className="flex flex-wrap gap-1.5">
             {group.items.map((skill) => {
@@ -77,7 +77,7 @@ export default function Skills({ skills }: { skills: SkillGroup[] }) {
               );
             })}
           </ul>
-        </motion.div>
+        </m.div>
       ))}
     </Panel>
   );

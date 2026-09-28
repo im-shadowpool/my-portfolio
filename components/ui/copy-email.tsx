@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { FiCheck, FiCopy } from "react-icons/fi";
 import clsx from "clsx";
 import { sound } from "@/lib/sound";
@@ -37,25 +37,25 @@ export default function CopyEmail({ email, className }: { email: string; classNa
       <span className="relative inline-flex h-3.5 w-3.5 items-center justify-center text-ink-faint transition-colors group-hover:text-ink">
         <AnimatePresence mode="popLayout" initial={false}>
           {copied ? (
-            <motion.span key="check" initial={{ scale: 0.4, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.4, opacity: 0 }}>
+            <m.span key="check" initial={{ scale: 0.4, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.4, opacity: 0 }}>
               <FiCheck className="text-matcha" />
-            </motion.span>
+            </m.span>
           ) : (
-            <motion.span key="copy" initial={{ scale: 0.4, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.4, opacity: 0 }}>
+            <m.span key="copy" initial={{ scale: 0.4, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.4, opacity: 0 }}>
               <FiCopy />
-            </motion.span>
+            </m.span>
           )}
         </AnimatePresence>
       </span>
       <AnimatePresence>
         {copied && (
           // A vermillion "済" (done) seal, pressed on like the hanko.
-          <motion.span
+          <m.span
             key="stamp"
             className="pointer-events-none absolute left-full top-1/2 ml-2 -translate-y-1/2"
             exit={{ opacity: 0, transition: { duration: 0.2 } }}
           >
-            <motion.span
+            <m.span
               role="status"
               initial={{ opacity: 0, scale: 1.7, rotate: -16 }}
               animate={{ opacity: 1, scale: 1, rotate: -5 }}
@@ -67,8 +67,8 @@ export default function CopyEmail({ email, className }: { email: string; classNa
                 済
               </span>
               Copied
-            </motion.span>
-          </motion.span>
+            </m.span>
+          </m.span>
         )}
       </AnimatePresence>
     </button>

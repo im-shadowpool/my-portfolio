@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import type { NowData } from "@/lib/types";
 import Panel, { panelItem } from "@/components/ui/panel";
 
@@ -33,7 +33,7 @@ export default function Now({ now }: { now: NowData }) {
     >
       <ul className="divide-y divide-dotted divide-line/25 overflow-hidden rounded-lg border border-line/10">
         {now.items.map((item) => (
-          <motion.li
+          <m.li
             key={item.label}
             variants={panelItem}
             className="group grid gap-2 px-4 py-4 sm:grid-cols-[9rem_1fr] sm:gap-4"
@@ -49,7 +49,7 @@ export default function Now({ now }: { now: NowData }) {
               <span className="label">{item.label}</span>
             </div>
             <p className="text-[0.93rem] leading-6 text-ink">{item.text}</p>
-          </motion.li>
+          </m.li>
         ))}
       </ul>
     </Panel>

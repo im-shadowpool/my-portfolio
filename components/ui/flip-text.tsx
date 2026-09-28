@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 
 /** Cycles through a list of phrases, each rolling up out of a blur. */
 export default function FlipText({ items, interval = 2800 }: { items: string[]; interval?: number }) {
@@ -18,7 +18,7 @@ export default function FlipText({ items, interval = 2800 }: { items: string[]; 
     <span className="relative inline-flex overflow-hidden align-bottom" aria-live="off">
       <span className="sr-only">{items.join(", ")}</span>
       <AnimatePresence mode="wait" initial={false}>
-        <motion.span
+        <m.span
           key={items[index]}
           initial={{ y: "80%", opacity: 0, filter: "blur(4px)" }}
           animate={{ y: "0%", opacity: 1, filter: "blur(0px)" }}
@@ -27,7 +27,7 @@ export default function FlipText({ items, interval = 2800 }: { items: string[]; 
           aria-hidden="true"
         >
           {items[index]}
-        </motion.span>
+        </m.span>
       </AnimatePresence>
     </span>
   );

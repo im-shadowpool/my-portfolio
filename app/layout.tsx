@@ -1,24 +1,35 @@
 import Header from "@/components/layout/header";
 import "./globals.css";
-import { Caveat, Geist, Geist_Mono, Shippori_Mincho } from "next/font/google";
+import { Caveat, Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import type { Metadata, Viewport } from "next";
 import ActiveSectionContextProvider from "@/context/active-section-context";
 import Footer from "@/components/layout/footer";
 import ThemeContextProvider from "@/context/theme-context";
 import SeasonProvider from "@/components/providers/season";
+import MotionProvider from "@/components/providers/motion";
 import ShojiTransition from "@/components/ui/shoji-transition";
 import Shortcuts from "@/components/ui/shortcuts";
 
-const display = Shippori_Mincho({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
+/*
+  Shippori Mincho, cut down to just the characters this site uses (Latin plus
+  the few kanji and kana in the headings). The full Japanese font ships as
+  ~250 files and several MB; this subset is three small files. After adding
+  new Japanese text, regenerate it with `node scripts/subset-display-font.mjs`.
+*/
+const display = localFont({
+  src: [
+    { path: "./fonts/shippori-mincho-400.woff2", weight: "400" },
+    { path: "./fonts/shippori-mincho-500.woff2", weight: "500" },
+    { path: "./fonts/shippori-mincho-600.woff2", weight: "600" },
+  ],
   variable: "--font-display",
   display: "swap",
 });
 const sans = Geist({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
 const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap" });
-// Handwriting for the margin doodles
-const hand = Caveat({ subsets: ["latin"], weight: ["500"], variable: "--font-hand", display: "swap" });
+// Handwriting for the margin doodles, which only show on wide screens: no preload.
+const hand = Caveat({ subsets: ["latin"], weight: ["500"], variable: "--font-hand", display: "swap", preload: false });
 
 const siteUrl = "https://devshadow.space";
 
@@ -303,17 +314,19 @@ export default function RootLayout({
           Skip to main content
         </a>
 
-        <ThemeContextProvider>
-          <ActiveSectionContextProvider>
-            <SeasonProvider>
-              <Header />
-              {children}
-              <Footer />
-              <ShojiTransition />
-              <Shortcuts />
-            </SeasonProvider>
-          </ActiveSectionContextProvider>
-        </ThemeContextProvider>
+        <MotionProvider>
+          <ThemeContextProvider>
+            <ActiveSectionContextProvider>
+              <SeasonProvider>
+                <Header />
+                {children}
+                <Footer />
+                <ShojiTransition />
+                <Shortcuts />
+              </SeasonProvider>
+            </ActiveSectionContextProvider>
+          </ThemeContextProvider>
+        </MotionProvider>
       </body>
     </html>
   );

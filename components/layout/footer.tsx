@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { FiArrowUp } from "react-icons/fi";
 import VisitorCount from "@/components/ui/visitor-count";
 import SoundToggle from "@/components/ui/sound-toggle";
@@ -21,14 +21,14 @@ export default function Footer() {
         is signed with a brush stroke under it. 終 ("the end") sits faintly
         behind, as on an old film's end card.
       */}
-      <motion.div
+      <m.div
         className="relative mb-10 mt-4 overflow-hidden rounded-xl border border-dotted border-line/30 bg-card/70 px-6 py-9 sm:px-10 sm:py-11"
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={ONCE}
         transition={{ duration: 0.7, ease: EASE }}
       >
-        <motion.span
+        <m.span
           className="pointer-events-none absolute -bottom-12 right-10 select-none font-display text-[10rem] leading-none text-ink/[0.05] sm:-bottom-16 sm:right-16 sm:text-[14rem]"
           lang="ja"
           aria-hidden="true"
@@ -38,7 +38,7 @@ export default function Footer() {
           transition={{ duration: 1.6, ease: EASE, delay: 0.2 }}
         >
           終
-        </motion.span>
+        </m.span>
 
         <div className="relative flex items-start gap-6">
           <div className="min-w-0 flex-1">
@@ -57,7 +57,7 @@ export default function Footer() {
                     className="absolute -bottom-2 left-0 h-2.5 w-full text-shu"
                     aria-hidden="true"
                   >
-                    <motion.path
+                    <m.path
                       d="M2 6 C 40 2, 80 9, 120 5 S 180 3, 198 6"
                       fill="none"
                       stroke="currentColor"
@@ -74,7 +74,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <motion.span
+          <m.span
             className="tategaki shrink-0 font-display text-[0.95rem] tracking-[0.35em] text-ink-soft sm:text-[1.15rem]"
             lang="ja"
             aria-hidden="true"
@@ -84,9 +84,9 @@ export default function Footer() {
             transition={{ duration: 1.1, ease: PAINT, delay: 0.3 }}
           >
             ありがとう
-          </motion.span>
+          </m.span>
         </div>
-      </motion.div>
+      </m.div>
 
       <div className="relative flex flex-wrap items-center justify-between gap-x-6 gap-y-2 text-[0.75rem] text-ink-faint">
         <Doodle side="right" className="-top-2">

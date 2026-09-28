@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "framer-motion";
 import { sound } from "@/lib/sound";
+import { afterLoadIdle } from "@/lib/idle";
 
 /*
   Portrait that swaps between the photo and its illustrated twin. The change
@@ -58,6 +59,12 @@ export default function PixelAvatar({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const frame = useRef(0);
 
+  // The illustrated twin isn't seen until someone clicks, so it loads once the
+  // page is idle (or as soon as the portrait is hovered or focused), keeping it
+  // out of the first load.
+  const [twinWanted, setTwinWanted] = useState(false);
+  useEffect(() => afterLoadIdle(() => setTwinWanted(true), 3000), []);
+
   useEffect(() => () => cancelAnimationFrame(frame.current), []);
 
   const swap = () => {
@@ -65,6 +72,11 @@ export default function PixelAvatar({
     const from = showTwin ? twinRef.current : photoRef.current;
     const to = showTwin ? photoRef.current : twinRef.current;
     const canvas = canvasRef.current;
+    // Clicked before the twin arrived: fetch it now; the next click will swap.
+    if (!twinRef.current?.complete) {
+      setTwinWanted(true);
+      return;
+    }
     sound.pixelSwap({ rows: GRID, turnStart: TURN_START, rowGap: ROW_GAP, turnEnd: TURN_END }, Boolean(reduced));
 
     if (reduced || !from?.complete || !to?.complete || !canvas) {
@@ -175,6 +187,8 @@ export default function PixelAvatar({
     <button
       type="button"
       onClick={swap}
+      onPointerEnter={() => setTwinWanted(true)}
+      onFocus={() => setTwinWanted(true)}
       aria-label={label}
       aria-pressed={showTwin}
       title="Click me"
@@ -190,16 +204,18 @@ export default function PixelAvatar({
         className={img}
         style={{ opacity: showTwin ? 0 : 1 }}
       />
-      <Image
-        ref={twinRef}
-        src={twin}
-        alt=""
-        width={192}
-        height={192}
-        loading="eager"
-        className={img}
-        style={{ opacity: showTwin ? 1 : 0 }}
-      />
+      {twinWanted && (
+        <Image
+          ref={twinRef}
+          src={twin}
+          alt=""
+          width={192}
+          height={192}
+          loading="eager"
+          className={img}
+          style={{ opacity: showTwin ? 1 : 0 }}
+        />
+      )}
       <canvas
         ref={canvasRef}
         className="absolute inset-0 h-full w-full rounded-xl"

@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import type { Season } from "@/lib/season";
 import { MOMIJI, SAKURA, TSUBAKI } from "@/lib/shapes";
 
@@ -124,7 +124,7 @@ export default function Branch({
           {season &&
             season !== "winter" &&
             SPOTS.map(([x, y], i) => (
-              <motion.g
+              <m.g
                 key={`${season}-${i}`}
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -137,7 +137,7 @@ export default function Branch({
                 {season === "spring" && <Blossom i={i} />}
                 {season === "summer" && <Leaves i={i} />}
                 {season === "autumn" && <Momiji i={i} />}
-              </motion.g>
+              </m.g>
             ))}
         </AnimatePresence>
 

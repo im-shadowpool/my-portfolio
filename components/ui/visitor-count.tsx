@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
-import { animate, motion } from "framer-motion";
+import { m } from "framer-motion";
 import { FiEye } from "react-icons/fi";
 
 type Counts = { visitor?: number; visitors: number; views: number; sample?: boolean };
@@ -32,14 +32,18 @@ function Tally({ value, format }: { value: number; format: (n: number) => string
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
-    const controls = animate(Math.max(0, value - 40), value, {
-      duration: 1.4,
-      ease: [0.16, 1, 0.3, 1],
-      onUpdate: (v) => {
-        node.textContent = format(Math.round(v));
-      },
-    });
-    return () => controls.stop();
+    // A small hand-rolled tween (ease-out over 1.4s), to keep the animation
+    // engine out of the first load.
+    const from = Math.max(0, value - 40);
+    const start = performance.now();
+    let frame = 0;
+    const step = (now: number) => {
+      const t = Math.min(1, (now - start) / 1400);
+      node.textContent = format(Math.round(from + (value - from) * (1 - Math.pow(1 - t, 3))));
+      if (t < 1) frame = requestAnimationFrame(step);
+    };
+    frame = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(frame);
   }, [value, format]);
 
   return (
@@ -101,7 +105,7 @@ export default function VisitorCount({ className }: { className?: string }) {
   if (!counts) return null;
 
   return (
-    <motion.p
+    <m.p
       initial={{ opacity: 0, y: 6 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -120,6 +124,6 @@ export default function VisitorCount({ className }: { className?: string }) {
           sample
         </span>
       )}
-    </motion.p>
+    </m.p>
   );
 }

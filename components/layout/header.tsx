@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import clsx from "clsx";
 import { useActiveSectionContext } from "@/context/active-section-context";
 import type { SectionName } from "@/lib/types";
@@ -54,7 +54,7 @@ export default function Header() {
             <Hanko className="h-7 w-7 text-[0.7rem] transition-transform duration-500 ease-silk group-hover:-rotate-[8deg]" />
             <AnimatePresence initial={false}>
               {showName && (
-                <motion.span
+                <m.span
                   key="name"
                   aria-hidden="true"
                   className="hidden overflow-hidden whitespace-nowrap font-display text-[0.98rem] font-medium tracking-tight text-ink md:block"
@@ -64,7 +64,7 @@ export default function Header() {
                   transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
                 >
                   Saipavan Veeravalli
-                </motion.span>
+                </m.span>
               )}
             </AnimatePresence>
             {/* On phones the status shrinks to a dot on the seal. */}
@@ -103,7 +103,7 @@ export default function Header() {
                     {item.label}
                   </Link>
                   {active && (
-                    <motion.span
+                    <m.span
                       layoutId="nav-underline"
                       className="absolute inset-x-2 -bottom-[0.55rem] h-px bg-ink sm:inset-x-2.5"
                       transition={{ type: "spring", stiffness: 400, damping: 34 }}

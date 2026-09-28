@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
 import { FiArrowUpRight, FiGithub } from "react-icons/fi";
@@ -32,7 +32,7 @@ export default function Projects({ projects, githubUrl }: { projects: ProjectIte
     <Panel id="projects" title="Projects" kanji="作品" meta={`${projects.length} shipped`} sectionRef={ref} className="!px-0 !py-0">
       <ul className="dots-t divide-y divide-dotted divide-line/25">
         {projects.map((project, index) => (
-          <motion.li key={project.title} variants={panelItem}>
+          <m.li key={project.title} variants={panelItem}>
             <Collapsible
               id={`project-${index}`}
               open={open === index}
@@ -95,7 +95,7 @@ export default function Projects({ projects, githubUrl }: { projects: ProjectIte
                 ))}
               </ul>
             </Collapsible>
-          </motion.li>
+          </m.li>
         ))}
       </ul>
 

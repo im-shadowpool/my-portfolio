@@ -1,13 +1,13 @@
 import Intro from "@/components/sections/intro";
 import About from "@/components/sections/about";
 import Now from "@/components/sections/now";
-import GithubGraph from "@/components/sections/github-graph";
+import GithubGraph from "@/components/sections/github-graph-lazy";
 import Experience from "@/components/sections/experience";
 import Projects from "@/components/sections/projects";
 import Skills from "@/components/sections/skills";
 import Contact from "@/components/sections/contact";
 import Panel, { WaveBreak } from "@/components/ui/panel";
-import { getContributionHistory } from "@/lib/github";
+import { getContributionHistory, packPeriod } from "@/lib/github";
 
 import introData from "@/data/intro.json";
 import aboutData from "@/data/about.json";
@@ -31,7 +31,7 @@ export default async function Home() {
         {contributions.length > 0 && (
           <>
             <Panel id="github" title="GitHub" kanji="記録">
-              <GithubGraph periods={contributions} username={introData.githubUsername} />
+              <GithubGraph periods={contributions.map(packPeriod)} username={introData.githubUsername} />
             </Panel>
             <WaveBreak />
           </>

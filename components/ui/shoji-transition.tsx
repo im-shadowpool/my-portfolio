@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import Hanko from "@/components/ui/hanko";
 import { sound } from "@/lib/sound";
 
@@ -28,7 +28,7 @@ function Door({ side, open, onDone }: { side: "left" | "right"; open: boolean; o
   const left = side === "left";
   const away = left ? "-100%" : "100%";
   return (
-    <motion.div
+    <m.div
       className="absolute inset-y-0 w-1/2"
       style={{ ...LATTICE, [side]: 0, backgroundPosition: left ? "right top" : "left top" }}
       initial={{ x: away }}
@@ -42,7 +42,7 @@ function Door({ side, open, onDone }: { side: "left" | "right"; open: boolean; o
         style={{ [left ? "right" : "left"]: 0 }}
         aria-hidden="true"
       />
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -112,7 +112,7 @@ export default function ShojiTransition() {
       <Door side="left" open={open} onDone={onDoorsDone} />
       <Door side="right" open={open} />
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-        <motion.span
+        <m.span
           initial={{ scale: 1.6, opacity: 0, rotate: -16 }}
           animate={open ? { scale: 0.85, opacity: 0, rotate: -10 } : { scale: 1, opacity: 1, rotate: -4 }}
           transition={
@@ -120,7 +120,7 @@ export default function ShojiTransition() {
           }
         >
           <Hanko className="h-14 w-14 text-lg" />
-        </motion.span>
+        </m.span>
       </div>
     </div>
   );

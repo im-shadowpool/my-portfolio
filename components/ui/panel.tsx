@@ -1,7 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import { motion, type Variants } from "framer-motion";
+import { m, type Variants } from "framer-motion";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 const PAINT = [0.65, 0, 0.35, 1] as const;
@@ -15,7 +15,7 @@ export function WaveBreak({ className }: { className?: string }) {
   const arcs = ["M2 16 A14 14 0 0 1 30 16", "M7 16 A9 9 0 0 1 25 16", "M12 16 A4 4 0 0 1 20 16"];
   return (
     <div className={clsx("flex justify-center py-7", className)} aria-hidden="true">
-      <motion.svg
+      <m.svg
         viewBox="0 0 32 17"
         className="h-[17px] w-8 text-ink/30"
         initial="hidden"
@@ -23,7 +23,7 @@ export function WaveBreak({ className }: { className?: string }) {
         viewport={IN_VIEW}
       >
         {arcs.map((d, i) => (
-          <motion.path
+          <m.path
             key={d}
             d={d}
             fill="none"
@@ -36,7 +36,7 @@ export function WaveBreak({ className }: { className?: string }) {
             }}
           />
         ))}
-      </motion.svg>
+      </m.svg>
     </div>
   );
 }
@@ -78,9 +78,9 @@ export default function Panel({
 
   return (
     <section id={id} ref={sectionRef} className="scroll-mt-16" aria-labelledby={`${id}-title`}>
-      <motion.div initial="hidden" whileInView="shown" viewport={IN_VIEW}>
+      <m.div initial="hidden" whileInView="shown" viewport={IN_VIEW}>
         <div className="flex items-end gap-3 px-4 pb-2 pt-6">
-          <motion.h2
+          <m.h2
             id={`${id}-title`}
             className="font-display text-[1.75rem] font-semibold leading-tight tracking-tight text-shu"
             style={{
@@ -97,8 +97,8 @@ export default function Panel({
             }}
           >
             {title}
-          </motion.h2>
-          <motion.span
+          </m.h2>
+          <m.span
             className="pb-1 font-display text-[0.95rem] text-ink-faint"
             lang="ja"
             aria-hidden="true"
@@ -113,9 +113,9 @@ export default function Panel({
             }}
           >
             {kanji}
-          </motion.span>
+          </m.span>
           {meta && (
-            <motion.span
+            <m.span
               className="label ml-auto pb-1.5"
               variants={{
                 hidden: { opacity: 0 },
@@ -123,11 +123,11 @@ export default function Panel({
               }}
             >
               {meta}
-            </motion.span>
+            </m.span>
           )}
         </div>
 
-        <motion.div
+        <m.div
           className={clsx("px-4 pb-5 pt-3", className)}
           variants={{
             hidden: { opacity: 0, y: 18 },
@@ -145,8 +145,8 @@ export default function Panel({
           }}
         >
           {children}
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
     </section>
   );
 }

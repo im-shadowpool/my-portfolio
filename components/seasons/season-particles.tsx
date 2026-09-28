@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { useSeason } from "@/components/providers/season";
 import { MOMIJI, SAKURA, maplePath, petalPath } from "@/lib/shapes";
 import type { Season } from "@/lib/season";
+import { afterLoadIdle } from "@/lib/idle";
 
 interface Particle {
   x: number;
@@ -200,10 +201,11 @@ export default function SeasonParticles() {
         cancelAnimationFrame(frame);
       }
     });
-    visibility.observe(canvas);
+    const cancelStart = afterLoadIdle(() => visibility.observe(canvas));
 
     return () => {
       cancelAnimationFrame(frame);
+      cancelStart();
       visibility.disconnect();
       sizeObserver.disconnect();
       window.removeEventListener("pointermove", onMove);

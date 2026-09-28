@@ -232,7 +232,8 @@ function tailPath(L: number, S: number, bend: number) {
 
 type Fin = { path: Path2D; matrix: DOMMatrix; length: number; width: number; rays: number; tail?: { L: number; S: number; bend: number } };
 
-export function drawKoi(ctx: CanvasRenderingContext2D, koi: Koi, dpr: number, dark: boolean, time: number) {
+/** `lowPower` trades the soft blurred shadow for a cheaper, lightly blurred one on slow devices. */
+export function drawKoi(ctx: CanvasRenderingContext2D, koi: Koi, dpr: number, dark: boolean, time: number, lowPower = false) {
   const { len, pattern } = koi;
   const pts = bodyPoints(koi);
   const n = pts.length;
@@ -337,7 +338,7 @@ export function drawKoi(ctx: CanvasRenderingContext2D, koi: Koi, dpr: number, da
   ctx.save();
   ctx.translate(-FAR, 0);
   ctx.shadowColor = dark ? "rgba(0, 0, 0, 0.5)" : "rgba(20, 60, 60, 0.26)";
-  ctx.shadowBlur = 6 * dpr;
+  ctx.shadowBlur = lowPower ? 2 : 6 * dpr;
   ctx.shadowOffsetX = (FAR + len * 0.14) * dpr;
   ctx.shadowOffsetY = len * 0.22 * dpr;
   ctx.fillStyle = "#000";

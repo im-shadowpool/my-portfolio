@@ -1,13 +1,14 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { FiRefreshCw } from "react-icons/fi";
 import { useSeason } from "@/components/providers/season";
 import { SEASON_META, type Season } from "@/lib/season";
 import { AJISAI, MOMIJI, SAKURA, TSUBAKI, drawCamellia, drawFloret, maplePath, petalPath } from "@/lib/shapes";
 import { sound } from "@/lib/sound";
-import Seigaiha from "@/components/ui/seigaiha";
+import { afterLoadIdle } from "@/lib/idle";
+import { POND_CLASS, POND_STYLE, PondWaves } from "./pond-shell";
 import Branch from "./branch";
 import SeasonParticles from "./season-particles";
 import { Water } from "./water";
@@ -69,7 +70,6 @@ interface Sparkle {
   life: number;
 }
 
-type Toast = { title: string; body: string };
 
 /** Pellets one fish must eat before it climbs the waterfall. */
 const DRAGON_MEALS = 12;
@@ -248,7 +248,6 @@ export default function KoiPond({ children, facts = [] }: { children?: React.Rea
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [fed, setFed] = useState(false);
-  const [toast, setToast] = useState<Toast | null>(null);
   const factsRef = useRef(facts);
   factsRef.current = facts;
 
@@ -279,6 +278,8 @@ export default function KoiPond({ children, facts = [] }: { children?: React.Rea
     dragonDone: false,
     goldenDone: false,
     partyUntil: 0,
+    /** Set when frames run slow: the pond switches to a lighter mode. */
+    lowPower: false,
     season: null as Season | null,
     draw: null as null | (() => void),
     actions: null as null | { golden: () => void; hire: () => void },
@@ -293,12 +294,6 @@ export default function KoiPond({ children, facts = [] }: { children?: React.Rea
       s.draw?.();
     }
   }, [season]);
-
-  useEffect(() => {
-    if (!toast) return;
-    const timer = setTimeout(() => setToast(null), 5200);
-    return () => clearTimeout(timer);
-  }, [toast]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -335,7 +330,7 @@ export default function KoiPond({ children, facts = [] }: { children?: React.Rea
     const resize = () => {
       const rect = container.getBoundingClientRect();
       const changed = Math.abs(rect.width - s.width) > 1 || Math.abs(rect.height - s.height) > 1;
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      dpr = s.lowPower ? 1 : Math.min(window.devicePixelRatio || 1, 2);
       s.width = rect.width;
       s.height = rect.height;
       canvas.width = rect.width * dpr;
@@ -366,7 +361,6 @@ export default function KoiPond({ children, facts = [] }: { children?: React.Rea
       sound.sparkle();
       say(koi, LINES.dragon[0], 300);
       say(koi, LINES.dragon[1], 2800);
-      setToast({ title: "登竜門 · Tōryūmon", body: "Legend says a koi that keeps climbing the waterfall becomes a dragon." });
     };
 
     s.actions = {
@@ -383,7 +377,6 @@ export default function KoiPond({ children, facts = [] }: { children?: React.Rea
         s.koi.push(kin);
         sound.sparkle();
         say(kin, line("golden", kin.name), 900);
-        setToast({ title: "金 · Kin", body: "A legendary golden koi joined the pond." });
       },
       hire() {
         s.partyUntil = s.now + 3500;
@@ -841,7 +834,7 @@ export default function KoiPond({ children, facts = [] }: { children?: React.Rea
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, s.width, s.height);
 
-      for (const koi of s.koi) drawKoi(ctx, koi, dpr, dark, s.now);
+      for (const koi of s.koi) drawKoi(ctx, koi, dpr, dark, s.now, s.lowPower);
 
       // The water's surface over the fish: light and shade from the waves.
       water.render(ctx, dark);
@@ -912,16 +905,28 @@ export default function KoiPond({ children, facts = [] }: { children?: React.Rea
     let running = false;
     let last = performance.now();
     let failed = false;
+    // How long a frame takes here (smoothed), and whether we've dropped to the
+    // lighter mode for slower devices: every other frame, at 1x resolution.
+    let cost = 0;
+    let frames = 0;
+    let skip = false;
     const loop = (now: number) => {
       // Book the next frame first, so one bad frame can't stop the pond for good.
       frame = requestAnimationFrame(loop);
+      if (s.lowPower && (skip = !skip)) return;
       // A frame's timestamp can predate `last` (set from performance.now() when the
       // pond scrolls back into view), and a negative step shrinks ripples below zero.
       const dt = Math.max(0, Math.min(3, (now - last) / 16.67));
       last = Math.max(last, now);
       try {
+        const started = performance.now();
         update(dt, Math.max(now, s.now));
         draw();
+        cost = cost * 0.9 + (performance.now() - started) * 0.1;
+        if (!s.lowPower && ++frames > 40 && cost > 6) {
+          s.lowPower = true;
+          resize();
+        }
       } catch (error) {
         if (!failed) console.error(error);
         failed = true;
@@ -937,11 +942,13 @@ export default function KoiPond({ children, facts = [] }: { children?: React.Rea
         cancelAnimationFrame(frame);
       }
     });
-    visibility.observe(container);
+    // Start swimming once the page has loaded and settled (the first frame is already drawn).
+    const cancelStart = afterLoadIdle(() => visibility.observe(container));
 
     return () => {
       cancelAnimationFrame(frame);
       observer.disconnect();
+      cancelStart();
       visibility.disconnect();
       s.draw = null;
       s.actions = null;
@@ -1111,38 +1118,21 @@ export default function KoiPond({ children, facts = [] }: { children?: React.Rea
       onPointerCancel={handleUp}
       onPointerLeave={handleUp}
       onClick={handleClick}
-      className="group/pond dots-b relative h-40 cursor-crosshair overflow-hidden sm:h-48"
-      style={{ backgroundColor: "rgb(var(--water))", boxShadow: "inset 0 0 40px rgb(var(--line) / 0.06)" }}
+      className={POND_CLASS}
+      style={POND_STYLE}
     >
       <p className="sr-only">
         A koi pond in {meta?.label.toLowerCase() ?? "season"}. Click the water to feed the fish, or click a fish to say
         hello.
       </p>
-      <Seigaiha scale={1.1} fill="rgb(var(--water))" stroke="rgb(var(--line) / 0.07)" />
-      <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" aria-hidden="true" />
+      <PondWaves />
+      <canvas ref={canvasRef} className="pond-fade absolute inset-0 h-full w-full" aria-hidden="true" />
       <Branch season={season} onShake={handleShake} />
       <SeasonParticles />
 
-      <AnimatePresence mode="wait">
-        {toast && (
-          <motion.div
-            key={toast.title}
-            role="status"
-            initial={{ opacity: 0, y: -8, filter: "blur(4px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            exit={{ opacity: 0, y: -6 }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="pointer-events-none absolute left-1/2 top-3 z-10 w-max max-w-[80%] -translate-x-1/2 rounded-lg border border-line/10 bg-paper/90 px-3 py-2 text-center shadow-sm backdrop-blur-sm"
-          >
-            <p className="font-display text-[0.85rem] text-shu">{toast.title}</p>
-            <p className="text-[0.72rem] leading-snug text-ink-soft">{toast.body}</p>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       <AnimatePresence>
         {!fed && (
-          <motion.span
+          <m.span
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0, y: 4 }}
@@ -1151,7 +1141,7 @@ export default function KoiPond({ children, facts = [] }: { children?: React.Rea
           >
             <span className="sm:hidden">tap to feed</span>
             <span className="hidden sm:inline">click the water to feed the koi</span>
-          </motion.span>
+          </m.span>
         )}
       </AnimatePresence>
 
@@ -1168,7 +1158,7 @@ export default function KoiPond({ children, facts = [] }: { children?: React.Rea
           aria-label={`Season: ${meta.label}. Click to preview the next season.`}
         >
           <AnimatePresence mode="popLayout" initial={false}>
-            <motion.span
+            <m.span
               key={meta.kanji}
               initial={{ y: 8, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -1177,7 +1167,7 @@ export default function KoiPond({ children, facts = [] }: { children?: React.Rea
               lang="ja"
             >
               {meta.kanji}
-            </motion.span>
+            </m.span>
           </AnimatePresence>
           {meta.label}
           {season === actual && <span className="h-1 w-1 rounded-full bg-matcha" title="Today's season" />}

@@ -1,7 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 /*
   A handwritten note in the page margin, with a little hand-drawn arrow
@@ -44,7 +44,7 @@ export default function Doodle({
       style={{ transform: left ? undefined : "scaleX(-1)" }}
     >
       {[path.body, path.head].map((d, i) => (
-        <motion.path
+        <m.path
           key={d}
           d={d}
           fill="none"
@@ -62,7 +62,7 @@ export default function Doodle({
   );
 
   return (
-    <motion.div
+    <m.div
       aria-hidden="true"
       initial="hidden"
       whileInView="shown"
@@ -75,13 +75,13 @@ export default function Doodle({
       )}
     >
       {arrow === "up" && svg}
-      <motion.span
+      <m.span
         className={clsx("block", left ? "-rotate-3" : "rotate-3")}
         variants={{ hidden: { opacity: 0, y: 4 }, shown: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
       >
         {children}
-      </motion.span>
+      </m.span>
       {arrow !== "up" && svg}
-    </motion.div>
+    </m.div>
   );
 }

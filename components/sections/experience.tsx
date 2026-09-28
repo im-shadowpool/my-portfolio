@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useState } from "react";
 import { useSectionInView } from "@/lib/hooks";
 import type { ExperienceItem } from "@/lib/types";
@@ -15,7 +15,7 @@ function Timeline({ items, prefix }: { items: ExperienceItem[]; prefix: string }
       {items.map((item, index) => {
         const current = item.date.includes("Present");
         return (
-          <motion.li key={`${item.title}-${item.date}`} variants={panelItem}>
+          <m.li key={`${item.title}-${item.date}`} variants={panelItem}>
             <Collapsible
               id={`${prefix}-${index}`}
               open={open === index}
@@ -51,7 +51,7 @@ function Timeline({ items, prefix }: { items: ExperienceItem[]; prefix: string }
                 {item.description}
               </p>
             </Collapsible>
-          </motion.li>
+          </m.li>
         );
       })}
     </ul>

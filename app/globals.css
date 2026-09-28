@@ -160,3 +160,37 @@ html.theme-fade *::after {
   }
 }
 
+
+/* The intro rises in on first paint, before any JavaScript has loaded. It never
+   starts fully transparent: Chrome ignores invisible elements when measuring
+   Largest Contentful Paint, and the intro is the page's largest content. */
+@keyframes rise-in {
+  from {
+    opacity: 0.35;
+    transform: translateY(10px);
+  }
+}
+[data-rise] {
+  animation: rise-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Contribution graph columns ink in one after another. */
+@keyframes ink-in {
+  from {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+}
+.ink-in {
+  animation: ink-in 0.3s ease-out both;
+}
+
+/* The living pond fades in over its shell once it has loaded. */
+@keyframes pond-fade {
+  from {
+    opacity: 0;
+  }
+}
+.pond-fade {
+  animation: pond-fade 0.8s ease-out both;
+}

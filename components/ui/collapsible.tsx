@@ -1,7 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -27,10 +27,10 @@ function ExpandArrows({ open }: { open: boolean }) {
     >
       {/* On hover a closed row's arrows lean apart, hinting at what a click does. */}
       <g className={clsx("transition-transform duration-300 ease-silk", !open && "group-hover/row:-translate-y-[1.5px]")}>
-        <motion.path initial={false} animate={{ d: state.top }} transition={ARROW_SPRING} />
+        <m.path initial={false} animate={{ d: state.top }} transition={ARROW_SPRING} />
       </g>
       <g className={clsx("transition-transform duration-300 ease-silk", !open && "group-hover/row:translate-y-[1.5px]")}>
-        <motion.path initial={false} animate={{ d: state.bottom }} transition={{ ...ARROW_SPRING, delay: 0.04 }} />
+        <m.path initial={false} animate={{ d: state.bottom }} transition={{ ...ARROW_SPRING, delay: 0.04 }} />
       </g>
     </svg>
   );
@@ -88,7 +88,7 @@ export default function Collapsible({
 
       <AnimatePresence initial={false}>
         {open && (
-          <motion.div
+          <m.div
             id={panelId}
             role="region"
             aria-labelledby={buttonId}
@@ -98,15 +98,15 @@ export default function Collapsible({
             transition={{ duration: 0.45, ease: EASE }}
             className="overflow-hidden"
           >
-            <motion.div
+            <m.div
               initial={{ y: -6, filter: "blur(3px)" }}
               animate={{ y: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.45, ease: EASE }}
               className="px-4 pb-5"
             >
               {children}
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         )}
       </AnimatePresence>
     </div>

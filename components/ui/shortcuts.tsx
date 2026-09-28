@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { FiX } from "react-icons/fi";
 import { useTheme } from "@/context/theme-context";
 import { useSeason } from "@/components/providers/season";
@@ -142,7 +142,7 @@ export default function Shortcuts() {
       {/* A small confirmation that the shortcut did something */}
       <AnimatePresence>
         {toast && (
-          <motion.div
+          <m.div
             key={toast.id}
             role="status"
             initial={{ opacity: 0, y: 10, scale: 0.96 }}
@@ -153,13 +153,13 @@ export default function Shortcuts() {
           >
             <Key>{toast.key}</Key>
             {toast.text}
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
 
       <AnimatePresence>
         {open && (
-          <motion.div
+          <m.div
             className="fixed inset-0 z-[96] flex items-center justify-center bg-ink/20 px-4 backdrop-blur-[2px]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -167,7 +167,7 @@ export default function Shortcuts() {
             transition={{ duration: 0.2 }}
             onClick={() => setOpen(false)}
           >
-            <motion.div
+            <m.div
               role="dialog"
               aria-modal="true"
               aria-labelledby="shortcuts-title"
@@ -208,8 +208,8 @@ export default function Shortcuts() {
               <p className="dots-t mt-4 pt-3 text-[0.75rem] text-ink-faint">
                 The koi have a few secrets of their own…
               </p>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         )}
       </AnimatePresence>
     </>
