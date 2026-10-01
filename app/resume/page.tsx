@@ -103,7 +103,7 @@ export default function Resume() {
           </header>
 
           <Section title="Work Experience">
-            <Heading title="Full Stack Developer" right="Dec 2024 – Present" sub="Elephant in the Boardroom" subRight="Chennai" />
+            <Heading title="WordPress/React Developer" right="Dec 2024 – Present" sub="Elephant in the Boardroom" subRight="Chennai" />
             <Items>
               <li>
                 Built <b>WordPress and backend services</b> using <b>PHP and Java</b> across multiple environments.
