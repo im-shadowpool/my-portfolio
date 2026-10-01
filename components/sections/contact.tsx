@@ -11,7 +11,7 @@ export default function Contact({ email }: { email: string }) {
   const { ref } = useSectionInView("Contact", 0.6);
 
   return (
-    <Panel id="contact" title="Contact" kanji="便り" sectionRef={ref}>
+    <Panel id="contact" title="Contact" glyph="C" sectionRef={ref}>
       <m.p variants={panelItem} className="max-w-lg text-[0.93rem] leading-relaxed text-ink-soft">
         Open to full-time roles and freelance builds. Email is the fastest way to reach me. I
         usually reply within a day.
@@ -30,7 +30,7 @@ export default function Contact({ email }: { email: string }) {
           className="group inline-flex items-center gap-2 rounded-md border border-line/15 bg-card px-3.5 py-2 text-[0.85rem] text-ink transition-colors hover:border-line/30 active:scale-[0.97]"
         >
           <FiFileText />
-          Résumé
+          Resume
         </Link>
         <span className="ml-1 font-mono text-[0.8rem] text-ink-soft">
           or copy <CopyEmail email={email} />

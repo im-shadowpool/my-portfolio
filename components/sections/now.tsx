@@ -15,12 +15,36 @@ function formatDate(iso: string) {
 }
 
 /** What I'm focused on at the moment, in the spirit of a /now page. */
+/** Renders [label](url) as an inline link. */
+function WithLinks({ text }: { text: string }) {
+  return (
+    <>
+      {text.split(/\[([^\]]+)\]\(([^)]+)\)/g).map((part, i, all) => {
+        if (i % 3 === 1) {
+          return (
+            <a
+              key={i}
+              href={all[i + 1]}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-line text-ink underline-offset-2"
+            >
+              {part}
+            </a>
+          );
+        }
+        return i % 3 === 2 ? null : part;
+      })}
+    </>
+  );
+}
+
 export default function Now({ now }: { now: NowData }) {
   return (
     <Panel
       id="now"
       title="Now"
-      kanji="今"
+      glyph="N"
       meta={
         <span className="inline-flex items-center gap-1.5">
           <span className="relative flex h-1.5 w-1.5" aria-hidden="true">
@@ -36,19 +60,18 @@ export default function Now({ now }: { now: NowData }) {
           <m.li
             key={item.label}
             variants={panelItem}
-            className="group grid gap-2 px-4 py-4 sm:grid-cols-[9rem_1fr] sm:gap-4"
+            className="group now-item grid gap-2 px-4 py-4 sm:grid-cols-[9rem_1fr] sm:gap-4"
           >
             <div className="flex h-6 items-center gap-2.5">
               <span
-                className="flex h-6 w-6 shrink-0 items-center justify-center rounded-[0.3rem] border border-shu/30 font-display text-[0.78rem] leading-none text-shu transition-colors duration-500 ease-silk group-hover:border-shu group-hover:bg-shu group-hover:text-paper"
-                lang="ja"
+                className={`now-tile now-${item.glyph.toLowerCase()} flex h-6 w-6 shrink-0 items-center justify-center overflow-hidden rounded-[0.3rem] border border-shu/30 font-display text-[0.78rem] leading-none text-shu transition-colors duration-500 ease-silk group-hover:border-shu group-hover:bg-shu group-hover:text-paper`}
                 aria-hidden="true"
               >
-                {item.kanji}
+                <span className="now-letter">{item.glyph}</span>
               </span>
               <span className="label">{item.label}</span>
             </div>
-            <p className="text-[0.93rem] leading-6 text-ink">{item.text}</p>
+            <p className="text-[0.93rem] leading-6 text-ink"><WithLinks text={item.text} /></p>
           </m.li>
         ))}
       </ul>

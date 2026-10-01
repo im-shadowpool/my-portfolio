@@ -1,8 +1,51 @@
 [
   {
+    "title": "BugRadar",
+    "description": "AI-assisted bug tracking and client feedback SaaS. A website widget and extension let QA teams and clients log issues straight into BugRadar, with AI-generated titles, priorities and debugging hints, real-time collaboration, role-based access control and multi-organization support.",
+    "tags": [
+      "Next.js",
+      "TypeScript",
+      "NestJS",
+      "Fastify",
+      "PostgreSQL",
+      "Prisma",
+      "Socket.IO"
+    ],
+    "imageUrl": "/bugradar-project.png",
+    "imageAlt": "BugRadar landing page showing a kanban board of bug reports with captured screenshots",
+    "url": "http://bugrader.site/",
+    "year": "2026",
+    "featured": true,
+    "badge": "New"
+  },
+  {
+    "title": "CompressByURL",
+    "description": "Browser-first image compression platform that scans a webpage and compresses all its images in one go, using Web Workers and WebAssembly so files never leave the device. Ships with an MCP server on npm for AI agents and CI image-size budgets.",
+    "tags": [
+      "Next.js",
+      "TypeScript",
+      "WebAssembly",
+      "Web Workers",
+      "Node.js",
+      "MCP"
+    ],
+    "imageUrl": "/compressbyurl-project-hero.png",
+    "imageAlt": "CompressByURL home page with the image upload and compression settings panel",
+    "url": "https://compressbyurl.com/",
+    "repo": "https://github.com/im-shadowpool/compressbyurl",
+    "year": "2026",
+    "featured": true
+  },
+  {
     "title": "Admin Dashboard",
     "description": "Developed a full-stack admin dashboard to manage any e-commerce analytics and stats, including user, product, transactions, geographical stats & data and real-time revenue tracking.",
-    "tags": ["React", "MaterialUI", "MongoDB", "Node.js", "Express.js"],
+    "tags": [
+      "React",
+      "MaterialUI",
+      "MongoDB",
+      "Node.js",
+      "Express.js"
+    ],
     "imageUrl": "/admindashboard-project.png",
     "imageAlt": "Admin dashboard showing e-commerce analytics with charts, user statistics, and revenue tracking",
     "url": "https://admin-dashboard-ten-nu-63.vercel.app/dashboard",
@@ -63,7 +106,9 @@
   {
     "title": "Memory Game",
     "description": "A Memory Game built with React. It has features like timer, score, and switching themes.",
-    "tags": ["React"],
+    "tags": [
+      "React"
+    ],
     "imageUrl": "/memorygame-project-snap.png",
     "imageAlt": "Memory card matching game with timer, score display, and theme options",
     "url": "https://memory-game-nine-delta.vercel.app/",

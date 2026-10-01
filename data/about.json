@@ -1,15 +1,17 @@
 {
   "title": "About",
-  "headline": "I learned the web by building it — from WordPress blogs to full-stack products.",
+  "headline": "I've been building on the web since 2015: first bots and games, then blogs, now full-stack products and AI.",
   "paragraphs": [
-    "I started with WordPress and blogging, ran five sites at once, and learned the hard way that focus beats multitasking. That detour gave me a deep grasp of on-page SEO, which led to my first internship in SEO and digital marketing.",
-    "From there I moved into development with the MERN stack. After graduating I qualified for GATE, and today I build client websites as a Lead Web Developer while going deep on backend engineering with Java."
+    "My journey began in **2015**, when I made and ran **Telegram bots** and small **HTML games**. In **2019** I got into **blogging** and learned **WordPress**. I published **10+ websites** that got **Google AdSense** approval, grew to **up to 2 million visits a month**, and picked up real **SEO** experience. When AI took over content writing I lost interest and stopped running the blogs, and in **2021** I moved into development with the **MERN stack**.",
+    "During my B.Tech I freelanced for **2+ years**, building and selling websites to clients around the world. That's close to **60 projects**. Alongside it, I prepared for and qualified **GATE**.",
+    "After GATE I joined a company as a **full stack engineer**, building **SaaS products**, beautiful award-worthy designs and **AI workflows**.",
+    "I also run **two SaaS products** of my own. Right now I'm most excited about **AI agents**, training **LLM models**, and **automation flows** that push leads straight to sales.",
+    "Outside work I love **gadgets**. Most of my blog income went into them, and into my desk setup."
   ],
-  "location": "Hyderabad, India",
   "currently": {
-    "role": "Lead Web Developer",
-    "company": "Juzgrow",
-    "since": "Since June 2024"
+    "role": "Developer",
+    "company": "Elephant in the Boardroom",
+    "since": "Since December 2024"
   },
   "stat": {
     "from": 6.5,
@@ -17,10 +19,20 @@
     "unit": "s",
     "label": "Page load time I cut at TechVint through caching & backend tuning"
   },
-  "learning": ["Java backend", "System design", "GATE qualified"],
+  "learning": [
+    "AI agents & MCP",
+    "System design",
+    "GATE qualified"
+  ],
   "offscreen": {
-    "hobbies": ["Chess", "Films", "Books"],
-    "reading": "The Compound Effect",
+    "hobbies": [
+      "Chess",
+      "Films",
+      "Books",
+      "Gadgets"
+    ],
+    "reading": "The Four Agreements",
     "favourite": "Eat That Frog"
-  }
+  },
+  "location": "Hyderabad, India"
 }

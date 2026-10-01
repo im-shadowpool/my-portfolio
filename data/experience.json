@@ -1,23 +1,44 @@
 [
   {
-    "title": "Lead Web Developer",
-    "location": "Juzgrow.com",
-    "description": "My experience at Juzgrow involved creating custom websites that addressed the diverse needs of GCC businesses. I utilized CMS platforms to deliver user-friendly solutions. By incorporating webhook integrations, I optimized workflows and connected various tools seamlessly.",
+    "title": "Full Stack Developer",
+    "location": "Elephant in the Boardroom",
+    "description": "Built WordPress and backend services using PHP and Java across multiple environments. Handled plugin and theme development, API optimizations, and implemented CI/CD pipelines with Docker containerization. Developed full-stack e-commerce platforms with Next.js and Node.js (Fastify). Implemented GraphQL APIs and vector DBs, integrated CMS platforms (Strapi, Payload), and developed AI-powered product features.",
     "icon": "work",
-    "date": "June 2024 - Present"
+    "logo": "/logos/elephant_in_the_boardroom_logo.jpg",
+    "date": "December 2024 - Present",
+    "points": [
+      "Built WordPress and backend services using PHP and Java across multiple environments. Handled plugin and theme development, API optimizations, and implemented CI/CD pipelines with Docker containerization.",
+      "Developed full-stack e-commerce platforms with Next.js and Node.js (Fastify). Implemented GraphQL APIs and vector DBs, integrated CMS platforms (Strapi, Payload), and developed AI-powered product features."
+    ]
+  },
+  {
+    "title": "Web Developer",
+    "location": "Juzgrow.com",
+    "description": "Developed and maintained custom web applications and admin dashboards for GCC region clients, managing requirements and project delivery. Implemented database design and performance optimization. Integrated third-party tools via webhooks to automate client workflows. Built automated testing pipelines, deployed on cloud infrastructure and maintained monitoring and logging.",
+    "icon": "work",
+    "date": "March 2024 - December 2024",
+    "points": [
+      "Developed and maintained custom web applications and admin dashboards for GCC region clients, managing requirements and project delivery. Implemented database design and performance optimization.",
+      "Integrated third-party tools via webhooks to automate client workflows. Built automated testing pipelines, deployed on cloud infrastructure and maintained monitoring and logging."
+    ]
   },
   {
     "title": "Node.js Developer Intern",
     "location": "Mindwave Solutions",
-    "description": "Developed a RESTful API using Node.js and Express. Implemented features like authentication, authorization, and image upload. Learned about RESTful APIs, authentication, and authorization.",
+    "description": "Developed Node.js payment authentication APIs with asynchronous request handling and middleware patterns. Implemented error handling, request validation, and non-blocking database operations for secure transactions.",
     "icon": "work",
-    "date": "March 2024 - May 2024"
+    "logo": "/logos/mindwave_solutions_inc_logo.jpg",
+    "date": "December 2023 - March 2024",
+    "points": [
+      "Developed Node.js payment authentication APIs with asynchronous request handling and middleware patterns. Implemented error handling, request validation, and non-blocking database operations for secure transactions."
+    ]
   },
   {
     "title": "WordPress Developer Intern",
     "location": "TechVint Pvt. Ltd.",
     "description": "Assisted organisations and clients in achieving first in Google rankings by applying SEO, Learned Various Cache Techniques and Back-end Optimization to decrease website load time from 6.5 seconds to 0.98 seconds.",
     "icon": "work",
+    "logo": "/logos/techvint-logo-500x500-1.webp",
     "date": "March 2022 - May 2022"
   },
   {
@@ -25,13 +46,15 @@
     "location": "Planspedia.com",
     "description": "I write articles in my free time. I write about technology, programming. I also write about my experiences and the things I learn. I have written over 30 articles. I have a passion for writing and sharing my knowledge with others.",
     "icon": "blog",
-    "date": "November 2021 - January 2024"
+    "logo": "/logos/1651520619836.jpg",
+    "date": "November 2020 - February 2024"
   },
   {
     "title": "B.Tech in Computer Science Engineering",
-    "location": "Hyderabad",
-    "description": "I graduated from the Avanthi Institute of Engineering and Technology with a degree in computer science engineering. In my technical courses, I learned discrete mathematics, operating systems, database management systems, computer networks, and the analysis and design of algorithms.",
+    "location": "Avanthi Institute of Engineering and Technology",
+    "description": "Bachelor of Technology in Computer Science, JNTU Hyderabad (GPA 7.0/10). In my technical courses, I learned discrete mathematics, operating systems, database management systems, computer networks, and the analysis and design of algorithms.",
     "icon": "education",
+    "logo": "/logos/JNTU_Hyderabad_logo.png",
     "date": "2019 - 2023"
   }
 ]

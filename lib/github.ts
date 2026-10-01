@@ -49,7 +49,7 @@ export async function getContributions(
 export async function getContributionHistory(username: string): Promise<ContributionPeriod[]> {
   const thisYear = new Date().getFullYear();
   const periods: { key: string; label: string; year: "last" | number }[] = [
-    { key: "last", label: "Past year", year: "last" },
+    { key: "last", label: "Recent", year: "last" },
     ...[1, 2, 3].map((back) => ({
       key: String(thisYear - back),
       label: String(thisYear - back),

@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Saipavan Veeravalli | Full-Stack Developer & SEO Specialist",
+    name: "Saipavan Veeravalli | Software Development Engineer",
     short_name: "Saipavan Portfolio",
     description:
       "Portfolio of Saipavan Veeravalli — a full-stack developer specializing in Next.js, React, and Node.js with expertise in SEO, web performance, and modern cloud architecture.",

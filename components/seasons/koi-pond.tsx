@@ -9,10 +9,10 @@ import { AJISAI, MOMIJI, SAKURA, TSUBAKI, drawCamellia, drawFloret, maplePath, p
 import { sound } from "@/lib/sound";
 import { afterLoadIdle } from "@/lib/idle";
 import { POND_CLASS, POND_STYLE, PondWaves } from "./pond-shell";
-import Branch from "./branch";
 import SeasonParticles from "./season-particles";
 import { Water } from "./water";
 import { DRAGON, GOLDEN, SEGMENTS, TAU, drawKoi, makeBlobs, makeKoi, rand, type Koi } from "./koi-draw";
+import Branch from "./branch";
 import { LINES, PROTESTS, SCENES, line, reactTo, type LineKind } from "./koi-chatter";
 
 interface Food {
@@ -263,7 +263,6 @@ export default function KoiPond({ children, facts = [] }: { children?: React.Rea
     queue: [] as { at: number; koi: Koi; text: string; life?: number; tag?: string }[],
     water: null as Water | null,
     pointer: { x: 0, y: 0, speed: 0, down: false, dragged: false, startX: 0, startY: 0 },
-    lastDrop: 0,
     nextSurface: 0,
     now: 0,
     startedAt: 0,
@@ -310,7 +309,7 @@ export default function KoiPond({ children, facts = [] }: { children?: React.Rea
     if (!greeted) {
       greeted = true;
       console.log(
-        "%c🐟 psst… the koi have secrets. Try ↑↑↓↓←→←→BA in the page, or type “hire”.",
+        "%cpsst… the koi have secrets. Try ↑↑↓↓←→←→BA in the page, or type “hire”.",
         "font: 13px monospace; color: #C43E26",
       );
     }
@@ -492,21 +491,19 @@ export default function KoiPond({ children, facts = [] }: { children?: React.Rea
         s.lastProtest = now;
         s.protested = true;
         length = play(pick(PROTESTS), [], "protest");
-        sound.protest();
-      } else if (sinceFed > 30000 && Math.random() < 0.55) {
+      } else if (sinceFed > 40000 && Math.random() < 0.35) {
         const text = line("hungry", speaker.name);
         if (text.includes("secret")) s.promisedSecret = true;
         say(speaker, text);
-        sound.grumble();
       } else {
         const facts = factsRef.current;
         const r = Math.random();
         const scenes = SCENES.filter((scene) => fits(scene, facts));
-        if (r < 0.42 && s.koi.length >= 2 && scenes.length) {
+        if (r < 0.2 && s.koi.length >= 2 && scenes.length) {
           length = play(pick(scenes), facts);
-        } else if (r < 0.72 && facts.length && s.koi.length >= 2) {
+        } else if (r < 0.36 && facts.length && s.koi.length >= 2) {
           length = factChat(facts);
-        } else if (r < 0.82) {
+        } else if (r < 0.7) {
           say(speaker, line("idle", speaker.name));
         } else if (r < 0.92) {
           const mood: LineKind = document.documentElement.classList.contains("dark") ? "night" : (s.season ?? "spring");
@@ -515,7 +512,7 @@ export default function KoiPond({ children, facts = [] }: { children?: React.Rea
           say(speaker, line("secret", speaker.name));
         }
       }
-      s.nextIdle = now + length + rand(7000, 12000);
+      s.nextIdle = now + length + rand(20000, 32000);
     };
 
     const update = (dt: number, now: number) => {
@@ -736,7 +733,6 @@ export default function KoiPond({ children, facts = [] }: { children?: React.Rea
           } else {
             s.bubbles.push({ koi: q.koi, text: q.text, born: now, life });
           }
-          sound.blub();
         }
         // At most two bubbles at a time: the oldest bows out with a fade.
         const showing = s.bubbles.filter((b) => b.life - (now - b.born) > 260);
@@ -1060,53 +1056,6 @@ export default function KoiPond({ children, facts = [] }: { children?: React.Rea
     return () => window.removeEventListener("koi:feed", onFeed);
   }, [feedAt]);
 
-  // Brushing the branch drops a petal, leaf or clump of snow onto the water.
-  const handleShake = useCallback((clientX: number, clientY: number) => {
-    const s = sim.current;
-    const now = performance.now();
-    if (!s.season || now - s.lastDrop < 350 || !containerRef.current) return;
-    s.lastDrop = now;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = Math.max(8, Math.min(s.width - 8, clientX - rect.left + rand(-6, 6)));
-    const y = Math.max(8, Math.min(s.height - 8, clientY - rect.top + rand(10, 26)));
-    const scale = Math.min(1, Math.max(0.7, s.width / 720));
-    // Summer's leafy twigs drop leaves; winter's snowy limb now and then lets
-    // a camellia fall with the snow.
-    const kind: FloaterKind =
-      s.season === "spring" ? "petal"
-      : s.season === "autumn" ? "leaf"
-      : s.season === "summer" ? "greenleaf"
-      : Math.random() < 0.2 ? "camellia"
-      : "snow";
-    const color =
-      kind === "petal" ? pick(SAKURA)
-      : kind === "leaf" ? pick(MOMIJI)
-      : kind === "greenleaf" ? pick(["#6F9B63", "#5E8F5A", "#86AE72"])
-      : kind === "camellia" ? pick(TSUBAKI)
-      : "";
-    s.floaters.push({
-      kind,
-      x,
-      y,
-      r:
-        (kind === "leaf" ? rand(5, 7)
-        : kind === "greenleaf" ? rand(4.5, 6)
-        : kind === "camellia" ? rand(7.5, 9.5)
-        : kind === "snow" ? rand(2, 3)
-        : rand(2.8, 3.6)) * scale,
-      rot: rand(0, TAU),
-      vx: rand(-0.08, 0.08),
-      vy: rand(-0.05, 0.05),
-      vr: rand(-0.006, 0.006),
-      land: 0,
-      life: 1,
-      color,
-    });
-    // Keep the pond tidy: drop the oldest drifting pieces beyond a dozen.
-    const drifting = s.floaters.filter((f) => !["pad", "lotus", "ice", "camellia"].includes(f.kind));
-    if (drifting.length > 14) s.floaters.splice(s.floaters.indexOf(drifting[0]), 1);
-  }, []);
-
   const meta = season ? SEASON_META[season] : null;
 
   return (
@@ -1127,7 +1076,7 @@ export default function KoiPond({ children, facts = [] }: { children?: React.Rea
       </p>
       <PondWaves />
       <canvas ref={canvasRef} className="pond-fade absolute inset-0 h-full w-full" aria-hidden="true" />
-      <Branch season={season} onShake={handleShake} />
+      <Branch season={season} />
       <SeasonParticles />
 
       <AnimatePresence>
@@ -1157,18 +1106,6 @@ export default function KoiPond({ children, facts = [] }: { children?: React.Rea
           aria-keyshortcuts="s"
           aria-label={`Season: ${meta.label}. Click to preview the next season.`}
         >
-          <AnimatePresence mode="popLayout" initial={false}>
-            <m.span
-              key={meta.kanji}
-              initial={{ y: 8, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -8, opacity: 0 }}
-              className="font-display text-[0.8rem] text-ink"
-              lang="ja"
-            >
-              {meta.kanji}
-            </m.span>
-          </AnimatePresence>
           {meta.label}
           {season === actual && <span className="h-1 w-1 rounded-full bg-matcha" title="Today's season" />}
           <FiRefreshCw className="text-[0.6rem] opacity-50 transition-transform duration-500 group-hover/season:rotate-180" />

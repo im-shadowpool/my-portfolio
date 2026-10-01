@@ -117,7 +117,7 @@ export default function Shortcuts() {
           if (pathname !== "/" || !season) return;
           const next = SEASONS[(SEASONS.indexOf(season) + 1) % SEASONS.length];
           cycle();
-          notify("S", `${SEASON_META[next].kanji} ${SEASON_META[next].label}`);
+          notify("S", SEASON_META[next].label);
           break;
         }
         case "f": {
@@ -182,9 +182,6 @@ export default function Shortcuts() {
                 <h2 id="shortcuts-title" className="font-display text-[1.25rem] font-semibold text-shu">
                   Shortcuts
                 </h2>
-                <span className="font-display text-[0.85rem] text-ink-faint" lang="ja" aria-hidden="true">
-                  近道
-                </span>
                 <button
                   ref={closeRef}
                   type="button"

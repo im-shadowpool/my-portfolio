@@ -49,7 +49,7 @@ export default function CopyEmail({ email, className }: { email: string; classNa
       </span>
       <AnimatePresence>
         {copied && (
-          // A vermillion "済" (done) seal, pressed on like the hanko.
+          // A vermillion "Copied" seal, pressed on like a stamp.
           <m.span
             key="stamp"
             className="pointer-events-none absolute left-full top-1/2 ml-2 -translate-y-1/2"
@@ -63,9 +63,7 @@ export default function CopyEmail({ email, className }: { email: string; classNa
               className="flex items-center gap-1.5 whitespace-nowrap rounded-[0.3rem] bg-shu px-2 py-1 font-display text-[0.72rem] font-semibold leading-none text-paper"
               style={{ boxShadow: "inset 0 0 0 1.5px rgb(var(--paper) / 0.9), inset 0 0 0 2.5px rgb(var(--shu))" }}
             >
-              <span lang="ja" aria-hidden="true">
-                済
-              </span>
+              <FiCheck aria-hidden="true" />
               Copied
             </m.span>
           </m.span>

@@ -20,9 +20,11 @@ const NAV: { name: SectionName; label: string; hash: string }[] = [
 export default function Header() {
   const { activeSection, setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
   const pathname = usePathname();
-  // Section links are same-page anchors on the home page, and routes back to it elsewhere.
+  // The section links are same-page anchors, so they only make sense on the home page.
+  // Elsewhere the menu is a single link back home.
   const onHome = pathname === "/";
-  const to = (hash: string) => (onHome ? hash : `/${hash}`);
+  const to = (hash: string) => (onHome ? hash : "/");
+  const items = onHome ? NAV : [{ name: "Home" as SectionName, label: "Home", hash: "#home" }];
 
   // Once the name in the intro scrolls up behind the header, it carries on beside the seal.
   const [showName, setShowName] = useState(false);
@@ -51,7 +53,7 @@ export default function Header() {
             className="group relative flex items-center"
             aria-label="Saipavan Veeravalli — back to top"
           >
-            <Hanko className="h-7 w-7 text-[0.7rem] transition-transform duration-500 ease-silk group-hover:-rotate-[8deg]" />
+            <Hanko pixels className="h-7 w-7 text-[0.7rem]" />
             <AnimatePresence initial={false}>
               {showName && (
                 <m.span
@@ -84,7 +86,7 @@ export default function Header() {
 
         <nav aria-label="Main navigation" className="flex items-center gap-1">
           <ul className="flex items-center">
-            {NAV.map((item) => {
+            {items.map((item) => {
               const active = onHome && activeSection === item.name;
               return (
                 <li key={item.hash} className="relative">

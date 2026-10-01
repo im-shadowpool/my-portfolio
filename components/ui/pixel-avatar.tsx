@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "framer-motion";
+import { FiRepeat } from "react-icons/fi";
 import { sound } from "@/lib/sound";
 import { afterLoadIdle } from "@/lib/idle";
 
@@ -222,13 +223,12 @@ export default function PixelAvatar({
         style={{ imageRendering: "pixelated", visibility: playing ? "visible" : "hidden" }}
         aria-hidden="true"
       />
-      {/* A small seal hints that the portrait changes: 変 ("change") */}
+      {/* A small seal with a swap icon hints that the portrait changes */}
       <span
         className="pointer-events-none absolute bottom-1 right-1 flex h-4 w-4 items-center justify-center rounded-[0.2rem] bg-shu font-display text-[0.55rem] leading-none text-paper opacity-0 shadow-sm transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100"
-        lang="ja"
         aria-hidden="true"
       >
-        変
+        <FiRepeat />
       </span>
     </button>
   );

@@ -1,6 +1,6 @@
 # Saipavan Veeravalli
 
-> Full-Stack Developer & SEO Specialist specializing in Next.js, React, Node.js, TypeScript, and modern cloud architecture.
+> Software Development Engineer and full-stack engineer building SaaS products, AI agents and automation workflows with Next.js, Node.js and TypeScript.
 
 ## Overview
 - **Name:** Saipavan Veeravalli
@@ -14,16 +14,28 @@
 - **Resume:** [Google Drive](https://drive.google.com/file/d/1k9cVS_yPeIUWUiyWF527qna7Uv6IuWfC/view)
 
 ## Summary & Expertise
-Saipavan Veeravalli is a Computer Science graduate and full-stack developer with professional experience across frontend, backend, database design, and on-page technical SEO. Experienced in building responsive, accessible, high-performance web applications with Next.js, React, Node.js, Express, MongoDB, and Tailwind CSS. Currently expanding into enterprise Java backend development and distributed systems.
+Saipavan Veeravalli is a full-stack engineer with 3+ years of professional experience and 2+ years of freelancing (close to 60 client projects). He started with Telegram bots and HTML games in 2015, built 10+ Google AdSense-approved WordPress sites with up to 2 million monthly visits (strong SEO background), and moved into development in 2021 with the MERN stack. Today he builds SaaS products, AI agents, MCP servers and automation workflows with Next.js, Node.js (Fastify, NestJS), TypeScript and PostgreSQL. He qualified GATE and runs two SaaS products of his own.
 
 ## Technical Skills
 - **Frontend:** React, Next.js (App Router, Server Actions, SSR/SSG), TypeScript, JavaScript (ES6+), HTML5, CSS3, Tailwind CSS, Framer Motion, Material UI, Redux.
-- **Backend & APIs:** Node.js, Express.js, RESTful API Design, Authentication & Authorization, Web Scraping, Cron Jobs, Java Backend.
-- **Databases:** MongoDB, MySQL.
-- **Tools & Platforms:** Git, GitHub, Vercel, Resend, WordPress, Postman.
+- **Backend & APIs:** Node.js, Fastify, NestJS, GraphQL, Express.js, RESTful API Design, Authentication & Authorization, Web Scraping, Cron Jobs, Java Backend.
+- **Databases:** PostgreSQL, MongoDB, MySQL, Prisma.
+- **AI & Automation:** AI agents, AI automation workflows, MCP servers, LLM integrations.
+- **Tools & Platforms:** Git, GitHub, Docker, AWS, Vercel, Resend, WordPress, Postman.
 - **SEO & Performance:** Technical SEO, On-Page Optimization, Structured Data (JSON-LD), Core Web Vitals, Caching Strategies.
 
 ## Featured Projects
+
+- **BugRadar** (new)
+  - Description: AI-assisted bug tracking and client feedback SaaS. A website widget and extension let QA teams and clients log issues directly, with AI-generated titles, priorities and debugging hints, real-time collaboration, role-based access control and multi-organization support. A Chrome extension is in development.
+  - Tech Stack: Next.js, TypeScript, NestJS, Fastify, PostgreSQL, Prisma, Socket.IO.
+  - Demo: [http://bugrader.site/](http://bugrader.site/)
+
+- **CompressByURL**
+  - Description: Browser-first image compression platform that scans a webpage and compresses all its images in one go using Web Workers and WebAssembly, so files never leave the device. Ships an MCP server (compressbyurl-mcp on npm) for AI agents and CI image-size budgets.
+  - Tech Stack: Next.js, TypeScript, WebAssembly, Web Workers, Node.js, MCP.
+  - Demo: [https://compressbyurl.com/](https://compressbyurl.com/)
+  - Repository: [https://github.com/im-shadowpool/compressbyurl](https://github.com/im-shadowpool/compressbyurl)
 
 - **Admin Dashboard**
   - Description: Full-stack admin dashboard for e-commerce analytics, real-time revenue tracking, product and user management, transactions, and geographic data visualization.
@@ -57,11 +69,13 @@ Saipavan Veeravalli is a Computer Science graduate and full-stack developer with
 
 ## Experience & Education
 
-- **Lead Web Developer** | Juzgrow.com (June 2024 - Present)
-  - Developed custom web solutions for GCC businesses.
-  - Implemented workflow automations, webhook integrations, and CMS optimizations.
-- **Node.js Developer Intern** | Mindwave Solutions (March 2024 - May 2024)
-  - Engineered RESTful APIs in Node.js & Express with token authentication, user roles, and media processing.
+- **Full Stack Developer** | Elephant in the Boardroom (December 2024 - Present)
+  - Built e-commerce platforms with Next.js and Node.js (Fastify), GraphQL APIs, vector databases and AI-powered product features; integrated Strapi and Payload CMS.
+  - Built WordPress plugins, themes and PHP/Java backend services; optimized APIs and implemented CI/CD with Docker.
+- **Web Developer** | Juzgrow.com (March 2024 - December 2024)
+  - Built custom web applications and admin dashboards for GCC clients, with database design, performance tuning, webhook automations, automated testing, cloud deployment and monitoring.
+- **Node.js Developer Intern** | Mindwave Solutions (December 2023 - March 2024)
+  - Built Node.js payment authentication APIs with async request handling, middleware, validation and non-blocking database operations.
 - **WordPress Developer Intern** | TechVint Pvt. Ltd. (March 2022 - May 2022)
   - Optimized website load times from 6.5s to 0.98s using cache optimization and backend asset tuning; implemented on-page SEO best practices.
 - **Tech Blogger** | Planspedia.com (November 2021 - January 2024)

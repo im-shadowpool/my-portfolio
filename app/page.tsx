@@ -30,7 +30,7 @@ export default async function Home() {
         <WaveBreak />
         {contributions.length > 0 && (
           <>
-            <Panel id="github" title="GitHub" kanji="記録">
+            <Panel id="github" title="GitHub" glyph="G">
               <GithubGraph periods={contributions.map(packPeriod)} username={introData.githubUsername} />
             </Panel>
             <WaveBreak />

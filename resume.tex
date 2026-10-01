@@ -1,0 +1,119 @@
+% Resume: Saipavan Veeravalli
+% Adapted from Jake Gutierrez's MIT-licensed resume template.
+% Single-column A4 layout; compile with pdfLaTeX on Overleaf.
+\documentclass[a4paper,10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=0.5in,top=0.4in,bottom=0.25in]{geometry}
+\usepackage{microtype}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{needspace}
+
+% Enable searchable text when using pdfLaTeX.
+\ifdefined\pdfgentounicode
+  \InputIfFileExists{glyphtounicode.tex}{}{}
+  \pdfgentounicode=1
+\fi
+\pagestyle{empty}
+\urlstyle{same}
+\raggedright
+\raggedbottom
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\titleformat{\section}{\large\bfseries}{}{0pt}{}[\titlerule]
+\titlespacing*{\section}{0pt}{9pt}{5pt}
+\linespread{1.055}
+
+% Text-only entries: consistent left edge and right-aligned dates.
+\newcommand{\resumeSubheading}[4]{%
+  \Needspace{5\baselineskip}%
+  \textbf{#1}\hfill #2\par
+  \textit{#3}\hfill \textit{#4}\par
+}
+\newcommand{\resumeProjectHeading}[4]{%
+  \Needspace{5\baselineskip}%
+  \textbf{#1}\hfill
+  \href{#2}{\underline{GitHub}}\enspace\textbar\enspace
+  \href{#3}{\underline{Live}}\par
+  \textit{#4}\par
+}
+\newenvironment{resumeItems}{%
+  \begin{itemize}[leftmargin=14pt,label=\textbullet,
+    labelsep=5pt,topsep=3pt,itemsep=3pt,parsep=0pt,partopsep=0pt]
+}{\end{itemize}\vspace{3pt}}
+
+\begin{document}
+\begin{center}
+  {\fontsize{24}{28}\selectfont\bfseries Saipavan Veeravalli}\par
+  \vspace{4pt}
+  \href{tel:+918317687898}{+91 83176 87898}\enspace\textbar\enspace
+  \href{mailto:v.saipavan2001@gmail.com}{v.saipavan2001@gmail.com}\enspace\textbar\enspace
+  \href{https://devshadow.vercel.app/}{Portfolio}\enspace\textbar\enspace
+  \href{https://www.linkedin.com/in/saipavan-veeravalli/}{LinkedIn}\enspace\textbar\enspace
+  \href{https://github.com/im-shadowpool}{GitHub}
+\end{center}
+\vspace{-2pt}
+\begin{center}
+  \small Full-stack engineer with 3+ years of experience, and 2+ years of freelancing. Passionate on building AI agents/workflows and MCPs.
+\end{center}\vspace{-4pt}
+
+\section{Work Experience}
+\resumeSubheading
+  {Full Stack Developer}{Dec 2024 -- Present}
+  {Elephant in the Boardroom}{Chennai}
+\begin{resumeItems}
+  \item Built \textbf{WordPress and backend services} using \textbf{PHP and Java} across multiple environments. Handled plugin and theme development, API optimizations, and implemented \textbf{CI/CD pipelines with Docker} containerization.
+  \item Developed \textbf{full-stack e-commerce platforms} with Next.js and Node.js (Fastify). Implemented \textbf{GraphQL APIs and vector DBs}, integrated CMS platforms (Strapi, Payload), and developed \textbf{AI-powered product features}.
+\end{resumeItems}
+
+\resumeSubheading
+  {Web Developer}{Mar 2024 -- Dec 2024}
+  {Juzgrow.com}{Remote}
+\begin{resumeItems}
+  \item Developed and maintained custom web applications and \textbf{admin dashboards} for GCC region clients, managing requirements and project delivery. Implemented \textbf{database design} and \textbf{performance optimization}.
+  \item Integrated third-party tools via webhooks to automate client workflows. Built \textbf{automated testing pipelines}, deployed on \textbf{cloud infrastructure} and maintained \textbf{monitoring and logging}.
+\end{resumeItems}
+
+\resumeSubheading
+  {Node.js Developer Intern}{Dec 2023 -- Mar 2024}
+  {Mindwave Solutions}{Hyderabad}
+\begin{resumeItems}
+  \item Developed Node.js payment authentication APIs with asynchronous request handling and middleware patterns. Implemented error handling, request validation, and non-blocking database operations for secure transactions.
+\end{resumeItems}
+
+\section{Technical Skills}
+\textbf{Languages:} JavaScript, TypeScript, Python, Java, C/C++\par
+\vspace{2pt}
+\textbf{Frontend \& Full-Stack:} React.js, Next.js, Tailwind CSS, Node.js, NestJS, Fastify, Express.js\par
+\vspace{2pt}
+\textbf{Tools:} PostgreSQL, MySQL, MongoDB, Docker, AWS, GitHub Actions, Jest, GraphQL, WordPress, Strapi
+
+\section{Projects}
+\Needspace{5\baselineskip}
+\textbf{BugRadar -- AI-Assisted Bug Tracking \& Client Feedback SaaS}\hfill
+\href{http://bugrader.site/}{\underline{Live}}\par
+\textit{Next.js, TypeScript, NestJS, Fastify, PostgreSQL, Prisma, Socket.IO}\par
+\begin{resumeItems}
+  \item Built a full-stack SaaS MVP with a \textbf{website widget and extension} for QA teams and clients to capture feedback and log issues directly to BugRadar. Supports \textbf{different staging environments} with email notifications, team management, and project management all in one place.
+  \item Trained an \textbf{AI model} to analyze bug reports and screenshots, generating clearer titles, priority levels, and debugging hints for developers, reducing setup time by \textbf{up to 40\%}. Implemented confidence scoring and intelligent fallback to maintain high report quality across all submissions.
+  \item Built \textbf{real-time collaboration} features with \textbf{role-based access control} for QA, developers, managers, and client-specific roles. Integrated \textbf{Cloudflare R2} for attachment storage and \textbf{multi-organization} support.
+\end{resumeItems}
+
+\resumeProjectHeading
+  {CompressByURL -- Image Optimization Platform}
+  {https://github.com/im-shadowpool/compressbyurl}
+  {https://compressbyurl.com/}
+  {Next.js, React, TypeScript, Web Workers, WebAssembly, Node.js, MCP, Sharp}
+\begin{resumeItems}
+  \item Built a \textbf{browser-first image compression} tool that helps developers speed up webpages by scanning and compressing all images in one operation with \textbf{real-time page speed metrics} and compression results.
+  \item Implemented \textbf{Web Workers and WebAssembly} to handle compression locally in the browser without sending files to the server. Built \textbf{target-size optimization}, webpage scanning, and \textbf{batch processing} with presets.
+  \item Published an \textbf{MCP server} (compressbyurl-mcp on npm) enabling AI agents and developers to automate image optimization in workflows. Supports auditing up to \textbf{1,000 images per run} with optimization plans, \textbf{image-size budgets in CI/CD pipelines}, and processes everything locally.
+\end{resumeItems}
+
+\section{Education}
+\resumeSubheading
+  {Jawaharlal Nehru Technological University Hyderabad}{Aug 2019 -- Sep 2023}
+  {Bachelor of Technology in Computer Science\enspace\textbar\enspace GPA: 7.0/10.0}{Hyderabad, Telangana}
+\end{document}

@@ -10,8 +10,8 @@ import {
   FiCode,
   FiFileText,
   FiGlobe,
-  FiMail,
   FiMapPin,
+  FiMail,
 } from "react-icons/fi";
 import { FaCodepen } from "react-icons/fa6";
 import type { IconType } from "react-icons";
@@ -90,14 +90,6 @@ export default function Intro({
     return stop;
   }, []);
 
-  // The painter's vertical signature, on the pond
-  const signature = (
-    <div className="pointer-events-none absolute right-3 top-3 rounded-sm bg-paper/85 px-1 py-1.5 backdrop-blur-sm sm:right-4">
-      <span className="tategaki font-display text-[0.68rem] leading-none tracking-[0.12em] text-ink" lang="ja">
-        ものづくり
-      </span>
-    </div>
-  );
   const socials = socialLinksFrom(intro.socialLinks);
 
   // Gossip the koi share about the site's owner.
@@ -106,22 +98,19 @@ export default function Intro({
     `fun fact: ${first} cut a site's load time from ${about.stat.from}${about.stat.unit} to ${about.stat.to}${about.stat.unit}`,
     `${first} is ${about.currently.role} at ${about.currently.company}`,
     `${first} is learning ${about.learning[0]} rn`,
-    `psst… ${first} is open to work 👀`,
-    `${first} once ran five blogs at the same time`,
+    `psst… ${first} is open to work`,
+    `${first} has 10+ blogs approved by Google AdSense`,
     `${first} qualified GATE, btw`,
     `${first}'s reading ${about.offscreen.reading}. i'm reading the water.`,
     `${first} plays ${about.offscreen.hobbies[0].toLowerCase()}. i play hide and seek.`,
-    `${first}'s email is right below us 👇`,
+    `${first}'s email is right below us`,
   ];
 
   return (
     <section id="home" ref={ref} aria-label="Profile">
-      {/* Cover: a living koi pond under a seasonal branch, with notes in the margins */}
+      {/* Cover: a living koi pond with notes in the margins */}
       <div className="relative">
-        {KoiPond ? <KoiPond facts={pondFacts}>{signature}</KoiPond> : <PondShell>{signature}</PondShell>}
-        <Doodle side="left" className="top-2">
-          brush the branch
-        </Doodle>
+        {KoiPond ? <KoiPond facts={pondFacts} /> : <PondShell />}
         <Doodle side="right" arrow="up" className="top-16">
           click the water to feed
           <br />
@@ -158,7 +147,7 @@ export default function Intro({
             {...rise(3)}
           >
             <FiFileText aria-hidden="true" />
-            <span className="link-line">Résumé</span>
+            <span className="link-line">Resume</span>
             <FiArrowUpRight aria-hidden="true" />
           </MotionLink>
         </div>
@@ -169,7 +158,7 @@ export default function Intro({
           {...rise(3)}
         >
           <FiFileText aria-hidden="true" />
-          Résumé
+          Resume
           <FiArrowUpRight
             className="transition-transform duration-300 ease-silk group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
             aria-hidden="true"

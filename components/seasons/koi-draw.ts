@@ -28,7 +28,7 @@ export interface Pattern {
 const RED = "#D9432A";
 const SUMI = "#1F1B18";
 
-// Kohaku, ogon, showa and a white-headed orange.
+// Kohaku, ogon, showa and a white tancho sanke (red head spot, black shoulder).
 export const PATTERNS: Pattern[] = [
   {
     base: "#F8F3EA",
@@ -60,10 +60,15 @@ export const PATTERNS: Pattern[] = [
     ],
   },
   {
-    base: "#E4682C",
-    fin: "#F8D2B2",
-    ray: "rgba(190, 80, 30, 0.35)",
-    spots: [{ at: 0.04, r: 0.75, color: "#F8F3EA" }, { at: 0.55, r: 0.5, color: "#F4A15E" }],
+    base: "#F9F7F3",
+    fin: "#FFFEFB",
+    ray: "rgba(130, 130, 140, 0.26)",
+    spots: [
+      { at: 0.08, r: 0.78, color: "#E5321E" },
+      { at: 0.3, r: 0.6, color: SUMI },
+      { at: 0.46, r: 0.38, color: SUMI },
+      { at: 0.03, r: 0.2, color: SUMI },
+    ],
   },
 ];
 
@@ -88,7 +93,7 @@ export const DRAGON: Pattern = {
   shine: true,
 };
 
-export const NAMES = ["Koko", "Goldie", "Sho", "Mikan"];
+export const NAMES = ["Koko", "Goldie", "Sho", "Tama"];
 
 export const SEGMENTS = 14;
 export const TAU = Math.PI * 2;
@@ -144,7 +149,7 @@ export function makeBlobs(pattern: Pattern): Blob[] {
 
 export function makeKoi(width: number, height: number, index: number, pattern?: Pattern): Koi {
   const scale = Math.min(1, Math.max(0.68, width / 720));
-  const len = rand(48, 60) * scale;
+  const len = rand(40, 50) * scale;
   const x = rand(width * 0.25, width * 0.75);
   const y = rand(height * 0.3, height * 0.7);
   const angle = rand(0, TAU);

@@ -5,6 +5,15 @@ import type { IconType } from "react-icons";
 import {
   SiCplusplus,
   SiCss,
+  SiDocker,
+  SiFastify,
+  SiGithubactions,
+  SiGraphql,
+  SiJest,
+  SiNestjs,
+  SiOpenjdk,
+  SiPostgresql,
+  SiStrapi,
   SiExpress,
   SiGit,
   SiHtml5,
@@ -41,6 +50,15 @@ const ICONS: Record<string, { icon: IconType; color: string }> = {
   MongoDB: { icon: SiMongodb, color: "#47A248" },
   MySQL: { icon: SiMysql, color: "#4479A1" },
   Python: { icon: SiPython, color: "#3776AB" },
+  Java: { icon: SiOpenjdk, color: "#ED8B00" },
+  NestJS: { icon: SiNestjs, color: "#E0234E" },
+  Fastify: { icon: SiFastify, color: "currentColor" },
+  GraphQL: { icon: SiGraphql, color: "#E10098" },
+  PostgreSQL: { icon: SiPostgresql, color: "#4169E1" },
+  Docker: { icon: SiDocker, color: "#2496ED" },
+  "GitHub Actions": { icon: SiGithubactions, color: "#2088FF" },
+  Jest: { icon: SiJest, color: "#C21325" },
+  Strapi: { icon: SiStrapi, color: "#4945FF" },
   "C/C++": { icon: SiCplusplus, color: "#00599C" },
   Git: { icon: SiGit, color: "#F05032" },
   SEO: { icon: FiSearch, color: "rgb(var(--shu))" },
@@ -52,7 +70,7 @@ export default function Skills({ skills }: { skills: SkillGroup[] }) {
   const { ref } = useSectionInView("Skills", 0.5);
 
   return (
-    <Panel id="skills" title="Stack" kanji="道具" sectionRef={ref} className="space-y-5">
+    <Panel id="skills" title="Stack" glyph="S" sectionRef={ref} className="space-y-5">
       {skills.map((group) => (
         <m.div key={group.group} variants={panelItem} className="grid gap-2.5 sm:grid-cols-[6.5rem_1fr] sm:gap-4">
           <h3 className="label pt-2">{group.group}</h3>

@@ -98,7 +98,7 @@ export default function GithubGraph({
     if (el) el.scrollLeft = el.scrollWidth;
   }, [activeKey]);
 
-  const periodPhrase = active.key === "last" ? "in the last year" : `in ${active.label}`;
+  const periodPhrase = active.key === "last" ? "recently" : `in ${active.label}`;
 
   return (
     <figure>

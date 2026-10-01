@@ -1,20 +1,20 @@
 {
-  "updated": "2026-09-28",
+  "updated": "2026-10-02",
   "items": [
     {
       "label": "Building",
-      "kanji": "作",
-      "text": "Custom websites for GCC businesses as Lead Web Developer at Juzgrow — CMS builds wired together with webhooks."
+      "glyph": "B",
+      "text": "A Chrome extension for [BugRadar](http://bugrader.site/), so bugs can be reported straight from any web page."
     },
     {
       "label": "Learning",
-      "kanji": "学",
-      "text": "Java backend engineering and system design, going deeper than the MERN stack I started with."
+      "glyph": "L",
+      "text": "AI automation workflows."
     },
     {
       "label": "Reading",
-      "kanji": "読",
-      "text": "The Compound Effect by Darren Hardy."
+      "glyph": "R",
+      "text": "The Four Agreements by Don Miguel Ruiz."
     }
   ]
 }

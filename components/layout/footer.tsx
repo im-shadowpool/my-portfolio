@@ -1,6 +1,7 @@
 "use client";
 
 import { m } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { FiArrowUp } from "react-icons/fi";
 import VisitorCount from "@/components/ui/visitor-count";
 import SoundToggle from "@/components/ui/sound-toggle";
@@ -11,6 +12,72 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 const PAINT = [0.65, 0, 0.35, 1] as const;
 const ONCE = { once: true, margin: "0px 0px -10% 0px" } as const;
 
+// Concentric rings of dots, like ripples spreading on the pond. Only the top
+// half shows above the card's edge; dots near the pointer swell and brighten.
+// Rings 7 units apart, each with about one dot per 7 units of circumference.
+const RINGS = Array.from({ length: 9 }, (_, i) => {
+  const r = i * 7;
+  return { r, n: i === 0 ? 1 : Math.round((2 * Math.PI * r) / 7) };
+});
+const REACH = 24; // pointer influence, in svg units
+const BASE = 0.1;
+
+function RippleMark() {
+  const svg = useRef<SVGSVGElement>(null);
+
+  useEffect(() => {
+    const el = svg.current;
+    const card = el?.closest("[data-sign]");
+    if (!el || !card || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const dots = [...el.querySelectorAll<SVGCircleElement>("circle")];
+    const pts = dots.map((d) => ({ x: Number(d.getAttribute("cx")), y: Number(d.getAttribute("cy")) }));
+
+    const move = (e: Event) => {
+      const { clientX, clientY } = e as PointerEvent;
+      const box = el.getBoundingClientRect();
+      const k = 120 / box.width;
+      const px = (clientX - box.left) * k;
+      const py = (clientY - box.top) * k;
+      dots.forEach((d, i) => {
+        const w = Math.max(0, 1 - Math.hypot(pts[i].x - px, pts[i].y - py) / REACH);
+        d.style.transform = `scale(${1 + w * 1.9})`;
+        d.style.opacity = String(BASE + w * 0.55);
+      });
+    };
+    const leave = () =>
+      dots.forEach((d) => {
+        d.style.transform = "";
+        d.style.opacity = "";
+      });
+
+    card.addEventListener("pointermove", move);
+    card.addEventListener("pointerleave", leave);
+    return () => {
+      card.removeEventListener("pointermove", move);
+      card.removeEventListener("pointerleave", leave);
+    };
+  }, []);
+
+  return (
+    <svg ref={svg} viewBox="0 0 120 120" className="h-44 w-44 overflow-visible sm:h-56 sm:w-56">
+      {RINGS.map(({ r, n }, ring) =>
+        Array.from({ length: n }, (_, i) => {
+          const a = (i / n) * Math.PI * 2 - Math.PI / 2;
+          return (
+            <circle
+              key={`${ring}-${i}`}
+              className="ripple-dot"
+              cx={(60 + r * Math.cos(a)).toFixed(2)}
+              cy={(60 + r * Math.sin(a)).toFixed(2)}
+              r={ring === 0 ? 1.8 : 1.15}
+            />
+          );
+        }),
+      )}
+    </svg>
+  );
+}
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -18,26 +85,25 @@ export default function Footer() {
     <footer className="mx-auto max-w-column px-4 pb-8">
       {/*
         Sign-off, like the close of a letter: the line is written and the name
-        is signed with a brush stroke under it. 終 ("the end") sits faintly
-        behind, as on an old film's end card.
+        is signed with a brush stroke under it. A large monogram sits faintly
+        behind, like a watermark.
       */}
       <m.div
-        className="relative mb-10 mt-4 overflow-hidden rounded-xl border border-dotted border-line/30 bg-card/70 px-6 py-9 sm:px-10 sm:py-11"
+        data-sign className="group/sign relative mb-10 mt-4 overflow-hidden rounded-xl border border-dotted border-line/30 bg-card/70 px-6 py-9 sm:px-10 sm:py-11"
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={ONCE}
-        transition={{ duration: 0.7, ease: EASE }}
+        transition={{ duration: 0.45, ease: EASE }}
       >
         <m.span
-          className="pointer-events-none absolute -bottom-12 right-10 select-none font-display text-[10rem] leading-none text-ink/[0.05] sm:-bottom-16 sm:right-16 sm:text-[14rem]"
-          lang="ja"
+          className="pointer-events-none absolute -bottom-[5.5rem] right-10 select-none sm:-bottom-28 sm:right-24"
           aria-hidden="true"
-          initial={{ opacity: 0, scale: 1.08 }}
+          initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 1.6, ease: EASE, delay: 0.2 }}
+          transition={{ duration: 0.6, ease: EASE, delay: 0.1 }}
         >
-          終
+          <RippleMark />
         </m.span>
 
         <div className="relative flex items-start gap-6">
@@ -66,7 +132,7 @@ export default function Footer() {
                       initial={{ pathLength: 0, opacity: 0 }}
                       whileInView={{ pathLength: 1, opacity: 0.8 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.9, ease: PAINT, delay: 0.6 }}
+                      transition={{ duration: 0.6, ease: PAINT, delay: 0.25 }}
                     />
                   </svg>
                 </span>
@@ -75,15 +141,14 @@ export default function Footer() {
           </div>
 
           <m.span
-            className="tategaki shrink-0 font-display text-[0.95rem] tracking-[0.35em] text-ink-soft sm:text-[1.15rem]"
-            lang="ja"
+            className="tategaki shrink-0 font-mono text-[0.7rem] uppercase tracking-[0.35em] text-ink-soft sm:text-[0.8rem]"
             aria-hidden="true"
             initial={{ clipPath: "inset(0 0 100% 0)" }}
             whileInView={{ clipPath: "inset(0 0 0% 0)" }}
             viewport={{ once: true }}
-            transition={{ duration: 1.1, ease: PAINT, delay: 0.3 }}
+            transition={{ duration: 0.7, ease: PAINT, delay: 0.15 }}
           >
-            ありがとう
+            Thank you
           </m.span>
         </div>
       </m.div>

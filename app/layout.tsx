@@ -1,7 +1,6 @@
 import Header from "@/components/layout/header";
 import "./globals.css";
-import { Caveat, Geist, Geist_Mono } from "next/font/google";
-import localFont from "next/font/local";
+import { Caveat, Geist, Geist_Mono, Outfit } from "next/font/google";
 import type { Metadata, Viewport } from "next";
 import ActiveSectionContextProvider from "@/context/active-section-context";
 import Footer from "@/components/layout/footer";
@@ -11,18 +10,10 @@ import MotionProvider from "@/components/providers/motion";
 import ShojiTransition from "@/components/ui/shoji-transition";
 import Shortcuts from "@/components/ui/shortcuts";
 
-/*
-  Shippori Mincho, cut down to just the characters this site uses (Latin plus
-  the few kanji and kana in the headings). The full Japanese font ships as
-  ~250 files and several MB; this subset is three small files. After adding
-  new Japanese text, regenerate it with `node scripts/subset-display-font.mjs`.
-*/
-const display = localFont({
-  src: [
-    { path: "./fonts/shippori-mincho-400.woff2", weight: "400" },
-    { path: "./fonts/shippori-mincho-500.woff2", weight: "500" },
-    { path: "./fonts/shippori-mincho-600.woff2", weight: "600" },
-  ],
+// Outfit: a clean geometric sans for headings and the name.
+const display = Outfit({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
   variable: "--font-display",
   display: "swap",
 });
@@ -45,11 +36,11 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Saipavan Veeravalli | Full-Stack Developer & SEO Specialist",
+    default: "Saipavan Veeravalli | Software Development Engineer",
     template: "%s | Saipavan Veeravalli",
   },
   description:
-    "Portfolio of Saipavan Veeravalli — a full-stack developer specializing in Next.js, React, and Node.js with expertise in SEO, web performance, and modern cloud architecture.",
+    "Portfolio of Saipavan Veeravalli, a full-stack engineer with 3+ years of experience building SaaS products, AI agents and automation workflows with Next.js, Node.js and TypeScript.",
   applicationName: "Saipavan Veeravalli Portfolio",
   keywords: [
     "Saipavan Veeravalli",
@@ -59,7 +50,11 @@ export const metadata: Metadata = {
     "Next.js developer",
     "React developer",
     "Node.js developer",
-    "SEO specialist",
+    "full stack engineer",
+    "SaaS developer",
+    "AI agents developer",
+    "AI automation workflows",
+    "MCP server developer",
     "web developer portfolio",
     "JavaScript developer",
     "TypeScript developer",
@@ -90,23 +85,23 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: siteUrl,
     siteName: "Saipavan Veeravalli Portfolio",
-    title: "Saipavan Veeravalli | Full-Stack Developer & SEO Specialist",
+    title: "Saipavan Veeravalli | Software Development Engineer",
     description:
-      "Portfolio of Saipavan Veeravalli — full-stack developer specializing in Next.js, React, and Node.js with expertise in SEO and modern web technologies.",
+      "Portfolio of Saipavan Veeravalli: full-stack engineer building SaaS products, AI agents and automation workflows with Next.js, Node.js and TypeScript.",
     images: [
       {
         url: `${siteUrl}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "Saipavan Veeravalli - Full-Stack Developer & SEO Specialist",
+        alt: "Saipavan Veeravalli - Software Development Engineer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Saipavan Veeravalli | Full-Stack Developer & SEO Specialist",
+    title: "Saipavan Veeravalli | Software Development Engineer",
     description:
-      "Portfolio of Saipavan Veeravalli — full-stack developer specializing in Next.js, React, and Node.js with expertise in SEO and web performance.",
+      "Portfolio of Saipavan Veeravalli: full-stack engineer building SaaS products, AI agents and automation workflows.",
     images: [`${siteUrl}/og-image.png`],
     creator: "@im_shadowpool",
   },
@@ -132,7 +127,7 @@ const jsonLd = {
       url: siteUrl,
       name: "Saipavan Veeravalli Portfolio",
       description:
-        "Full-stack developer portfolio specializing in Next.js, React, and Node.js with SEO expertise.",
+        "Portfolio of a full-stack engineer building SaaS products, AI agents and automation workflows with Next.js, Node.js and TypeScript.",
       publisher: {
         "@id": `${siteUrl}/#person`,
       },
@@ -144,9 +139,9 @@ const jsonLd = {
       name: "Saipavan Veeravalli",
       url: siteUrl,
       image: `${siteUrl}/saipavan-veeravalli.png`,
-      jobTitle: "Full-Stack Developer & SEO Specialist",
+      jobTitle: "Software Development Engineer",
       description:
-        "Full-Stack Developer specializing in Next.js, React, Node.js, and technical SEO.",
+        "Full-stack engineer with 3+ years of experience building SaaS products, AI agents and automation workflows with Next.js, Node.js and TypeScript.",
       email: "mailto:v.saipavan2001@gmail.com",
       sameAs: [
         "https://www.linkedin.com/in/saipavan-veeravalli/",
@@ -171,6 +166,13 @@ const jsonLd = {
         "MongoDB",
         "REST APIs",
         "Data Structures & Algorithms",
+        "AI agents",
+        "MCP servers",
+        "Automation workflows",
+        "Fastify",
+        "NestJS",
+        "PostgreSQL",
+        "GraphQL",
       ],
     },
     {
@@ -181,6 +183,34 @@ const jsonLd = {
         {
           "@type": "ListItem",
           position: 1,
+          item: {
+            "@type": "WebApplication",
+            name: "BugRadar",
+            description:
+              "AI-assisted bug tracking and client feedback SaaS with a website widget and extension, real-time collaboration and role-based access control.",
+            url: "http://bugrader.site/",
+            applicationCategory: "DeveloperApplication",
+            operatingSystem: "All",
+            author: { "@id": `${siteUrl}/#person` },
+          },
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          item: {
+            "@type": "WebApplication",
+            name: "CompressByURL",
+            description:
+              "Browser-first image compression platform that scans a webpage and compresses its images locally using Web Workers and WebAssembly, with an MCP server for AI agents.",
+            url: "https://compressbyurl.com/",
+            applicationCategory: "DeveloperApplication",
+            operatingSystem: "All",
+            author: { "@id": `${siteUrl}/#person` },
+          },
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
           item: {
             "@type": "WebApplication",
             name: "Admin Dashboard",
@@ -194,7 +224,7 @@ const jsonLd = {
         },
         {
           "@type": "ListItem",
-          position: 2,
+          position: 4,
           item: {
             "@type": "WebApplication",
             name: "Sticky Docs",
@@ -208,7 +238,7 @@ const jsonLd = {
         },
         {
           "@type": "ListItem",
-          position: 3,
+          position: 5,
           item: {
             "@type": "WebApplication",
             name: "DealsTracker",
@@ -222,7 +252,7 @@ const jsonLd = {
         },
         {
           "@type": "ListItem",
-          position: 4,
+          position: 6,
           item: {
             "@type": "WebApplication",
             name: "RiteBlog App",
@@ -236,7 +266,7 @@ const jsonLd = {
         },
         {
           "@type": "ListItem",
-          position: 5,
+          position: 7,
           item: {
             "@type": "WebApplication",
             name: "Memory Game",
@@ -254,7 +284,7 @@ const jsonLd = {
       "@type": "ProfilePage",
       "@id": `${siteUrl}/#webpage`,
       url: siteUrl,
-      name: "Saipavan Veeravalli | Full-Stack Developer & SEO Specialist",
+      name: "Saipavan Veeravalli | Software Development Engineer",
       isPartOf: {
         "@id": `${siteUrl}/#website`,
       },

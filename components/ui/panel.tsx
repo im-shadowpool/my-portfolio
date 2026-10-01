@@ -2,10 +2,11 @@
 
 import clsx from "clsx";
 import { m, type Variants } from "framer-motion";
+import Glyph from "./glyph";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 const PAINT = [0.65, 0, 0.35, 1] as const;
-const IN_VIEW = { once: true, margin: "0px 0px -12% 0px" } as const;
+const IN_VIEW = { once: true, margin: "0px 0px -6% 0px" } as const;
 
 /**
  * Section break: one seigaiha wave (three nested arcs) resting in open space.
@@ -32,7 +33,7 @@ export function WaveBreak({ className }: { className?: string }) {
             strokeLinecap="round"
             variants={{
               hidden: { pathLength: 0, opacity: 0 },
-              shown: { pathLength: 1, opacity: 1, transition: { duration: 0.7, ease: PAINT, delay: i * 0.18 } },
+              shown: { pathLength: 1, opacity: 1, transition: { duration: 0.4, ease: PAINT, delay: i * 0.08 } },
             }}
           />
         ))}
@@ -41,26 +42,22 @@ export function WaveBreak({ className }: { className?: string }) {
   );
 }
 
-// A soft-edged wash slid across the title so it appears painted in.
-const WASH = "linear-gradient(90deg, #000 0%, #000 42%, transparent 58%, transparent 100%)";
-
 /**
- * Children of a panel can use these variants to join its reveal: they start
- * once the title has been painted in.
+ * Children of a panel can use these variants to join its reveal.
  */
 export const panelItem: Variants = {
-  hidden: { opacity: 0, y: 14 },
-  shown: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
+  hidden: { opacity: 0, y: 10 },
+  shown: { opacity: 1, y: 0, transition: { duration: 0.4, ease: EASE } },
 };
 
 /**
- * A section of the page. When it scrolls into view the title is painted in
- * first, the Japanese word follows, and only then does the content rise in.
+ * A section of the page. When it scrolls into view the title, its letter mark
+ * and the content fade up together in one quick reveal.
  */
 export default function Panel({
   id,
   title,
-  kanji,
+  glyph,
   meta,
   children,
   className,
@@ -68,58 +65,43 @@ export default function Panel({
 }: {
   id: string;
   title: string;
-  kanji: string;
+  /** A single letter for the section's abstract mark. */
+  glyph: string;
   meta?: React.ReactNode;
   children: React.ReactNode;
   className?: string;
   sectionRef?: (node?: Element | null) => void;
 }) {
-  const titleDuration = 0.8 + title.length * 0.04;
-
   return (
     <section id={id} ref={sectionRef} className="scroll-mt-16" aria-labelledby={`${id}-title`}>
       <m.div initial="hidden" whileInView="shown" viewport={IN_VIEW}>
-        <div className="flex items-end gap-3 px-4 pb-2 pt-6">
+        <div className="glyph-host flex items-end gap-3 px-4 pb-2 pt-6">
           <m.h2
             id={`${id}-title`}
             className="font-display text-[1.75rem] font-semibold leading-tight tracking-tight text-shu"
-            style={{
-              maskImage: WASH,
-              WebkitMaskImage: WASH,
-              maskSize: "260% 100%",
-              WebkitMaskSize: "260% 100%",
-              maskPosition: "var(--wash) 0%",
-              WebkitMaskPosition: "var(--wash) 0%",
-            }}
             variants={{
-              hidden: { "--wash": "100%", filter: "blur(2px)" },
-              shown: { "--wash": "0%", filter: "blur(0px)", transition: { duration: titleDuration, ease: PAINT } },
+              hidden: { opacity: 0, y: 8 },
+              shown: { opacity: 1, y: 0, transition: { duration: 0.4, ease: EASE } },
             }}
           >
             {title}
           </m.h2>
           <m.span
-            className="pb-1 font-display text-[0.95rem] text-ink-faint"
-            lang="ja"
+            className="pb-1.5 text-ink-faint"
             aria-hidden="true"
             variants={{
-              hidden: { opacity: 0, y: -4, filter: "blur(3px)" },
-              shown: {
-                opacity: 1,
-                y: 0,
-                filter: "blur(0px)",
-                transition: { duration: 0.5, delay: titleDuration * 0.55 },
-              },
+              hidden: { opacity: 0, y: 8 },
+              shown: { opacity: 1, y: 0, transition: { duration: 0.4, ease: EASE, delay: 0.05 } },
             }}
           >
-            {kanji}
+            <Glyph id={id} letter={glyph} />
           </m.span>
           {meta && (
             <m.span
               className="label ml-auto pb-1.5"
               variants={{
                 hidden: { opacity: 0 },
-                shown: { opacity: 1, transition: { duration: 0.5, delay: titleDuration * 0.55 } },
+                shown: { opacity: 1, transition: { duration: 0.4, delay: 0.1 } },
               }}
             >
               {meta}
@@ -130,16 +112,16 @@ export default function Panel({
         <m.div
           className={clsx("px-4 pb-5 pt-3", className)}
           variants={{
-            hidden: { opacity: 0, y: 18 },
+            hidden: { opacity: 0, y: 12 },
             shown: {
               opacity: 1,
               y: 0,
               transition: {
-                duration: 0.7,
+                duration: 0.45,
                 ease: EASE,
-                delay: titleDuration * 0.6,
-                delayChildren: titleDuration * 0.6 + 0.1,
-                staggerChildren: 0.07,
+                delay: 0.05,
+                delayChildren: 0.1,
+                staggerChildren: 0.04,
               },
             },
           }}

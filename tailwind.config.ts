@@ -24,13 +24,7 @@ const config: Config = {
         column: "46rem",
       },
       fontFamily: {
-        display: [
-          "var(--font-display)",
-          "Hiragino Mincho ProN",
-          "Yu Mincho",
-          "Noto Serif JP",
-          "serif",
-        ],
+        display: ["var(--font-display)", "system-ui", "sans-serif"],
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
         mono: ["var(--font-mono)", "ui-monospace", "monospace"],
         hand: ["var(--font-hand)", "cursive"],

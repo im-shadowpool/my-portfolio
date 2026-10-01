@@ -71,20 +71,9 @@ function Momiji({ i }: { i: number }) {
 
 /**
  * An ink-brush branch reaching over the pond from the top-left corner. Its
- * foliage follows the season; brushing past it shakes something loose.
+ * foliage follows the season; it sways gently and is purely decorative.
  */
-export default function Branch({
-  season,
-  onShake,
-}: {
-  season: Season | null;
-  onShake: (clientX: number, clientY: number) => void;
-}) {
-  const shake = (event: React.PointerEvent<SVGGElement>) => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    onShake(rect.left + rect.width / 2, rect.top + rect.height / 2);
-  };
-
+export default function Branch({ season }: { season: Season | null }) {
   return (
     <svg
       viewBox="-12 -12 332 150"
@@ -130,9 +119,7 @@ export default function Branch({
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0 }}
                 transition={{ delay: 0.03 * i, type: "spring", stiffness: 260, damping: 18 }}
-                style={{ x, y, pointerEvents: "visiblePainted", cursor: "grab" }}
-                whileHover={{ rotate: [0, -14, 10, -5, 0], transition: { duration: 0.6 } }}
-                onPointerEnter={shake}
+                style={{ x, y }}
               >
                 {season === "spring" && <Blossom i={i} />}
                 {season === "summer" && <Leaves i={i} />}
@@ -141,15 +128,6 @@ export default function Branch({
             ))}
         </AnimatePresence>
 
-        {/* In winter the limb itself sheds snow when brushed. */}
-        {season === "winter" && (
-          <path
-            d="M-12 8 C60 6 130 20 200 42 C230 52 252 60 268 71 C250 65 226 58 198 50 C128 30 60 20 -12 24 Z"
-            fill="transparent"
-            style={{ pointerEvents: "visiblePainted" }}
-            onPointerMove={(e) => onShake(e.clientX, e.clientY)}
-          />
-        )}
       </g>
     </svg>
   );

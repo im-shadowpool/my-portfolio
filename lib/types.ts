@@ -48,13 +48,14 @@ export interface ProjectItem {
   imageUrl: string;
   imageAlt?: string;
   url: string;
-  repo: string;
+  repo?: string;
   year: string;
+  featured?: boolean;
+  badge?: string;
 }
 
 export interface SkillGroup {
   group: string;
-  kanji: string;
   note: string;
   items: string[];
 }
@@ -63,7 +64,9 @@ export interface ExperienceItem {
   title: string;
   location: string;
   description: string;
+  points?: string[];
   icon: string;
+  logo?: string;
   date: string;
 }
 
@@ -74,5 +77,5 @@ export interface ContactData {
 export interface NowData {
   /** ISO date the page was last brought up to date. */
   updated: string;
-  items: { label: string; kanji: string; text: string }[];
+  items: { label: string; glyph: string; text: string }[];
 }

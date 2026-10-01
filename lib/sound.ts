@@ -200,34 +200,6 @@ export const sound = {
     tone(a, { at: a.now, length: 0.12, from: 660, to: 990, type: "triangle", level: 0.1, attack: 0.004 });
   },
 
-  /** A quiet bubble as a fish starts talking. */
-  blub() {
-    const a = audio();
-    if (!a) return;
-    tone(a, { at: a.now, length: 0.06, from: 420, to: 760, level: 0.035, attack: 0.003 });
-    tone(a, { at: a.now + 0.07, length: 0.05, from: 520, to: 900, level: 0.025, attack: 0.003 });
-  },
-
-  /** A hungry fish's tummy: a low, wobbly rumble. */
-  grumble() {
-    const a = audio();
-    if (!a) return;
-    tone(a, { at: a.now, length: 0.35, from: 110, to: 85, type: "triangle", level: 0.09, attack: 0.03 });
-    tone(a, { at: a.now + 0.22, length: 0.3, from: 95, to: 70, type: "triangle", level: 0.07, attack: 0.03 });
-  },
-
-  /** The fish go on strike: a chanting "oi! oi! oi!" of bubbly shouts. */
-  protest() {
-    const a = audio();
-    if (!a) return;
-    for (let i = 0; i < 3; i++) {
-      const at = a.now + i * 0.26;
-      tone(a, { at, length: 0.14, from: 520, to: 380, type: "square", level: 0.05, attack: 0.004 });
-      tone(a, { at, length: 0.12, from: 780, to: 560, type: "triangle", level: 0.04, attack: 0.004 });
-      noise(a, { at, length: 0.08, from: 1500, q: 1.5, level: 0.03, attack: 0.003 });
-    }
-  },
-
   /** Something magical happened in the pond (an easter egg). */
   sparkle() {
     const a = audio();
