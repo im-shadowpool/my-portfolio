@@ -11,7 +11,7 @@
 - **Instagram:** [https://www.instagram.com/im_shadowpool/](https://www.instagram.com/im_shadowpool/)
 - **CodePen:** [https://codepen.io/shadowpool](https://codepen.io/shadowpool)
 - **LinkedIn:** [https://www.linkedin.com/in/saipavan-veeravalli/](https://www.linkedin.com/in/saipavan-veeravalli/)
-- **Resume:** [Google Drive](https://drive.google.com/file/d/1k9cVS_yPeIUWUiyWF527qna7Uv6IuWfC/view)
+- **Resume:** [Google Drive](https://drive.google.com/file/d/1RmtwFwB0D0gjEiK8fiIyTg5dqPBLm1d6/view?usp=sharing)
 
 ## Summary & Expertise
 Saipavan Veeravalli is a full-stack engineer with 3+ years of professional experience and 2+ years of freelancing (close to 60 client projects). He started with Telegram bots and HTML games in 2015, built 10+ Google AdSense-approved WordPress sites with up to 2 million monthly visits (strong SEO background), and moved into development in 2021 with the MERN stack. Today he builds SaaS products, AI agents, MCP servers and automation workflows with Next.js, Node.js (Fastify, NestJS), TypeScript and PostgreSQL. He qualified GATE and runs two SaaS products of his own.
